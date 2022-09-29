@@ -51,6 +51,7 @@ android {
 dependencies {
     def nav_version = "2.5.2"
     def camerax_version = "1.2.0-beta01"
+    def accompanist_version = "0.20.3"
 
     implementation 'androidx.core:core-ktx:1.9.0'
     implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.5.1'
@@ -75,6 +76,15 @@ dependencies {
     // coroutines lifecycle scopes
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.1"
     implementation "androidx.lifecycle:lifecycle-runtime-ktx:2.5.1"
+
+    // accompanist - systemui
+    implementation "com.google.accompanist:accompanist-systemuicontroller:$accompanist_version"
+
+    // accompanist - permissions
+    implementation "com.google.accompanist:accompanist-permissions:$accompanist_version"
+
+    // accompanist - flow layout
+    implementation "com.google.accompanist:accompanist-flowlayout:$accompanist_version"
 
     // retrofit
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'

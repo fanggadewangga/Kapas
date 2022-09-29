@@ -1,6 +1,6 @@
 package com.puyo.kapas.feature_kapas.presentation.util
 
-sealed class Screen(private val route: String) {
+sealed class Screen(val route: String) {
     object SplashScreen: Screen("splash_screen")
     object LandingScreen: Screen("landing_screen")
 
@@ -18,7 +18,7 @@ sealed class Screen(private val route: String) {
 
     // Job Screen
     object JobScreen: Screen("job_screen")
-    object JodDetailScreen: Screen("job_detail_screen")
+    object JobDetailScreen: Screen("job_detail_screen")
 
     // History
     object HistoryScreen: Screen("history_screen")
