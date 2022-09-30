@@ -6,7 +6,6 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Button
 import androidx.compose.material.ButtonDefaults
-import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.SideEffect
@@ -24,6 +23,7 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import com.puyo.kapas.R
+import com.puyo.kapas.feature_kapas.presentation.util.Screen
 import com.puyo.kapas.ui.theme.Orange
 
 @Composable
@@ -31,77 +31,63 @@ fun LandingScreen(navController: NavController) {
     val systemUiController = rememberSystemUiController()
 
     SideEffect {
-        systemUiController.setSystemBarsColor(
-            color = Orange
-        )
+        systemUiController.setSystemBarsColor(color = Orange)
     }
 
-    Surface(
-        modifier = Modifier.fillMaxSize()
-    ) {
+    Column(horizontalAlignment = Alignment.CenterHorizontally,
+        modifier = Modifier
+            .fillMaxWidth()
+            .background(Orange)) {
 
-        Column(
-            horizontalAlignment = Alignment.CenterHorizontally,
+        Spacer(modifier = Modifier.height(160.dp))
+        Image(painter = painterResource(id = R.drawable.jobhunt_landing),
+            contentDescription = "Kapas Logo",
+            modifier = Modifier.size(190.dp))
+
+        Text(fontSize = 22.sp,
+            fontWeight = FontWeight.ExtraBold,
+            text = "Temukan Pekerjaan Anda\ndan Hidup Lebih Sejahtera",
+            textAlign = TextAlign.Center,
+            color = Color.White)
+
+        Spacer(modifier = Modifier.height(32.dp))
+        Box(contentAlignment = Alignment.Center,
             modifier = Modifier
                 .fillMaxWidth()
-                .background(Orange)
-        ) {
-            
-            Spacer(modifier = Modifier.height(160.dp))
-            Image(
-                painter = painterResource(id = R.drawable.jobhunt_landing),
-                contentDescription = "Kapas Logo",
+                .align(Alignment.CenterHorizontally)) {
+
+            Image(painter = painterResource(id = R.drawable.cloud),
+                contentDescription = "Cloud",
+                contentScale = ContentScale.FillBounds,
                 modifier = Modifier
-                    .size(190.dp)
+                    .fillMaxSize()
             )
 
-            Text(
-                fontSize = 22.sp,
-                fontWeight = FontWeight.ExtraBold,
-                text = "Temukan Pekerjaan Anda\ndan Hidup Lebih Sejahtera",
-                textAlign = TextAlign.Center,
-                color = Color.White
-            )
-
-            Spacer(modifier = Modifier.height(32.dp))
-            Box(
-                contentAlignment = Alignment.Center,
+            Button(
+                onClick = {
+                    navController.navigate(Screen.SignupScreen.route)
+                },
+                colors = ButtonDefaults.buttonColors(backgroundColor = Color.White),
+                shape = RoundedCornerShape(8.dp),
                 modifier = Modifier
-                    .fillMaxWidth()
-                    .align(Alignment.CenterHorizontally)
+                    .align(Alignment.TopCenter)
+                    .padding(top = 72.dp)
             ) {
-                Image(
-                    painter = painterResource(id = R.drawable.cloud),
-                    contentDescription = "Cloud",
-                    contentScale = ContentScale.FillBounds,
-                    modifier = Modifier
-                        .fillMaxSize()
+                Text(
+                    text = "Lanjut",
+                    color = Orange,
+                    fontWeight = FontWeight.Bold
                 )
-
-                Button(
-                    onClick = {},
-                    colors = ButtonDefaults.buttonColors(backgroundColor = Color.White),
-                    shape = RoundedCornerShape(8.dp),
-                    modifier = Modifier
-                        .align(Alignment.TopCenter)
-                        .padding(top = 72.dp)
-                ) {
-                    Text(
-                        text = "Lanjut",
-                        color = Orange,
-                        fontWeight = FontWeight.ExtraBold
-                    )
-                    Spacer(modifier = Modifier.width(8.dp))
-                    Image(
-                        painter = painterResource(id = R.drawable.arrow_next) ,
-                        modifier = Modifier.size(16.dp),
-                        contentDescription = "Arrow Next")
-                }
+                Spacer(modifier = Modifier.width(8.dp))
+                Image(
+                    painter = painterResource(id = R.drawable.arrow_next),
+                    modifier = Modifier.size(16.dp),
+                    contentDescription = "Arrow Next")
+            }
             }
 
         }
     }
-}
 
 @Preview
 @Composable

@@ -3,7 +3,6 @@ package com.puyo.kapas.feature_kapas.presentation.splash
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
-import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.SideEffect
@@ -33,57 +32,52 @@ fun SplashScreen(navController: NavController) {
 
     LaunchedEffect(key1 = true) {
         delay(TIME_SPLASH)
-        navController.navigate(Screen.LandingScreen.route){
-            popUpTo(Screen.SplashScreen.route){
+        navController.navigate(Screen.LandingScreen.route) {
+            popUpTo(Screen.SplashScreen.route) {
                 inclusive = true
             }
         }
     }
 
-    Surface(
-        modifier = Modifier.fillMaxSize()
+    Column(
+        horizontalAlignment = Alignment.CenterHorizontally,
+        modifier = Modifier
+            .fillMaxSize()
+            .background(Orange)
     ) {
 
-        Column(
-            horizontalAlignment = Alignment.CenterHorizontally,
+        Spacer(modifier = Modifier.height(160.dp))
+        Image(
+            painter = painterResource(id = R.drawable.logo_kapas),
+            contentDescription = "Kapas Logo",
+            modifier = Modifier
+                .size(190.dp)
+        )
+
+        Spacer(modifier = Modifier.height(56.dp))
+        Box(
+            contentAlignment = Alignment.BottomCenter,
             modifier = Modifier
                 .fillMaxSize()
-                .background(Orange)
+                .align(Alignment.CenterHorizontally)
         ) {
-
-            Spacer(modifier = Modifier.height(160.dp))
             Image(
-                painter = painterResource(id = R.drawable.logo_kapas),
-                contentDescription = "Kapas Logo",
-                modifier = Modifier
-                    .size(190.dp)
-            )
-
-            Spacer(modifier = Modifier.height(56.dp))
-            Box(
-                contentAlignment = Alignment.BottomCenter,
+                painter = painterResource(id = R.drawable.cloud),
+                contentDescription = "Cloud",
                 modifier = Modifier
                     .fillMaxSize()
-                    .align(Alignment.CenterHorizontally)
-            ) {
-                Image(
-                    painter = painterResource(id = R.drawable.cloud),
-                    contentDescription = "Cloud",
-                    modifier = Modifier
-                        .fillMaxSize()
-                )
+            )
 
-                Image(
-                    painter = painterResource(id = R.drawable.jobhunt),
-                    contentDescription = "Jobhunt",
-                    modifier = Modifier
-                        .fillMaxSize()
-                        .padding(56.dp)
-                )
+            Image(
+                painter = painterResource(id = R.drawable.jobhunt),
+                contentDescription = "Jobhunt",
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(56.dp)
+            )
             }
         }
     }
-}
 
 @Preview
 @Composable
