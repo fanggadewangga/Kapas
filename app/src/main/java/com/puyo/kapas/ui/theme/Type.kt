@@ -8,17 +8,18 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
 import com.puyo.kapas.R
 
-private val poppins = FontFamily(
-    Font(R.font.poppins_extralight),
-    Font(R.font.poppins_light),
-    Font(R.font.poppins_medium),
-    Font(R.font.poppins_semibold),
-    Font(R.font.poppins_bold)
+private val roboto = FontFamily(
+    Font(R.font.opensans_light),
+    Font(R.font.opensans_regular),
+    Font(R.font.opensans_medium),
+    Font(R.font.opensans_semibold),
+    Font(R.font.opensans_bold),
+    Font(R.font.opensans_extrabold)
 )
 
 // Set of Material typography styles to start with
 val Typography = Typography(
-    defaultFontFamily = poppins,
+    defaultFontFamily = roboto,
     body1 = TextStyle(
         fontFamily = FontFamily.Default,
         fontWeight = FontWeight.Normal,

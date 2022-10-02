@@ -11,13 +11,13 @@ import androidx.compose.runtime.SideEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.scale
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -48,7 +48,7 @@ fun LoginScreen(navController: NavController) {
 
         Spacer(modifier = Modifier.height(48.dp))
         Image(
-            painter = painterResource(id = R.drawable.logo_kapas),
+            painter = painterResource(id = R.drawable.img_logo),
             contentDescription = "Kapas Logo",
             modifier = Modifier
                 .size(160.dp)
@@ -61,7 +61,7 @@ fun LoginScreen(navController: NavController) {
                 .fillMaxSize()
                 .align(Alignment.CenterHorizontally)
         ) {
-            Image(painter = painterResource(id = R.drawable.cloud),
+            Image(painter = painterResource(id = R.drawable.img_cloud),
                 contentDescription = "Cloud",
                 contentScale = ContentScale.FillBounds,
                 modifier = Modifier
@@ -102,67 +102,70 @@ fun LoginSection(navController: NavController) {
             color = Color.Gray
         )
 
-        // Email
         Spacer(modifier = Modifier.height(8.dp))
         TextField(
-            modifier = Modifier
-                .fillMaxWidth()
-                .background(
-                    color = Peach,
-                    shape = RoundedCornerShape(16.dp)
-                ),
             value = "",
             onValueChange = {
             },
             leadingIcon = {
-                Icon(painter = painterResource(id = R.drawable.email),
+                Icon(painter = painterResource(id = R.drawable.ic_email),
                     contentDescription = "Email",
-                    modifier = Modifier.size(16.dp))
+                    modifier = Modifier.size(20.dp))
             },
             placeholder = {
                 Text(
                     text = "Email",
-                    fontWeight = FontWeight.Medium,
+                    fontWeight = FontWeight.Normal,
                     color = Color.Gray,
+                    fontSize = 16.sp
                 )
             },
-            colors = TextFieldDefaults.outlinedTextFieldColors(
-                unfocusedBorderColor = Peach,
-                focusedBorderColor = Peach
-            )
+            modifier = Modifier
+                .fillMaxWidth()
+                .scale(scaleY = 0.9F, scaleX = 1F)
+                .clip(RoundedCornerShape(8.dp)),
+            colors = TextFieldDefaults.textFieldColors(
+                cursorColor = Color.Gray,
+                backgroundColor = Peach,
+                focusedIndicatorColor = Peach,
+                unfocusedIndicatorColor = Peach
+            ),
         )
 
         // Password
-        Spacer(modifier = Modifier.height(16.dp))
+        Spacer(modifier = Modifier.height(8.dp))
         TextField(
-            modifier = Modifier
-                .fillMaxWidth()
-                .background(color = Peach, shape = RoundedCornerShape(16.dp)),
             value = "",
             onValueChange = {
 
             },
             leadingIcon = {
-                Icon(painter = painterResource(id = R.drawable.password),
-                    contentDescription = "Email",
-                    modifier = Modifier.size(16.dp))
+                Icon(painter = painterResource(id = R.drawable.ic_password),
+                    contentDescription = "Lock",
+                    modifier = Modifier.size(20.dp))
             },
             placeholder = {
                 Text(
                     text = "Password",
-                    fontWeight = FontWeight.Medium,
-                    color = Color.Gray
+                    fontWeight = FontWeight.Normal,
+                    color = Color.Gray,
+                    fontSize = 16.sp
                 )
             },
-            visualTransformation = PasswordVisualTransformation(),
-            colors = TextFieldDefaults.outlinedTextFieldColors(
-                unfocusedBorderColor = Peach,
-                focusedBorderColor = Peach
+            modifier = Modifier
+                .fillMaxWidth()
+                .scale(scaleY = 0.9F, scaleX = 1F)
+                .clip(RoundedCornerShape(8.dp)),
+            colors = TextFieldDefaults.textFieldColors(
+                cursorColor = Color.Gray,
+                backgroundColor = Peach,
+                focusedIndicatorColor = Peach,
+                unfocusedIndicatorColor = Peach
             )
         )
 
         // Terms and Condition
-        Spacer(modifier = Modifier.height(16.dp))
+        Spacer(modifier = Modifier.height(4.dp))
         Row(
             verticalAlignment = Alignment.CenterVertically
         ) {
@@ -201,7 +204,7 @@ fun LoginSection(navController: NavController) {
                 .align(Alignment.CenterHorizontally)
         ) {
             Image(
-                painter = painterResource(id = R.drawable.line),
+                painter = painterResource(id = R.drawable.ic_line),
                 contentDescription = "Line",
                 modifier = Modifier.size(width = 120.dp, height = 16.dp)
             )
@@ -210,7 +213,7 @@ fun LoginSection(navController: NavController) {
                 color = Color.Gray
             )
             Image(
-                painter = painterResource(id = R.drawable.line),
+                painter = painterResource(id = R.drawable.ic_line),
                 contentDescription = "Line",
                 modifier = Modifier.size(width = 120.dp, height = 16.dp)
             )
@@ -271,7 +274,11 @@ fun LoginSection(navController: NavController) {
             fontSize = 12.sp,
             modifier = Modifier
                 .clickable {
-                    navController.navigate(Screen.SignupScreen.route)
+                    navController.navigate(Screen.SignupScreen.route) {
+                        popUpTo(Screen.LoginScreen.route) {
+                            inclusive = true
+                        }
+                    }
                 }
                 .align(Alignment.CenterHorizontally)
         )

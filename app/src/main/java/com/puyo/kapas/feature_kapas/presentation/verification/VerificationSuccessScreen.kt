@@ -25,7 +25,7 @@ import com.puyo.kapas.feature_kapas.presentation.verification.components.TopBar
 import com.puyo.kapas.ui.theme.Orange
 
 @Composable
-fun FaceVerificationScreen(navController: NavController) {
+fun VerificationSuccessScreen(navController: NavController) {
     val systemUiController = rememberSystemUiController()
 
     SideEffect {
@@ -40,44 +40,30 @@ fun FaceVerificationScreen(navController: NavController) {
             .background(color = Color.White)
     ) {
         Row {
-            TopBar(text = "Verifikasi Wajah")
+            TopBar(text = "Pengiriman Data Berhasil")
         }
 
-        Spacer(modifier = Modifier.height(72.dp))
-        Text(
-            text = "Silahkan Berfoto Selfie",
-            fontWeight = FontWeight.ExtraBold,
-            fontSize = 20.sp
+        Spacer(modifier = Modifier.height(160.dp))
+        Image(painter = painterResource(
+            id = R.drawable.img_verification_success),
+            contentDescription = "Card",
+            modifier = Modifier
+                .size(240.dp)
         )
 
         Spacer(modifier = Modifier.height(32.dp))
         Text(
-            text = "Pastikan wajah Anda terlihat dengan jelas serta pencahayaan yang tepat karena kami membutuhkannya untuk proses verifikasi eKTP/KTP",
+            text = "Kami telah menerima data Anda dan sekarang akan segera diproses. Silahkan tunggu, kami sedang bekerja secepat yang kami bisa!",
             fontWeight = FontWeight.Light,
             fontSize = 12.sp,
             textAlign = TextAlign.Center,
             modifier = Modifier.padding(horizontal = 40.dp)
         )
 
-        Spacer(modifier = Modifier.height(105.dp))
-        Image(painter = painterResource(
-            id = R.drawable.img_face_verification),
-            contentDescription = "Card",
-            modifier = Modifier
-                .size(240.dp)
-        )
-
-        Spacer(modifier = Modifier.height(72.dp))
-        Image(
-            painter = painterResource(id = R.drawable.img_data),
-            contentDescription = "Data",
-            modifier = Modifier.padding(horizontal = 28.dp)
-        )
-
-        Spacer(modifier = Modifier.height(16.dp))
+        Spacer(modifier = Modifier.height(166.dp))
         Button(
             onClick = {
-                      navController.navigate(Screen.VerificationSuccessScreen.route)
+                navController.navigate(Screen.HomeScreen.route)
             },
             shape = RoundedCornerShape(8.dp),
             colors = ButtonDefaults.buttonColors(Orange),
@@ -86,7 +72,7 @@ fun FaceVerificationScreen(navController: NavController) {
                 .padding(horizontal = 28.dp)
         ) {
             Text(
-                text = "Mulai",
+                text = "Lanjut",
                 textAlign = TextAlign.Center,
                 fontWeight = FontWeight.Bold,
                 color = Color.White

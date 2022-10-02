@@ -11,7 +11,7 @@ sealed class Screen(val route: String) {
     object CardVerificationScreen: Screen("card_verification_screen")
     object FaceVerificationScreen: Screen("face_verification_screen")
     object IdentityVerificationScreen: Screen("identity_verification_screen")
-    object ConfirmedVerificationScreen: Screen("confirmed_verification_screen")
+    object VerificationSuccessScreen: Screen("verification_success_screen")
 
     // Home Screen
     object HomeScreen: Screen("home_screen")

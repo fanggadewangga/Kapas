@@ -34,13 +34,14 @@ fun LandingScreen(navController: NavController) {
         systemUiController.setSystemBarsColor(color = Orange)
     }
 
-    Column(horizontalAlignment = Alignment.CenterHorizontally,
+    Column(
+        horizontalAlignment = Alignment.CenterHorizontally,
         modifier = Modifier
             .fillMaxWidth()
             .background(Orange)) {
 
         Spacer(modifier = Modifier.height(160.dp))
-        Image(painter = painterResource(id = R.drawable.jobhunt_landing),
+        Image(painter = painterResource(id = R.drawable.img_jobhunt_landing),
             contentDescription = "Kapas Logo",
             modifier = Modifier.size(190.dp))
 
@@ -51,12 +52,13 @@ fun LandingScreen(navController: NavController) {
             color = Color.White)
 
         Spacer(modifier = Modifier.height(32.dp))
-        Box(contentAlignment = Alignment.Center,
+        Box(
+            contentAlignment = Alignment.Center,
             modifier = Modifier
                 .fillMaxWidth()
                 .align(Alignment.CenterHorizontally)) {
 
-            Image(painter = painterResource(id = R.drawable.cloud),
+            Image(painter = painterResource(id = R.drawable.img_cloud),
                 contentDescription = "Cloud",
                 contentScale = ContentScale.FillBounds,
                 modifier = Modifier
@@ -80,7 +82,7 @@ fun LandingScreen(navController: NavController) {
                 )
                 Spacer(modifier = Modifier.width(8.dp))
                 Image(
-                    painter = painterResource(id = R.drawable.arrow_next),
+                    painter = painterResource(id = R.drawable.ic_arrow_next),
                     modifier = Modifier.size(16.dp),
                     contentDescription = "Arrow Next")
             }

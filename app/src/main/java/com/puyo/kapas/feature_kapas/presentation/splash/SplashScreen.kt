@@ -8,6 +8,7 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.SideEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -42,13 +43,13 @@ fun SplashScreen(navController: NavController) {
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
         modifier = Modifier
-            .fillMaxSize()
+            .fillMaxWidth()
             .background(Orange)
     ) {
 
         Spacer(modifier = Modifier.height(160.dp))
         Image(
-            painter = painterResource(id = R.drawable.logo_kapas),
+            painter = painterResource(id = R.drawable.img_logo),
             contentDescription = "Kapas Logo",
             modifier = Modifier
                 .size(190.dp)
@@ -56,23 +57,25 @@ fun SplashScreen(navController: NavController) {
 
         Spacer(modifier = Modifier.height(56.dp))
         Box(
-            contentAlignment = Alignment.BottomCenter,
+            contentAlignment = Alignment.Center,
             modifier = Modifier
                 .fillMaxSize()
                 .align(Alignment.CenterHorizontally)
         ) {
             Image(
-                painter = painterResource(id = R.drawable.cloud),
+                painter = painterResource(id = R.drawable.img_cloud),
                 contentDescription = "Cloud",
+                contentScale = ContentScale.FillBounds,
                 modifier = Modifier
                     .fillMaxSize()
             )
 
             Image(
-                painter = painterResource(id = R.drawable.jobhunt),
+                painter = painterResource(id = R.drawable.img_jobhunt),
                 contentDescription = "Jobhunt",
                 modifier = Modifier
                     .fillMaxSize()
+                    .align(Alignment.BottomCenter)
                     .padding(56.dp)
             )
             }

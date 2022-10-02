@@ -18,11 +18,9 @@ import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.withStyle
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
-import androidx.navigation.compose.rememberNavController
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import com.puyo.kapas.R
 import com.puyo.kapas.feature_kapas.presentation.util.Screen
@@ -79,7 +77,7 @@ fun CardVerificationScreen(navController: NavController) {
 
         Spacer(modifier = Modifier.height(120.dp))
         Image(painter = painterResource(
-            id = R.drawable.card_verification),
+            id = R.drawable.img_card_verification),
             contentDescription = "Card",
             modifier = Modifier
                 .size(240.dp)
@@ -87,7 +85,7 @@ fun CardVerificationScreen(navController: NavController) {
 
         Spacer(modifier = Modifier.height(72.dp))
         Image(
-            painter = painterResource(id = R.drawable.data),
+            painter = painterResource(id = R.drawable.img_data),
             contentDescription = "Data",
             modifier = Modifier.padding(horizontal = 28.dp)
         )
@@ -111,10 +109,4 @@ fun CardVerificationScreen(navController: NavController) {
             )
         }
     }
-}
-
-@Preview
-@Composable
-fun Preview() {
-    CardVerificationScreen(navController = rememberNavController())
 }

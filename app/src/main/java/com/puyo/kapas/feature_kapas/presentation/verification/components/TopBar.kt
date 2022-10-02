@@ -28,7 +28,7 @@ fun TopBar(text: String) {
             fontSize = 20.sp,
             color = Color.White,
             modifier = Modifier
-                .padding(vertical = 8.dp)
+                .padding(vertical = 16.dp)
         )
     }
 }
