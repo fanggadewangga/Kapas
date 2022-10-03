@@ -279,7 +279,11 @@ fun SignupSection(navController: NavController) {
 
         Button(
             onClick = {
-
+                navController.navigate(Screen.LoginScreen.route) {
+                    popUpTo(Screen.SignupScreen.route) {
+                        inclusive = true
+                    }
+                }
             },
             shape = RoundedCornerShape(8.dp),
             colors = ButtonDefaults.buttonColors(backgroundColor = Orange),
@@ -293,13 +297,6 @@ fun SignupSection(navController: NavController) {
                 color = Color.White,
                 modifier = Modifier
                     .padding(horizontal = 72.dp)
-                    .clickable {
-                        navController.navigate(Screen.LoginScreen.route) {
-                            popUpTo(Screen.SignupScreen.route) {
-                                inclusive = true
-                            }
-                        }
-                    }
             )
         }
 

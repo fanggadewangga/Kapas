@@ -120,6 +120,13 @@ dependencies {
     implementation platform('com.google.firebase:firebase-bom:29.2.1')
     implementation 'com.google.firebase:firebase-analytics-ktx'
 
+    // Room
+    implementation "androidx.room:room-runtime:2.4.3"
+    kapt "androidx.room:room-compiler:2.4.3"
+
+    // Kotlin Extensions and Coroutines support for Room
+    implementation "androidx.room:room-ktx:2.4.3"
+
     //Util
     implementation 'com.aventrix.jnanoid:jnanoid:2.0.0'
 }
