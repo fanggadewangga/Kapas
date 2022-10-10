@@ -212,7 +212,7 @@ fun IdentityVerificationScreen(navController: NavController) {
                 fontWeight = FontWeight.Light
             )
 
-            // Tanggal Lahir
+            // Gender
             Spacer(modifier = Modifier.height(18.dp))
             Text(
                 text = "Jenis Kelamin",

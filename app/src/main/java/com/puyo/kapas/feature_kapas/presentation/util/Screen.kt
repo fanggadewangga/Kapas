@@ -28,6 +28,7 @@ sealed class Screen(val route: String) {
 
     // Profile
     object ProfileScreen: Screen("profile_screen")
+    object ProfileSettingScreen: Screen("profile_setting_screen")
 
     // args helper
     fun withArgs(vararg args: String): String{

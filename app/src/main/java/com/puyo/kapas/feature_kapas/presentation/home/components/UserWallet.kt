@@ -17,7 +17,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.puyo.kapas.R
-import com.puyo.kapas.ui.theme.Grey
 import com.puyo.kapas.ui.theme.Orange
 
 @Composable
@@ -60,7 +59,7 @@ fun UserWallet(
                     )
                     Text(
                         text = "Saldo",
-                        color = Grey,
+                        color = Color.Gray,
                         fontWeight = FontWeight.Medium,
                         fontSize = 12.sp,
                         modifier = Modifier.padding(start = 4.dp)
@@ -105,7 +104,7 @@ fun UserWallet(
                     )
                     Text(
                         text = "Poin",
-                        color = Grey,
+                        color = Color.Gray,
                         fontWeight = FontWeight.Medium,
                         fontSize = 12.sp,
                         modifier = Modifier.padding(start = 4.dp)
@@ -122,7 +121,6 @@ fun UserWallet(
                     modifier = Modifier.padding(start = 4.dp)
                 )
             }
-
         }
 
         Spacer(modifier = Modifier.width(32.dp))

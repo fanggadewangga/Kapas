@@ -29,25 +29,25 @@ import com.puyo.kapas.ui.theme.Orange
 @Composable
 fun HomeScreen(navController: NavController) {
 
-    val systemUiController = rememberSystemUiController()
     val coroutineScope = rememberCoroutineScope()
+    val systemUiController = rememberSystemUiController()
 
     SideEffect {
-        systemUiController.setSystemBarsColor(Orange)
+        systemUiController.statusBarDarkContentEnabled = true
     }
 
     Scaffold(bottomBar = { BottomNavigationBar(navController = navController) }) {
 
         Column(modifier = Modifier.fillMaxSize()) {
 
-            Spacer(modifier = Modifier.height(16.dp))
+            Spacer(modifier = Modifier.height(40.dp))
 
             // Top & Search Bar
             Box(modifier = Modifier
                 .background(color = Color.White, shape = RoundedCornerShape(8.dp))
                 .fillMaxWidth()
                 .height(49.dp)
-                .padding(horizontal = 24.dp)
+                .padding(horizontal = 16.dp)
             ) {
                 OutlinedTextField(
                     value = "",
@@ -79,7 +79,7 @@ fun HomeScreen(navController: NavController) {
             // Content
             Column(modifier = Modifier
                 .fillMaxWidth()
-                .padding(horizontal = 24.dp)
+                .padding(horizontal = 16.dp)
             ) {
 
                 Spacer(modifier = Modifier.height(24.dp))

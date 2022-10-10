@@ -93,7 +93,7 @@ dependencies {
     implementation "com.squareup.okhttp3:logging-interceptor:5.0.0-alpha.2"
 
     // gmaps
-    implementation "com.google.maps.android:maps-compose:1.0.0"
+    implementation "com.google.maps.android:maps-compose:2.2.0"
     implementation "com.google.android.gms:play-services-maps:18.1.0"
     implementation 'com.google.android.gms:play-services-location:20.0.0'
 
@@ -129,6 +129,9 @@ dependencies {
 
     //Util
     implementation 'com.aventrix.jnanoid:jnanoid:2.0.0'
+
+    //Datastore
+    implementation "androidx.datastore:datastore-preferences:1.0.0"
 }
 
 kapt {

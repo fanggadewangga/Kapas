@@ -8,10 +8,12 @@ import com.puyo.kapas.feature_kapas.presentation.auth.LoginScreen
 import com.puyo.kapas.feature_kapas.presentation.auth.SignupScreen
 import com.puyo.kapas.feature_kapas.presentation.history.HistoryScreen
 import com.puyo.kapas.feature_kapas.presentation.home.HomeScreen
+import com.puyo.kapas.feature_kapas.presentation.job.JobDetailScreen
 import com.puyo.kapas.feature_kapas.presentation.job.JobScreen
 import com.puyo.kapas.feature_kapas.presentation.landing.LandingScreen
 import com.puyo.kapas.feature_kapas.presentation.leaderboard.LeaderboardScreen
 import com.puyo.kapas.feature_kapas.presentation.profile.ProfileScreen
+import com.puyo.kapas.feature_kapas.presentation.profile.ProfileSettingScreen
 import com.puyo.kapas.feature_kapas.presentation.splash.SplashScreen
 import com.puyo.kapas.feature_kapas.presentation.verification.CardVerificationScreen
 import com.puyo.kapas.feature_kapas.presentation.verification.FaceVerificationScreen
@@ -69,6 +71,7 @@ fun Navigation() {
         }
 
         composable(route = Screen.JobDetailScreen.route) {
+            JobDetailScreen(navController = navController)
         }
 
         composable(route = Screen.HistoryScreen.route) {
@@ -81,6 +84,10 @@ fun Navigation() {
 
         composable(route = Screen.ProfileScreen.route) {
             ProfileScreen(navController = navController)
+        }
+
+        composable(route = Screen.ProfileSettingScreen.route){
+            ProfileSettingScreen(navController = navController)
         }
     }
 }

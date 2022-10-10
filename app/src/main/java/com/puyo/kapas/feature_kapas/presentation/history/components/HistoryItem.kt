@@ -16,7 +16,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.puyo.kapas.R
-import com.puyo.kapas.feature_kapas.domain.model.Job
+import com.puyo.kapas.feature_kapas.domain.model.job.Job
 
 @Composable
 fun HistoryItem(
@@ -93,7 +93,7 @@ fun HistoryItemPreview() {
             wage = 23000.0,
             address = "Jalan Malang",
             description = "Mencari orang yang bisa menyetrika pakaian",
-            imageUrl = "wdaawdadawda",
+            image_url = "wdaawdadawda",
             latitude = 210.0,
             longitude = 120.0
         )
