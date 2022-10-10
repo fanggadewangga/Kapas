@@ -5,21 +5,22 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.*
+import androidx.compose.material.Button
+import androidx.compose.material.ButtonDefaults
+import androidx.compose.material.Divider
+import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.SideEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Alignment.Companion.CenterHorizontally
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.draw.scale
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -30,6 +31,7 @@ import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import com.puyo.kapas.R
 import com.puyo.kapas.feature_kapas.presentation.auth.component.CustomCheckBox
 import com.puyo.kapas.feature_kapas.presentation.util.Screen
+import com.puyo.kapas.ui.components.CustomTextField
 import com.puyo.kapas.ui.theme.Orange
 import com.puyo.kapas.ui.theme.Peach
 
@@ -105,99 +107,39 @@ fun SignupSection(navController: NavController) {
         )
 
         // Email
-        Spacer(modifier = Modifier.height(8.dp))
-        TextField(
-            value = "",
-            onValueChange = {
-            },
+        Spacer(modifier = Modifier.height(16.dp))
+        CustomTextField(
             leadingIcon = {
-                Icon(painter = painterResource(id = R.drawable.ic_email),
+                Image(painter = painterResource(id = R.drawable.ic_email),
                     contentDescription = "Email",
                     modifier = Modifier.size(20.dp))
             },
-            placeholder = {
-                Text(
-                    text = "Email",
-                    fontWeight = FontWeight.Normal,
-                    color = Color.Gray,
-                    fontSize = 16.sp
-                )
-            },
-            modifier = Modifier
-                .fillMaxWidth()
-                .scale(scaleY = 0.9F, scaleX = 1F)
-                .clip(RoundedCornerShape(8.dp)),
-            colors = TextFieldDefaults.textFieldColors(
-                cursorColor = Color.Gray,
-                backgroundColor = Peach,
-                focusedIndicatorColor = Peach,
-                unfocusedIndicatorColor = Peach
-            ),
+            placeholder = "Email",
+            fontSize = 12.sp
         )
 
         // Password
-        Spacer(modifier = Modifier.height(8.dp))
-        TextField(
-            value = "",
-            onValueChange = {
-
-            },
+        Spacer(modifier = Modifier.height(16.dp))
+        CustomTextField(
             leadingIcon = {
-                Icon(painter = painterResource(id = R.drawable.ic_password),
-                    contentDescription = "Lock",
+                Image(painter = painterResource(id = R.drawable.ic_password),
+                    contentDescription = "Password",
                     modifier = Modifier.size(20.dp))
             },
-            placeholder = {
-                Text(
-                    text = "Password",
-                    fontWeight = FontWeight.Normal,
-                    color = Color.Gray,
-                    fontSize = 16.sp
-                )
-            },
-            modifier = Modifier
-                .fillMaxWidth()
-                .scale(scaleY = 0.9F, scaleX = 1F)
-                .clip(RoundedCornerShape(8.dp)),
-            colors = TextFieldDefaults.textFieldColors(
-                cursorColor = Color.Gray,
-                backgroundColor = Peach,
-                focusedIndicatorColor = Peach,
-                unfocusedIndicatorColor = Peach
-            )
+            placeholder = "Kata Sandi",
+            fontSize = 12.sp
         )
 
         // Password Confirmation
-        Spacer(modifier = Modifier.height(8.dp))
-        TextField(
-            value = "",
-            onValueChange = {
-
-            },
+        Spacer(modifier = Modifier.height(16.dp))
+        CustomTextField(
             leadingIcon = {
-                Icon(painter = painterResource(id = R.drawable.ic_password),
-                    contentDescription = "Lock",
+                Image(painter = painterResource(id = R.drawable.ic_password),
+                    contentDescription = "Password",
                     modifier = Modifier.size(20.dp))
             },
-            placeholder = {
-                Text(
-                    text = "Konfirmasi Password",
-                    fontWeight = FontWeight.Normal,
-                    color = Color.Gray,
-                    fontSize = 16.sp
-                )
-            },
-            visualTransformation = PasswordVisualTransformation(),
-            modifier = Modifier
-                .fillMaxWidth()
-                .scale(scaleY = 0.9F, scaleX = 1F)
-                .clip(RoundedCornerShape(8.dp)),
-            colors = TextFieldDefaults.textFieldColors(
-                cursorColor = Color.Gray,
-                backgroundColor = Peach,
-                focusedIndicatorColor = Peach,
-                unfocusedIndicatorColor = Peach
-            ),
+            placeholder = "Konfirmasi Kata Sandi",
+            fontSize = 12.sp
         )
 
         // Terms and Condition
@@ -206,7 +148,6 @@ fun SignupSection(navController: NavController) {
             verticalAlignment = Alignment.CenterVertically
         ) {
             CustomCheckBox()
-            Spacer(modifier = Modifier.width(4.dp))
             Text(
                 text = buildAnnotatedString {
                     append("Saya setuju dengan semua")
@@ -226,7 +167,7 @@ fun SignupSection(navController: NavController) {
                         append(" Kebijakan Privasi")
                     }
                 },
-                fontSize = 12.sp
+                fontSize = 10.sp
             )
         }
 
@@ -239,19 +180,15 @@ fun SignupSection(navController: NavController) {
                 .fillMaxWidth()
                 .align(CenterHorizontally)
         ) {
-            Image(
-                painter = painterResource(id = R.drawable.ic_line),
-                contentDescription = "Line",
-                modifier = Modifier.size(width = 120.dp, height = 16.dp)
+            Divider(
+                modifier = Modifier.width(120.dp)
             )
             Text(
                 text = " ATAU ",
                 color = Color.Gray
             )
-            Image(
-                painter = painterResource(id = R.drawable.ic_line),
-                contentDescription = "Line",
-                modifier = Modifier.size(width = 120.dp, height = 16.dp)
+            Divider(
+                modifier = Modifier.width(120.dp)
             )
         }
 
@@ -272,7 +209,7 @@ fun SignupSection(navController: NavController) {
             Spacer(modifier = Modifier.width(8.dp))
             Text(
                 text = "Daftar dengan Google",
-                fontWeight = FontWeight.Medium,
+                fontWeight = FontWeight.Light,
                 fontSize = 14.sp
             )
         }
