@@ -1,27 +1,23 @@
 package com.puyo.kapas.feature_kapas.presentation.job
 
 import android.annotation.SuppressLint
-import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
+import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.Divider
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.Alignment.Companion.BottomEnd
 import androidx.compose.ui.Alignment.Companion.CenterHorizontally
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -35,6 +31,7 @@ import com.google.maps.android.compose.rememberCameraPositionState
 import com.puyo.kapas.R
 import com.puyo.kapas.feature_kapas.presentation.job.components.JobBottomBar
 import com.puyo.kapas.ui.theme.Grey
+import com.puyo.kapas.ui.theme.Orange
 
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
@@ -67,6 +64,18 @@ fun JobDetailScreen(navController: NavController) {
                     contentDescription = "Job Image",
                     contentScale = ContentScale.FillWidth,
                     modifier = Modifier.height(197.dp)
+                )
+
+                Image(
+                    painter = painterResource(id = R.drawable.ic_edit_job_background),
+                    contentDescription = "Job Background",
+                    modifier = Modifier
+                        .padding(bottom = 40.dp)
+                        .size(height = 16.dp, width = 120.dp)
+                        .align(BottomEnd)
+                        .clickable {
+                            /*TODO*/
+                        }
                 )
 
                 Row(modifier = Modifier
@@ -135,7 +144,7 @@ fun JobDetailScreen(navController: NavController) {
             // Posted by
             Text(
                 text = "Diunggah oleh Fanggi Dhyana",
-                color = Grey,
+                color = Color.Gray,
                 fontSize = 12.sp,
                 modifier = Modifier
                     .align(CenterHorizontally)
@@ -153,12 +162,12 @@ fun JobDetailScreen(navController: NavController) {
                 // Location
                 Column(horizontalAlignment = CenterHorizontally) {
                     Text(
-                        text = "Lokasi",
-                        color = Grey,
+                        text = "Tempat",
+                        color = Color.Gray,
                         fontSize = 14.sp
                     )
                     Text(
-                        text = "Malang",
+                        text = "Rumah Pribadi",
                         fontSize = 14.sp,
                         fontWeight = FontWeight.Medium,
                         modifier = Modifier.padding(top = 8.dp)
@@ -176,7 +185,7 @@ fun JobDetailScreen(navController: NavController) {
                 Column(horizontalAlignment = CenterHorizontally) {
                     Text(
                         text = "Jumlah Bayaran",
-                        color = Grey,
+                        color = Color.Gray,
                         fontSize = 14.sp
                     )
                     Text(
@@ -255,9 +264,14 @@ fun JobDetailScreen(navController: NavController) {
             // Detail
             Spacer(modifier = Modifier.height(8.dp))
             Text(
-                text = "Detail Pekerjaan",
-                style = TextStyle(textDecoration = TextDecoration.Underline),
-                modifier = Modifier.align(CenterHorizontally)
+                text = "Lihat Detail",
+                fontSize = 14.sp,
+                color = Orange,
+                modifier = Modifier
+                    .align(CenterHorizontally)
+                    .clickable {
+                        /*TODO*/
+                    }
             )
         }
     }

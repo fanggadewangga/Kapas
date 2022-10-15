@@ -2,16 +2,15 @@ package com.puyo.kapas.feature_kapas.presentation.home
 
 import android.annotation.SuppressLint
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.*
+import androidx.compose.material.Scaffold
+import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.SideEffect
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
@@ -23,7 +22,7 @@ import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import com.puyo.kapas.R
 import com.puyo.kapas.feature_kapas.presentation.home.components.UserWallet
 import com.puyo.kapas.feature_kapas.presentation.util.components.BottomNavigationBar
-import com.puyo.kapas.ui.theme.Orange
+import com.puyo.kapas.ui.components.CustomSearchField
 
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
@@ -40,40 +39,31 @@ fun HomeScreen(navController: NavController) {
 
         Column(modifier = Modifier.fillMaxSize()) {
 
-            Spacer(modifier = Modifier.height(40.dp))
-
             // Top & Search Bar
-            Box(modifier = Modifier
-                .background(color = Color.White, shape = RoundedCornerShape(8.dp))
-                .fillMaxWidth()
-                .height(49.dp)
-                .padding(horizontal = 16.dp)
+            Box(modifier = Modifier.fillMaxWidth()
             ) {
-                OutlinedTextField(
-                    value = "",
-                    onValueChange = {},
-                    shape = RoundedCornerShape(8.dp),
-                    colors = TextFieldDefaults.outlinedTextFieldColors(
-                        unfocusedBorderColor = Color.Gray,
-                        focusedBorderColor = Orange,
-                        cursorColor = Orange
-                    ),
-                    placeholder = {
-                        Text(
-                            text = "Temukan pekerjaan harianmu!",
-                            fontSize = 14.sp,
-                            color = Color.Black
-                        )
-                    },
-                    leadingIcon = {
-                        Icon(
-                            painter = painterResource(id = R.drawable.ic_search),
-                            contentDescription = "Search",
-                            modifier = Modifier.size(24.dp)
-                        )
-                    },
-                    modifier = Modifier.matchParentSize()
+                Image(
+                    painter = painterResource(id = R.drawable.img_profile_bg),
+                    contentDescription = "Background",
+                    contentScale = ContentScale.FillWidth,
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(96.dp)
                 )
+                Column {
+                    Spacer(modifier = Modifier.height(64.dp))
+                    CustomSearchField(
+                        leadingIcon = {
+                            Image(
+                                painter = painterResource(id = R.drawable.ic_search),
+                                contentDescription = "Search",
+                                modifier = Modifier.size(24.dp)
+                            )
+                        },
+                        placeholder = "Temukan pekerjaan harianmu!"
+                    )
+                }
+               
             }
 
             // Content

@@ -38,7 +38,7 @@ fun Features(navController: NavController) {
             Row(
                 verticalAlignment = Alignment.CenterVertically,
                 modifier = Modifier.clickable {
-                    /*TODO*/
+                    navController.navigate(Screen.HistoryScreen.route)
                 }
             ) {
                 Image(
