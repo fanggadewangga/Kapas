@@ -48,7 +48,13 @@ fun JobDetailScreen(navController: NavController) {
         position = CameraPosition.fromLatLngZoom(singapore, 9f)
     }
 
-    Scaffold(bottomBar = { JobBottomBar(wage = 200000.0) }) {
+    Scaffold(bottomBar = {
+        JobBottomBar(
+            wage = 200000.0,
+            buttonText = "Melamar",
+            paymentDescription = "Jumlah Bayaran"
+        )
+    }) {
         Column(
             modifier = Modifier
                 .verticalScroll(rememberScrollState())
