@@ -1,4 +1,4 @@
-package com.puyo.kapas.feature_kapas.presentation.job.jobs
+package com.puyo.kapas.feature_kapas.presentation.jobs
 
 import android.annotation.SuppressLint
 import androidx.compose.foundation.Image

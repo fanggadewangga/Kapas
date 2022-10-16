@@ -1,4 +1,4 @@
-package com.puyo.kapas.feature_kapas.presentation.job.components
+package com.puyo.kapas.feature_kapas.presentation.jobs.components
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Text

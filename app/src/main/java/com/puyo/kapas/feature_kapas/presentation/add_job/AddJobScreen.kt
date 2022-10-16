@@ -1,4 +1,4 @@
-package com.puyo.kapas.feature_kapas.presentation.job.add_job
+package com.puyo.kapas.feature_kapas.presentation.add_job
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background

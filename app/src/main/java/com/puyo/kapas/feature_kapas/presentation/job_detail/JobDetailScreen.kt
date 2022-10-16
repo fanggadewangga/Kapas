@@ -1,4 +1,4 @@
-package com.puyo.kapas.feature_kapas.presentation.job
+package com.puyo.kapas.feature_kapas.presentation.job_detail
 
 import android.annotation.SuppressLint
 import androidx.compose.animation.*
@@ -31,8 +31,8 @@ import com.google.android.gms.maps.model.LatLng
 import com.google.maps.android.compose.MarkerState
 import com.google.maps.android.compose.rememberCameraPositionState
 import com.puyo.kapas.R
-import com.puyo.kapas.feature_kapas.presentation.job.components.DescriptionSection
-import com.puyo.kapas.feature_kapas.presentation.job.components.JobBottomBar
+import com.puyo.kapas.feature_kapas.presentation.jobs.components.DescriptionSection
+import com.puyo.kapas.feature_kapas.presentation.jobs.components.JobBottomBar
 import com.puyo.kapas.ui.theme.Grey
 import com.puyo.kapas.ui.theme.Orange
 

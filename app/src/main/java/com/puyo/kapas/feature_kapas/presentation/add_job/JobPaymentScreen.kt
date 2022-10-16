@@ -1,4 +1,4 @@
-package com.puyo.kapas.feature_kapas.presentation.job.add_job
+package com.puyo.kapas.feature_kapas.presentation.add_job
 
 import android.annotation.SuppressLint
 import androidx.compose.foundation.Image
@@ -22,7 +22,7 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.puyo.kapas.R
-import com.puyo.kapas.feature_kapas.presentation.job.components.JobBottomBar
+import com.puyo.kapas.feature_kapas.presentation.jobs.components.JobBottomBar
 import com.puyo.kapas.feature_kapas.presentation.util.Screen
 import com.puyo.kapas.ui.components.CommonInputField
 import com.puyo.kapas.ui.theme.Orange

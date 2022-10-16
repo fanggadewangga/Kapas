@@ -35,6 +35,9 @@ sealed class Screen(val route: String) {
     // Reward
     object RewardScreen: Screen("reward_screen")
 
+    // Account Settings
+    object ChangeEmailScreen: Screen("change_email_screen")
+
     // args helper
     fun withArgs(vararg args: String): String{
         return buildString{

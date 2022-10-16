@@ -8,15 +8,16 @@ import com.puyo.kapas.feature_kapas.presentation.auth.LoginScreen
 import com.puyo.kapas.feature_kapas.presentation.auth.SignupScreen
 import com.puyo.kapas.feature_kapas.presentation.history.HistoryScreen
 import com.puyo.kapas.feature_kapas.presentation.home.HomeScreen
-import com.puyo.kapas.feature_kapas.presentation.job.JobDetailScreen
-import com.puyo.kapas.feature_kapas.presentation.job.add_job.AddJobScreen
-import com.puyo.kapas.feature_kapas.presentation.job.add_job.JobPaymentScreen
-import com.puyo.kapas.feature_kapas.presentation.job.jobs.JobScreen
+import com.puyo.kapas.feature_kapas.presentation.job_detail.JobDetailScreen
+import com.puyo.kapas.feature_kapas.presentation.add_job.AddJobScreen
+import com.puyo.kapas.feature_kapas.presentation.add_job.JobPaymentScreen
+import com.puyo.kapas.feature_kapas.presentation.jobs.JobScreen
 import com.puyo.kapas.feature_kapas.presentation.landing.LandingScreen
 import com.puyo.kapas.feature_kapas.presentation.leaderboard.LeaderboardScreen
 import com.puyo.kapas.feature_kapas.presentation.profile.ProfileScreen
 import com.puyo.kapas.feature_kapas.presentation.profile.ProfileSettingScreen
 import com.puyo.kapas.feature_kapas.presentation.reward.RewardScreen
+import com.puyo.kapas.feature_kapas.presentation.settings.ChangeEmailScreen
 import com.puyo.kapas.feature_kapas.presentation.splash.SplashScreen
 import com.puyo.kapas.feature_kapas.presentation.verification.CardVerificationScreen
 import com.puyo.kapas.feature_kapas.presentation.verification.FaceVerificationScreen
@@ -103,6 +104,10 @@ fun Navigation() {
         
         composable(route = Screen.RewardScreen.route) {
             RewardScreen(navController = navController)
+        }
+        
+        composable(route = Screen.ChangeEmailScreen.route) {
+            ChangeEmailScreen(navController = navController)
         }
     }
 }
