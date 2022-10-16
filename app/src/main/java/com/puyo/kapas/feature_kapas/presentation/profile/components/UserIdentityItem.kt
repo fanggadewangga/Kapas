@@ -9,19 +9,18 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.puyo.kapas.ui.theme.Peach
 
 @Composable
 fun UserIdentityItem(
+    modifier: Modifier = Modifier,
     title: String,
-    description: String,
+    description: String? = null,
     value: String,
 ) {
-    Column(modifier = Modifier.fillMaxWidth()) {
-
+    Column(modifier = modifier) {
         Text(
             text = title,
             fontSize = 14.sp,
@@ -44,21 +43,15 @@ fun UserIdentityItem(
             )
         }
         Spacer(modifier = Modifier.height(4.dp))
-        Text(
-            text = description,
-            fontSize = 12.sp,
-            fontWeight = FontWeight.Normal,
-            color = Color.Gray,
-            modifier = Modifier.padding(start = 8.dp)
-        )
+        description?.let {
+            Text(
+                text = it,
+                fontSize = 12.sp,
+                fontWeight = FontWeight.Normal,
+                color = Color.Gray,
+                modifier = Modifier.padding(start = 8.dp)
+            )
+        }
         Spacer(modifier = Modifier.height(18.dp))
     }
-}
-
-@Preview
-@Composable
-fun UserIdentityPreview() {
-    UserIdentityItem(title = "Nomor E-KTP",
-        description = "Masukkan nomor E-KTP Anda",
-        value = "31242421412")
 }

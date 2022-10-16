@@ -17,6 +17,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.puyo.kapas.R
+import com.puyo.kapas.feature_kapas.presentation.util.Screen
 import com.puyo.kapas.ui.theme.Peach
 
 @Composable
@@ -37,8 +38,8 @@ fun UserSetting(navController: NavController) {
                 modifier = Modifier
                     .fillMaxWidth()
                     .clickable {
-                    /*TODO*/
-                }
+                        navController.navigate(Screen.ChangeEmailScreen.route)
+                    }
             ) {
                 Text(
                     text = "Ubah email",
@@ -54,7 +55,9 @@ fun UserSetting(navController: NavController) {
                         .size(height = 18.dp, width = 10.dp)
                 )
             }
-            Divider(modifier = Modifier.fillMaxWidth().padding(top = 8.dp))
+            Divider(modifier = Modifier
+                .fillMaxWidth()
+                .padding(top = 8.dp))
 
             // Change Phone Number
             Row(
@@ -64,7 +67,7 @@ fun UserSetting(navController: NavController) {
                     .fillMaxWidth()
                     .padding(top = 8.dp)
                     .clickable {
-                        /*TODO*/
+                        navController.navigate(Screen.ChangeNumberScreen.route)
                     }
             ) {
                 Text(
@@ -81,7 +84,9 @@ fun UserSetting(navController: NavController) {
                         .size(height = 18.dp, width = 10.dp)
                 )
             }
-            Divider(modifier = Modifier.fillMaxWidth().padding(top = 8.dp))
+            Divider(modifier = Modifier
+                .fillMaxWidth()
+                .padding(top = 8.dp))
 
             // Change password
             Row(
@@ -108,7 +113,9 @@ fun UserSetting(navController: NavController) {
                         .size(height = 18.dp, width = 10.dp)
                 )
             }
-            Divider(modifier = Modifier.fillMaxWidth().padding(top = 8.dp))
+            Divider(modifier = Modifier
+                .fillMaxWidth()
+                .padding(top = 8.dp))
 
             // Reconfirmation KTP
             Row(

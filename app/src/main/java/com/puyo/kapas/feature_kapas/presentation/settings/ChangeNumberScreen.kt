@@ -25,7 +25,7 @@ import com.puyo.kapas.ui.components.CommonInputField
 import com.puyo.kapas.ui.theme.Orange
 
 @Composable
-fun ChangeEmailScreen(navController: NavController) {
+fun ChangeNumberScreen(navController: NavController) {
     Column(modifier = Modifier
         .fillMaxSize()
         .background(Color.White)
@@ -51,33 +51,33 @@ fun ChangeEmailScreen(navController: NavController) {
                 )
 
                 Text(
-                    text = "Ubah Email",
+                    text = "Ubah Nomor Telepon",
                     fontWeight = FontWeight.Bold,
                     fontSize = 20.sp,
                     color = Color.White,
-                    modifier = Modifier.padding(start = 120.dp)
+                    modifier = Modifier.padding(start = 72.dp)
                 )
             }
         }
 
-        // Old email
+        // Old number
         UserIdentityItem(
-            title = "Email saat ini",
+            title = "Nomor telepon saat ini",
             description = null,
-            value = "fanggadhyana22@gmail.com",
+            value = "081330723755",
             modifier = Modifier.padding(start = 16.dp, top = 16.dp, end = 16.dp)
         )
 
-        // New email
+        // New number
         Text(
             fontWeight = FontWeight.Medium,
-            text = "Email baru",
+            text = "Nomor telepon baru",
             fontSize = 14.sp,
             color = Color.Gray,
             modifier = Modifier.padding(start = 16.dp, bottom = 8.dp)
         )
         CommonInputField(
-            placeholder = "Isi email baru"
+            placeholder = "Isi nomor telepon baru"
         )
 
         // Button
