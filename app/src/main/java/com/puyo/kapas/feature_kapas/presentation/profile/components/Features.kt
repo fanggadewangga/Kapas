@@ -119,7 +119,7 @@ fun Features(navController: NavController) {
                 )
                 Spacer(modifier = Modifier.width(8.dp))
                 Text(
-                    text = "Hadiah poin",
+                    text = "Poin hadiah",
                     fontSize = 12.sp,
                     color = Color.Gray,
                     fontWeight = FontWeight.SemiBold

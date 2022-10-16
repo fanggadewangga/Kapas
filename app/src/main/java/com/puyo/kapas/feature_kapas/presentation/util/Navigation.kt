@@ -16,6 +16,7 @@ import com.puyo.kapas.feature_kapas.presentation.landing.LandingScreen
 import com.puyo.kapas.feature_kapas.presentation.leaderboard.LeaderboardScreen
 import com.puyo.kapas.feature_kapas.presentation.profile.ProfileScreen
 import com.puyo.kapas.feature_kapas.presentation.profile.ProfileSettingScreen
+import com.puyo.kapas.feature_kapas.presentation.reward.RewardScreen
 import com.puyo.kapas.feature_kapas.presentation.splash.SplashScreen
 import com.puyo.kapas.feature_kapas.presentation.verification.CardVerificationScreen
 import com.puyo.kapas.feature_kapas.presentation.verification.FaceVerificationScreen
@@ -98,6 +99,10 @@ fun Navigation() {
         
         composable(route = Screen.JobPaymentScreen.route){
             JobPaymentScreen(navController = navController)
+        }
+        
+        composable(route = Screen.RewardScreen.route) {
+            RewardScreen(navController = navController)
         }
     }
 }
