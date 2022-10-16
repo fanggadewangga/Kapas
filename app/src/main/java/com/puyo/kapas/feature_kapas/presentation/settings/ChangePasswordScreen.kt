@@ -79,7 +79,8 @@ fun ChangePasswordScreen(navController: NavController) {
             modifier = Modifier.padding(start = 16.dp, bottom = 8.dp)
         )
         CommonInputField(
-            placeholder = "****************"
+            placeholder = "****************",
+            isVisible = false
         )
 
         // Confirm new password
@@ -91,7 +92,8 @@ fun ChangePasswordScreen(navController: NavController) {
             modifier = Modifier.padding(start = 16.dp, top = 16.dp, bottom = 8.dp)
         )
         CommonInputField(
-            placeholder = "****************"
+            placeholder = "****************",
+            isVisible = false
         )
 
         // Button

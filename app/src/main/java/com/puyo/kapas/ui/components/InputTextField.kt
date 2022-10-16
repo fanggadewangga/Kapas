@@ -218,6 +218,7 @@ fun CommonInputField(
     valueState: MutableState<String>? = null,
     placeholder: String = "placeholder",
     fontSize: TextUnit = MaterialTheme.typography.button.fontSize,
+    isVisible: Boolean = true
 ) {
     var text by remember { mutableStateOf("") }
     Card(shape = RoundedCornerShape(12.dp),
@@ -270,7 +271,8 @@ fun CommonInputField(
                     }
                     if (trailingIcon != null) trailingIcon()
                 }
-            }
+            },
+            visualTransformation = if (isVisible) VisualTransformation.None else PasswordVisualTransformation()
         )
     }
 }

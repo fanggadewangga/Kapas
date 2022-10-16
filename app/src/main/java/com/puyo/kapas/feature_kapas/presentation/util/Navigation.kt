@@ -19,6 +19,7 @@ import com.puyo.kapas.feature_kapas.presentation.profile.ProfileSettingScreen
 import com.puyo.kapas.feature_kapas.presentation.reward.RewardScreen
 import com.puyo.kapas.feature_kapas.presentation.settings.ChangeEmailScreen
 import com.puyo.kapas.feature_kapas.presentation.settings.ChangeNumberScreen
+import com.puyo.kapas.feature_kapas.presentation.settings.ChangePasswordScreen
 import com.puyo.kapas.feature_kapas.presentation.splash.SplashScreen
 import com.puyo.kapas.feature_kapas.presentation.verification.CardVerificationScreen
 import com.puyo.kapas.feature_kapas.presentation.verification.FaceVerificationScreen
@@ -113,6 +114,10 @@ fun Navigation() {
         
         composable(route = Screen.ChangeNumberScreen.route) {
             ChangeNumberScreen(navController = navController)
+        }
+        
+        composable(route = Screen.ChangePasswordScreen.route) {
+            ChangePasswordScreen(navController = navController)
         }
     }
 }

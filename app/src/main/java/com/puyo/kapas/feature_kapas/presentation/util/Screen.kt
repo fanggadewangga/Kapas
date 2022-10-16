@@ -38,6 +38,7 @@ sealed class Screen(val route: String) {
     // Account Settings
     object ChangeEmailScreen: Screen("change_email_screen")
     object ChangeNumberScreen: Screen("change_number_screen")
+    object ChangePasswordScreen: Screen("change_password_screen")
 
     // args helper
     fun withArgs(vararg args: String): String{
