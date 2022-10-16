@@ -21,9 +21,14 @@ private val roboto = FontFamily(
 val Typography = Typography(
     defaultFontFamily = roboto,
     body1 = TextStyle(
-        fontFamily = FontFamily.Default,
+        fontFamily = roboto,
         fontWeight = FontWeight.Normal,
         fontSize = 16.sp
+    ),
+    h1 = TextStyle(
+        fontFamily = roboto,
+        fontWeight = FontWeight.ExtraBold,
+        fontSize = 20.sp
     )
     /* Other default text styles to override
     button = TextStyle(

@@ -37,7 +37,9 @@ fun Features(navController: NavController) {
             // Job History
             Row(
                 verticalAlignment = Alignment.CenterVertically,
-                modifier = Modifier.clickable {
+                modifier = Modifier
+                    .padding(top = 4.dp, bottom = 8.dp)
+                    .clickable {
                     navController.navigate(Screen.HistoryScreen.route)
                 }
             ) {

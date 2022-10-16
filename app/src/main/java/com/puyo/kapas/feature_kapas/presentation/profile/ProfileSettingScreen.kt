@@ -1,6 +1,9 @@
 package com.puyo.kapas.feature_kapas.presentation.profile
 
-import androidx.compose.foundation.*
+import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Card
@@ -22,6 +25,8 @@ import androidx.navigation.compose.rememberNavController
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import com.puyo.kapas.R
 import com.puyo.kapas.feature_kapas.presentation.profile.components.CustomActionBar
+import com.puyo.kapas.feature_kapas.presentation.profile.components.UserIdentityItem
+import com.puyo.kapas.feature_kapas.presentation.profile.components.UserSetting
 import com.puyo.kapas.feature_kapas.presentation.util.Screen
 import com.puyo.kapas.ui.theme.Orange
 
@@ -37,7 +42,6 @@ fun ProfileSettingScreen(navController: NavController) {
 
     Column(modifier = Modifier
         .fillMaxSize()
-        .verticalScroll(rememberScrollState())
         .background(color = Color.White)
     ) {
 
@@ -50,7 +54,8 @@ fun ProfileSettingScreen(navController: NavController) {
         )
 
         // Content
-        Column(modifier = Modifier.padding(16.dp)) {
+        Column(modifier = Modifier.padding(16.dp)
+        ) {
 
             // Avatar and Edit Profile Button
             Text(
@@ -122,7 +127,32 @@ fun ProfileSettingScreen(navController: NavController) {
             }
 
             // Settings
-
+            Spacer(modifier = Modifier.height(16.dp))
+            UserSetting(navController = navController)
+            
+            // User Identity
+            Spacer(modifier = Modifier.height(24.dp))
+            Text(
+                text = "Identitas Diri",
+                fontWeight = FontWeight.ExtraBold,
+                fontSize = 20.sp
+            )
+            Spacer(modifier = Modifier.height(8.dp))
+            UserIdentityItem(
+                title = "Nomor E-KTP",
+                description = "Masukkan nomor E-KTP Anda",
+                value = "31234567890"
+            )
+            UserIdentityItem(
+                title = "Nama Lengkap",
+                description = "Masukkan nama lengkap sesuai E-KTP Anda",
+                value = "FANGGI DHYANA"
+            )
+            UserIdentityItem(
+                title = "Tempat Lahir" ,
+                description = "Masukkan tempat lahir sesuai E-KTP Anda",
+                value = "MALANG"
+            )
         }
     }
 }

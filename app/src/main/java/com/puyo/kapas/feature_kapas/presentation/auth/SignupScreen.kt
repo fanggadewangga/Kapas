@@ -22,15 +22,14 @@ import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.withStyle
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
-import androidx.navigation.compose.rememberNavController
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import com.puyo.kapas.R
 import com.puyo.kapas.feature_kapas.presentation.auth.component.CustomCheckBox
 import com.puyo.kapas.feature_kapas.presentation.util.Screen
+import com.puyo.kapas.ui.components.CustomPasswordField
 import com.puyo.kapas.ui.components.CustomTextField
 import com.puyo.kapas.ui.theme.Orange
 import com.puyo.kapas.ui.theme.Peach
@@ -120,7 +119,7 @@ fun SignupSection(navController: NavController) {
 
         // Password
         Spacer(modifier = Modifier.height(16.dp))
-        CustomTextField(
+        CustomPasswordField(
             leadingIcon = {
                 Image(painter = painterResource(id = R.drawable.ic_password),
                     contentDescription = "Password",
@@ -132,7 +131,7 @@ fun SignupSection(navController: NavController) {
 
         // Password Confirmation
         Spacer(modifier = Modifier.height(16.dp))
-        CustomTextField(
+        CustomPasswordField(
             leadingIcon = {
                 Image(painter = painterResource(id = R.drawable.ic_password),
                     contentDescription = "Password",
@@ -232,8 +231,7 @@ fun SignupSection(navController: NavController) {
                 fontWeight = FontWeight.ExtraBold,
                 fontSize = 16.sp,
                 color = Color.White,
-                modifier = Modifier
-                    .padding(horizontal = 72.dp)
+                modifier = Modifier.padding(horizontal = 68.dp)
             )
         }
 
@@ -258,10 +256,4 @@ fun SignupSection(navController: NavController) {
         )
 
     }
-}
-
-@Preview
-@Composable
-fun Prev() {
-    SignupScreen(navController = rememberNavController())
 }

@@ -21,15 +21,14 @@ import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.withStyle
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
-import androidx.navigation.compose.rememberNavController
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import com.puyo.kapas.R
 import com.puyo.kapas.feature_kapas.presentation.auth.component.CustomCheckBox
 import com.puyo.kapas.feature_kapas.presentation.util.Screen
+import com.puyo.kapas.ui.components.CustomPasswordField
 import com.puyo.kapas.ui.components.CustomTextField
 import com.puyo.kapas.ui.theme.Orange
 import com.puyo.kapas.ui.theme.Peach
@@ -118,7 +117,7 @@ fun LoginSection(navController: NavController) {
 
         // Password
         Spacer(modifier = Modifier.height(16.dp))
-        CustomTextField(
+        CustomPasswordField(
             leadingIcon = {
                 Image(painter = painterResource(id = R.drawable.ic_password),
                     contentDescription = "Password",
@@ -185,9 +184,8 @@ fun LoginSection(navController: NavController) {
         },
             shape = RoundedCornerShape(8.dp),
             colors = ButtonDefaults.buttonColors(backgroundColor = Peach),
-            modifier = Modifier
-                .align(Alignment.CenterHorizontally)
-        ) {
+            modifier = Modifier.align(Alignment.CenterHorizontally)
+         ) {
             Image(painter = painterResource(id = R.drawable.ic_google),
                 contentDescription = "Google Icon",
                 modifier = Modifier.size(20.dp)
@@ -214,7 +212,7 @@ fun LoginSection(navController: NavController) {
                 fontWeight = FontWeight.ExtraBold,
                 fontSize = 16.sp,
                 color = Color.White,
-                modifier = Modifier.padding(horizontal = 64.dp)
+                modifier = Modifier.padding(horizontal = 68.dp)
             )
         }
 
@@ -243,10 +241,4 @@ fun LoginSection(navController: NavController) {
         )
 
     }
-}
-
-@Preview
-@Composable
-fun Preview() {
-    LoginScreen(navController = rememberNavController())
 }

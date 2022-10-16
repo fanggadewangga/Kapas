@@ -69,7 +69,7 @@ fun HistoryItem(
                     modifier = Modifier.padding(start = 4.dp)
                 )
 
-                Spacer(modifier = Modifier.width(140.dp))
+                Spacer(modifier = Modifier.width(120.dp))
                 Image(
                     painter = painterResource(id = R.drawable.img_done),
                     contentDescription = "Done"

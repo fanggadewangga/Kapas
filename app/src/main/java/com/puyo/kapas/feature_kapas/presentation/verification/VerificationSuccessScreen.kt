@@ -21,7 +21,7 @@ import androidx.navigation.NavController
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import com.puyo.kapas.R
 import com.puyo.kapas.feature_kapas.presentation.util.Screen
-import com.puyo.kapas.feature_kapas.presentation.verification.components.TopBar
+import com.puyo.kapas.ui.components.TopBar
 import com.puyo.kapas.ui.theme.Orange
 
 @Composable

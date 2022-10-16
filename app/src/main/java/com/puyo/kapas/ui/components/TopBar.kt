@@ -1,4 +1,4 @@
-package com.puyo.kapas.feature_kapas.presentation.verification.components
+package com.puyo.kapas.ui.components
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*

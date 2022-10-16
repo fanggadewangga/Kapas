@@ -51,7 +51,6 @@ fun CustomTextField(
         },
         decorationBox = { innerTextField ->
             Box(contentAlignment = Alignment.CenterEnd) {
-                /*Background*/
                 Box(
                     modifier = modifier
                         .clip(shape)

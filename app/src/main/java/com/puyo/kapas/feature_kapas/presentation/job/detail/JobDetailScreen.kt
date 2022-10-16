@@ -1,6 +1,7 @@
 package com.puyo.kapas.feature_kapas.presentation.job
 
 import android.annotation.SuppressLint
+import androidx.compose.animation.*
 import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -8,6 +9,7 @@ import androidx.compose.material.Divider
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Alignment.Companion.BottomEnd
@@ -29,15 +31,16 @@ import com.google.android.gms.maps.model.LatLng
 import com.google.maps.android.compose.MarkerState
 import com.google.maps.android.compose.rememberCameraPositionState
 import com.puyo.kapas.R
+import com.puyo.kapas.feature_kapas.presentation.job.components.DescriptionSection
 import com.puyo.kapas.feature_kapas.presentation.job.components.JobBottomBar
 import com.puyo.kapas.ui.theme.Grey
 import com.puyo.kapas.ui.theme.Orange
 
-@SuppressLint("UnusedMaterialScaffoldPaddingParameter")
+@SuppressLint("UnusedMaterialScaffoldPaddingParameter", "UnrememberedMutableState")
 @Composable
 fun JobDetailScreen(navController: NavController) {
     val coroutineScope = rememberCoroutineScope()
-    val scrollState = rememberScrollState()
+    val isVisible = mutableStateOf(false)
 
     val singapore = LatLng(1.35, 103.87)
     val singaporeState = MarkerState(position = singapore)
@@ -48,9 +51,9 @@ fun JobDetailScreen(navController: NavController) {
     Scaffold(bottomBar = { JobBottomBar(wage = 200000.0) }) {
         Column(
             modifier = Modifier
-                .fillMaxSize()
+                .verticalScroll(rememberScrollState())
+                .fillMaxWidth()
                 .background(Color.White)
-                .verticalScroll(scrollState)
         ) {
 
             // Top bar (Job image, arrow, title)
@@ -112,13 +115,13 @@ fun JobDetailScreen(navController: NavController) {
                     Image(
                         painter = painterResource(id = R.drawable.ic_verified),
                         contentDescription = "Verified",
-                        modifier = Modifier.align(Alignment.BottomEnd)
+                        modifier = Modifier.align(BottomEnd)
                     )
                 }
 
                 // Bookmark icon
                 Column(modifier = Modifier
-                    .align(Alignment.BottomEnd)
+                    .align(BottomEnd)
                     .padding(end = 24.dp)
                 ) {
                     Spacer(modifier = Modifier.height(16.dp))
@@ -248,7 +251,7 @@ fun JobDetailScreen(navController: NavController) {
                     text = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
                     maxLines = 3,
                     overflow = TextOverflow.Ellipsis,
-                    fontSize = 12.sp,
+                    fontSize = 12.sp
                 )
             }
 
@@ -262,7 +265,28 @@ fun JobDetailScreen(navController: NavController) {
             )
 
             // Detail
-            Spacer(modifier = Modifier.height(8.dp))
+            Text(
+                text = "Deskripsi Pekerjaan",
+                fontWeight = FontWeight.Bold,
+                fontSize = 14.sp,
+                modifier = Modifier.padding(start = 16.dp)
+            )
+            Spacer(modifier = Modifier.height(16.dp))
+            AnimatedVisibility(
+                visible = isVisible.value,
+                enter = fadeIn() + slideInVertically(),
+                exit = fadeOut() + slideOutVertically()
+            ) {
+                DescriptionSection(
+                    description =
+                    "Pembantu penyeterika adalah pekerjaan harian untuk seseorang yang bisa menyeterikan berbagai macam jenis pakaian. \n" +
+                            "\n" +
+                            "Banyak pakaian yang disetrika adalah 2 Kg dengan waktu menyeterika selama jam 13.00 - 15.00 WIB. \n" +
+                            "\n" +
+                            "Jangan ragu untuk melamar pekerjaan ini. "
+                )
+            }
+            Spacer(modifier = Modifier.height(16.dp))
             Text(
                 text = "Lihat Detail",
                 fontSize = 14.sp,
@@ -270,12 +294,12 @@ fun JobDetailScreen(navController: NavController) {
                 modifier = Modifier
                     .align(CenterHorizontally)
                     .clickable {
-                        /*TODO*/
+                        isVisible.value = !isVisible.value
                     }
             )
+            Spacer(modifier = Modifier.height(120.dp))
         }
     }
-
 }
 
 

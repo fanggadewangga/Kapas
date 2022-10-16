@@ -9,7 +9,8 @@ import com.puyo.kapas.feature_kapas.presentation.auth.SignupScreen
 import com.puyo.kapas.feature_kapas.presentation.history.HistoryScreen
 import com.puyo.kapas.feature_kapas.presentation.home.HomeScreen
 import com.puyo.kapas.feature_kapas.presentation.job.JobDetailScreen
-import com.puyo.kapas.feature_kapas.presentation.job.JobScreen
+import com.puyo.kapas.feature_kapas.presentation.job.add_job.AddJobScreen
+import com.puyo.kapas.feature_kapas.presentation.job.jobs.JobScreen
 import com.puyo.kapas.feature_kapas.presentation.landing.LandingScreen
 import com.puyo.kapas.feature_kapas.presentation.leaderboard.LeaderboardScreen
 import com.puyo.kapas.feature_kapas.presentation.profile.ProfileScreen
@@ -88,6 +89,10 @@ fun Navigation() {
 
         composable(route = Screen.ProfileSettingScreen.route){
             ProfileSettingScreen(navController = navController)
+        }
+        
+        composable(route = Screen.AddJobScreen.route){
+            AddJobScreen(navController = navController)
         }
     }
 }
