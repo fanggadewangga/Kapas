@@ -10,6 +10,7 @@ import com.puyo.kapas.feature_kapas.presentation.history.HistoryScreen
 import com.puyo.kapas.feature_kapas.presentation.home.HomeScreen
 import com.puyo.kapas.feature_kapas.presentation.job.JobDetailScreen
 import com.puyo.kapas.feature_kapas.presentation.job.add_job.AddJobScreen
+import com.puyo.kapas.feature_kapas.presentation.job.add_job.JobPaymentScreen
 import com.puyo.kapas.feature_kapas.presentation.job.jobs.JobScreen
 import com.puyo.kapas.feature_kapas.presentation.landing.LandingScreen
 import com.puyo.kapas.feature_kapas.presentation.leaderboard.LeaderboardScreen
@@ -93,6 +94,10 @@ fun Navigation() {
         
         composable(route = Screen.AddJobScreen.route){
             AddJobScreen(navController = navController)
+        }
+        
+        composable(route = Screen.JobPaymentScreen.route){
+            JobPaymentScreen(navController = navController)
         }
     }
 }

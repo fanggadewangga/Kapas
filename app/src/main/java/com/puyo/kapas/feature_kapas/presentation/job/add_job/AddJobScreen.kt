@@ -1,14 +1,18 @@
 package com.puyo.kapas.feature_kapas.presentation.job.add_job
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Button
 import androidx.compose.material.ButtonDefaults
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
@@ -16,8 +20,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
+import com.puyo.kapas.R
 import com.puyo.kapas.feature_kapas.presentation.util.Screen
-import com.puyo.kapas.ui.components.ActionBar
 import com.puyo.kapas.ui.components.CommonInputField
 import com.puyo.kapas.ui.theme.Grey
 import com.puyo.kapas.ui.theme.Orange
@@ -28,7 +32,36 @@ fun AddJobScreen(navController: NavController) {
         .fillMaxSize()
         .background(Color.White)
     ) {
-        ActionBar(text = "Pasang Lowongan Pekerjaan")
+
+        // Action Bar
+        Column(modifier = Modifier
+            .fillMaxWidth()
+            .background(color = Orange)
+            .padding(top = 64.dp, bottom = 8.dp)
+        ) {
+            Row(
+                verticalAlignment = Alignment.Bottom,
+                horizontalArrangement = Arrangement.SpaceBetween
+            ) {
+                Image(
+                    painter = painterResource(id = R.drawable.ic_arrow_back),
+                    contentDescription = "Arrow",
+                    modifier = Modifier
+                        .padding(start = 8.dp)
+                        .size(24.dp)
+                        .clickable { navController.navigate(Screen.HomeScreen.route) }
+                )
+
+                Text(
+                    text = "Pasang Lowongan Pekerjaan",
+                    fontWeight = FontWeight.Bold,
+                    fontSize = 20.sp,
+                    color = Color.White,
+                    modifier = Modifier.padding(start = 48.dp)
+                )
+            }
+        }
+
         Spacer(modifier = Modifier.height(24.dp))
         
         Text(
@@ -137,7 +170,7 @@ fun AddJobScreen(navController: NavController) {
         Spacer(modifier = Modifier.height(24.dp))
         Button(
             onClick = {
-                navController.navigate(Screen.HomeScreen.route)
+                navController.navigate(Screen.JobPaymentScreen.route)
             },
             shape = RoundedCornerShape(8.dp),
             colors = ButtonDefaults.buttonColors(Orange),
