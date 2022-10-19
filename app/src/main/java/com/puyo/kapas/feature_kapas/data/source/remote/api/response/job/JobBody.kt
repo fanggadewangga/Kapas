@@ -1,4 +1,4 @@
-package com.puyo.kapas.feature_kapas.data.source.remote.api.model.job
+package com.puyo.kapas.feature_kapas.data.source.remote.api.response.job
 
 import com.google.gson.annotations.SerializedName
 
@@ -22,7 +22,7 @@ data class JobBody(
     val description: String,
 
     @field:SerializedName("image_url")
-    val imageUrl: String,
+    val imageUrl: String = "",
 
     @field:SerializedName("latitude")
     val latitude: Double,

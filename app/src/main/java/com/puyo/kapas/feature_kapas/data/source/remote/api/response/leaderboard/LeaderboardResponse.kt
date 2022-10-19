@@ -1,4 +1,4 @@
-package com.puyo.kapas.feature_kapas.data.source.remote.api.model.leaderboard
+package com.puyo.kapas.feature_kapas.data.source.remote.api.response.leaderboard
 
 import com.google.gson.annotations.SerializedName
 

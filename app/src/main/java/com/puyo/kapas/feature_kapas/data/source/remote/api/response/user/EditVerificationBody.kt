@@ -1,4 +1,4 @@
-package com.puyo.kapas.feature_kapas.data.source.remote.api.model.user
+package com.puyo.kapas.feature_kapas.data.source.remote.api.response.user
 
 import com.google.gson.annotations.SerializedName
 

@@ -1,4 +1,4 @@
-package com.puyo.kapas.feature_kapas.data.source.remote.api.model.job
+package com.puyo.kapas.feature_kapas.data.source.remote.api.response.job
 
 import com.google.gson.annotations.SerializedName
 
