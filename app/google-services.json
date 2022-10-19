@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1272134348",
+    "project_id": "kapas-e9c74",
+    "storage_bucket": "kapas-e9c74.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1272134348:android:3ce92e00fb819b4415a069",
+        "android_client_info": {
+          "package_name": "com.puyo.kapas"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1272134348-mncgf105aus7hp4klav95m7oekbvqdrq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB_a22f53ytUa0y-3LwRwkSj4Xpjk_9aoY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1272134348-mncgf105aus7hp4klav95m7oekbvqdrq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
