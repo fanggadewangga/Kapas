@@ -31,7 +31,7 @@ data class JobResponse(
     val description: String,
 
     @field:SerializedName("image_url")
-    val imageUrl: String,
+    var imageUrl: String,
 
     @field:SerializedName("latitude")
     val latitude: Double,

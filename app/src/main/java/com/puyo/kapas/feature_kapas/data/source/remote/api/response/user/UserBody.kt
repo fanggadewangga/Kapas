@@ -4,7 +4,7 @@ import com.google.gson.annotations.SerializedName
 
 data class UserBody(
     @field:SerializedName("uid")
-    val uid: String,
+    var uid: String,
 
     @field:SerializedName("card_number")
     val cardNumber: String? = "",
@@ -22,7 +22,7 @@ data class UserBody(
     val birthDate: String? = "",
 
     @field:SerializedName("email")
-    val email: String,
+    var email: String,
 
     @field:SerializedName("phone")
     val phone: String? = "",

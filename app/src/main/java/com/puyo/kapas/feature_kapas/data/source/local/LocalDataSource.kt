@@ -24,8 +24,7 @@ class LocalDataSource(
 
     suspend fun insertJob(job: JobEntity) = dao.insertJob(job)
 
-    fun getBookmarkedJob() = dao.getJobs()
-    suspend fun getJobById(jobId: String) = dao.getJobById(jobId)
-    suspend fun deleteJob(job: JobEntity) = dao.deleteJob(job)
-
+    fun getBookmarkedJobs(): Flow<List<JobEntity?>> = dao.getJobs()
+    suspend fun getBookmarkedJobDetail(jobId: String): Flow<JobEntity?> = dao.getJobById(jobId)
+    suspend fun deleteBookmarkedJob(job: JobEntity) = dao.deleteJob(job)
 }

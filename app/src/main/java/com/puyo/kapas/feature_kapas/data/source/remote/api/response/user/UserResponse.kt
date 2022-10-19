@@ -28,7 +28,7 @@ data class UserResponse(
     val phone: String?,
 
     @field:SerializedName("avatar_url")
-    val avatarUrl: String?,
+    var avatarUrl: String?,
 
     @field:SerializedName("gender")
     val gender: String?,

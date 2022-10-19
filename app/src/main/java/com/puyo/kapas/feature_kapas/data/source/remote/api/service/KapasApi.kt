@@ -23,8 +23,9 @@ interface KapasApi {
     ): BaseResponse<UserResponse>
 
     @PUT("/user/{uid}")
-    suspend fun editUserDetail(
-        @Path("uid") uid: String
+    suspend fun updateUserDetail(
+        @Path("uid") uid: String,
+        @Body userBody: UserBody
     ): BaseResponse<UserResponse>
 
     @GET("/leaderboard")
@@ -52,10 +53,11 @@ interface KapasApi {
     @DELETE("/job/{jobId}")
     suspend fun deleteJob(
         @Path("jobId") jobId: String
-    ): BaseResponse<JobResponse>
+    ): BaseResponse<String>
 
     @PUT("/job/{jobId}")
-    suspend fun editJobDetail(
-        @Path("jobId") jobId: String
+    suspend fun updateJobDetail(
+        @Path("jobId") jobId: String,
+        @Body jobBody: JobBody
     ): BaseResponse<JobResponse>
 }

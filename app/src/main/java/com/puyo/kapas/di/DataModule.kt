@@ -5,7 +5,7 @@ import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.preferencesDataStore
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.storage.FirebaseStorage
 import com.puyo.kapas.feature_kapas.data.source.local.datastore.DataStoreUtil
 import com.puyo.kapas.feature_kapas.data.source.local.datastore.KapasDataStore
 import com.puyo.kapas.feature_kapas.data.source.remote.api.service.KapasApi
@@ -41,7 +41,7 @@ object DataModule {
     // Firebase Service Provider
     @Provides
     @Singleton
-    fun provideFirestore(): FirebaseFirestore = FirebaseFirestore.getInstance()
+    fun provideFirebaseStorage(): FirebaseStorage = FirebaseStorage.getInstance()
 
     @Provides
     @Singleton
@@ -51,8 +51,8 @@ object DataModule {
     @Singleton
     fun provideFirebaseService(
         firebaseAuth: FirebaseAuth,
-        firebaseFirestore: FirebaseFirestore
-    ) = FirebaseService(firebaseAuth, firebaseFirestore)
+        firebaseStorage: FirebaseStorage
+    ) = FirebaseService(firebaseAuth, firebaseStorage)
 
     // Datastore provider
     @Provides
