@@ -125,7 +125,7 @@ fun UserSetting(navController: NavController) {
                     .fillMaxWidth()
                     .padding(top = 8.dp)
                     .clickable {
-                        /*TODO*/
+                        navController.navigate(Screen.CardVerificationScreen.route)
                     }
             ) {
                 Text(

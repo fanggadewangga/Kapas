@@ -1,12 +1,9 @@
-package com.puyo.kapas.feature_kapas.presentation.settings
+package com.puyo.kapas.feature_kapas.presentation.add_job.components
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.Button
-import androidx.compose.material.ButtonDefaults
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -15,22 +12,21 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.puyo.kapas.R
-import com.puyo.kapas.feature_kapas.presentation.profile.components.UserIdentityItem
 import com.puyo.kapas.feature_kapas.presentation.util.Screen
-import com.puyo.kapas.ui.components.CommonInputField
 import com.puyo.kapas.ui.theme.Orange
 
 @Composable
-fun ChangeNumberScreen(navController: NavController) {
+fun SuccessPostJobScreen(navController: NavController) {
     Column(modifier = Modifier
         .fillMaxSize()
         .background(Color.White)
     ) {
-
         // Action Bar
         Column(modifier = Modifier
             .fillMaxWidth()
@@ -48,58 +44,54 @@ fun ChangeNumberScreen(navController: NavController) {
                     modifier = Modifier
                         .padding(start = 8.dp)
                         .size(24.dp)
-                        .clickable { navController.navigate(Screen.ProfileScreen.route) }
+                        .clickable { navController.navigate(Screen.HomeScreen.route) }
                 )
 
                 Text(
-                    text = "Ubah Nomor Telepon",
+                    text = "Verifikasi",
                     fontWeight = FontWeight.Bold,
                     fontSize = 20.sp,
-                    color = Color.White
+                    color = Color.White,
                 )
 
                 Spacer(modifier = Modifier.width(24.dp))
             }
         }
 
-        // Old number
-        UserIdentityItem(
-            title = "Nomor telepon saat ini",
-            description = null,
-            value = "081330723755",
-            modifier = Modifier.padding(start = 16.dp, top = 16.dp, end = 16.dp)
-        )
 
-        // New number
-        Text(
-            fontWeight = FontWeight.Medium,
-            text = "Nomor telepon baru",
-            fontSize = 14.sp,
-            color = Color.Gray,
-            modifier = Modifier.padding(start = 16.dp, bottom = 8.dp)
-        )
-        CommonInputField(
-            placeholder = "Isi nomor telepon baru"
-        )
+        // Content
+        Spacer(modifier = Modifier.height(160.dp))
+        Row(
+            horizontalArrangement = Arrangement.Center,
+            modifier = Modifier.fillMaxWidth()
+        ) {
+            Image(painter = painterResource(
+                id = R.drawable.img_verification_success),
+                contentDescription = "Card",
+                modifier = Modifier
+                    .size(186.dp)
+            )
+        }
 
-        // Button
-        Spacer(modifier = Modifier.height(24.dp))
-        Button(
-            onClick = {
-                navController.navigate(Screen.ProfileSettingScreen.route)
-            },
-            shape = RoundedCornerShape(8.dp),
-            colors = ButtonDefaults.buttonColors(Orange),
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(horizontal = 16.dp)
+        Spacer(modifier = Modifier.height(32.dp))
+        Row(
+            horizontalArrangement = Arrangement.Center,
+            modifier = Modifier.fillMaxWidth()
         ) {
             Text(
-                text = "Konfirmasi",
+                text = "Kami telah menerima berkas Anda dan pembayaran Anda, sekarang akan segera diproses. Silahkan tunggu, kami sedang bekerja secepat yang kami bisa!",
+                fontSize = 12.sp,
                 textAlign = TextAlign.Center,
-                fontWeight = FontWeight.Bold,
-                color = Color.White
+                modifier = Modifier
+                    .size(width = 278.dp, height = 72.dp)
             )
         }
     }
+}
+
+
+@Preview
+@Composable
+fun SuccessPrev() {
+    SuccessPostJobScreen(navController = rememberNavController())
 }

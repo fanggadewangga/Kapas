@@ -1,7 +1,6 @@
 package com.puyo.kapas.feature_kapas.data.source.remote
 
 import android.net.Uri
-import com.puyo.kapas.feature_kapas.data.source.remote.api.response.BaseResponse
 import com.puyo.kapas.feature_kapas.data.source.remote.api.response.job.JobBody
 import com.puyo.kapas.feature_kapas.data.source.remote.api.response.job.JobListResponse
 import com.puyo.kapas.feature_kapas.data.source.remote.api.response.job.JobResponse
@@ -9,12 +8,10 @@ import com.puyo.kapas.feature_kapas.data.source.remote.api.response.leaderboard.
 import com.puyo.kapas.feature_kapas.data.source.remote.api.response.user.UserBody
 import com.puyo.kapas.feature_kapas.data.source.remote.api.response.user.UserResponse
 import com.puyo.kapas.feature_kapas.data.source.remote.api.service.KapasApi
-import com.puyo.kapas.feature_kapas.data.source.remote.firebase.FirebaseResponse
 import com.puyo.kapas.feature_kapas.data.source.remote.firebase.FirebaseService
-import kotlinx.coroutines.Dispatchers
+import com.puyo.kapas.feature_kapas.data.util.Resource
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
-import kotlinx.coroutines.flow.flowOn
 
 class RemoteDataSource(
     private val apiService: KapasApi,
@@ -31,142 +28,128 @@ class RemoteDataSource(
         email: String,
         password: String,
         body: UserBody,
-    ): Flow<RemoteResponse<UserResponse?>> = flow {
+    ): Flow<Resource<UserResponse?>> = flow {
         firebaseService.createUserWithEmailAndPassword(email, password).collect { response ->
             when (response) {
-                is FirebaseResponse.Success -> {
-                    body.uid = response.data
+                is Resource.Success -> {
+                    body.uid = response.data.toString()
                     body.email = email
                     try {
                         apiService.postNewUser(body).data
-                        val user = apiService.fetchUserDetail(response.data).data
-                        emit(RemoteResponse.Success(user))
+                        val user = apiService.fetchUserDetail(response.data.toString()).data
+                        emit(Resource.Success(user))
                     } catch (e: Exception) {
-                        emit(RemoteResponse.Error(e.message.toString()))
+                        emit(Resource.Error(e.message.toString()))
                     }
                 }
-                is FirebaseResponse.Error -> emit(RemoteResponse.Error(response.errorMessage))
-                is FirebaseResponse.Empty -> emit(RemoteResponse.Empty())
+                is Resource.Error -> emit(Resource.Error(response.message.toString()))
+                is Resource.Empty -> emit(Resource.Empty())
+                else -> {
+                    emit(Resource.Loading())
+                }
             }
         }
-    }.flowOn(Dispatchers.IO)
+    }
 
-    suspend fun signInUser(email: String, password: String): Flow<RemoteResponse<UserResponse?>> =
+    suspend fun signInUser(email: String, password: String): Flow<Resource<UserResponse?>> =
         flow {
             firebaseService.signInWithEmailAndPassword(email, password).collect { response ->
                 when (response) {
-                    is FirebaseResponse.Success -> {
+                    is Resource.Success -> {
                         try {
-                            val userResponse = apiService.fetchUserDetail(response.data).data
-                            emit(RemoteResponse.Success(userResponse))
+                            val userResponse =
+                                apiService.fetchUserDetail(response.data.toString()).data
+                            emit(Resource.Success(userResponse))
                         } catch (e: Exception) {
-                            emit(RemoteResponse.Error(e.message.toString()))
+                            emit(Resource.Error(e.message.toString()))
                         }
                     }
-                    is FirebaseResponse.Error -> emit(RemoteResponse.Error(response.errorMessage))
-                    is FirebaseResponse.Empty -> emit(RemoteResponse.Empty())
+                    is Resource.Error -> emit(Resource.Error(response.message.toString()))
+                    is Resource.Empty -> emit(Resource.Empty())
+                    else -> {
+                        emit(Resource.Loading())
+                    }
                 }
             }
         }
 
-    suspend fun updateUserAvatar(uid: String, imageUri: Uri): Flow<RemoteResponse<UserResponse>> =
+    suspend fun updateUserAvatar(uid: String, imageUri: Uri): Flow<Resource<UserResponse>> =
         flow {
             firebaseService.uploadUserAvatar(uid, imageUri).collect { response ->
                 when (response) {
-                    is FirebaseResponse.Success -> {
+                    is Resource.Success -> {
                         try {
                             val user = apiService.fetchUserDetail(uid).data
                             user!!.avatarUrl = response.data
-                            emit(RemoteResponse.Success(user))
+                            emit(Resource.Success(user))
                         } catch (e: Exception) {
-                            emit(RemoteResponse.Error(e.message.toString()))
+                            emit(Resource.Error(e.message.toString()))
                         }
                     }
-                    is FirebaseResponse.Error -> emit(RemoteResponse.Error(response.errorMessage))
-                    is FirebaseResponse.Empty -> emit(RemoteResponse.Empty())
+                    is Resource.Error -> emit(Resource.Error(response.message.toString()))
+                    is Resource.Empty -> emit(Resource.Empty())
+                    else -> {
+                        emit(Resource.Loading())
+                    }
                 }
             }
         }
 
-    suspend fun fetchUserDetail(uid: String) =
-        object : BaseRemoteResponse<UserResponse>() {
-            override suspend fun call(): BaseResponse<UserResponse> {
-                return apiService.fetchUserDetail(uid)
-            }
-        }.asFlow()
+    suspend fun fetchUserDetail(uid: String): Flow<Resource<UserResponse?>> = flow {
+        apiService.fetchUserDetail(uid)
+    }
 
-    suspend fun fetchLeaderboard() =
-        object : BaseRemoteResponse<List<LeaderboardResponse>>() {
-            override suspend fun call(): BaseResponse<List<LeaderboardResponse>> {
-                return apiService.fetchLeaderboard()
-            }
-        }.asFlow()
+    suspend fun fetchLeaderboard(): Flow<Resource<List<LeaderboardResponse>>> = flow {
+        apiService.fetchLeaderboard()
+    }
 
-    suspend fun updateUserDetail(uid: String, body: UserBody) =
-        object : BaseRemoteResponse<UserResponse>() {
-            override suspend fun call(): BaseResponse<UserResponse> {
-                return apiService.updateUserDetail(uid, body)
-            }
-        }.asFlow()
+    suspend fun updateUserDetail(uid: String, body: UserBody): Flow<Resource<UserResponse>> = flow {
+        apiService.updateUserDetail(uid, body)
+    }
 
-    suspend fun postJob(body: JobBody) =
-        object : BaseRemoteResponse<String>() {
-            override suspend fun call(): BaseResponse<String> {
-                return apiService.postNewJob(body)
-            }
-        }.asFlow()
+    suspend fun postJob(body: JobBody): Flow<Resource<JobResponse>> = flow {
+        apiService.postNewJob(body)
+    }
 
-    suspend fun fetchJobs() =
-        object : BaseRemoteResponse<List<JobListResponse>>() {
-            override suspend fun call(): BaseResponse<List<JobListResponse>> {
-                return apiService.fetchJobs()
-            }
-        }.asFlow()
+    suspend fun fetchJobs(): Flow<Resource<List<JobListResponse>>> = flow {
+        apiService.fetchJobs()
+    }
 
-    suspend fun fetchSearchJob(query: String) =
-        object : BaseRemoteResponse<List<JobListResponse>>() {
-            override suspend fun call(): BaseResponse<List<JobListResponse>> {
-                return apiService.fetchSearchJob(query)
-            }
-        }.asFlow()
+    suspend fun fetchSearchJob(query: String): Flow<Resource<List<JobResponse>>> = flow {
+        apiService.fetchSearchJob(query)
+    }
 
-    suspend fun fetchJobDetail(jobId: String) =
-        object : BaseRemoteResponse<JobResponse>() {
-            override suspend fun call(): BaseResponse<JobResponse> {
-                return apiService.fetchJobDetail(jobId)
-            }
-        }.asFlow()
+    suspend fun fetchJobDetail(jobId: String): Flow<Resource<JobResponse>> = flow {
+        apiService.fetchJobDetail(jobId)
+    }
 
-    suspend fun updateJobDetail(jobId: String, body: JobBody) =
-        object : BaseRemoteResponse<JobResponse>() {
-            override suspend fun call(): BaseResponse<JobResponse> {
-                return apiService.updateJobDetail(jobId, body)
-            }
-        }.asFlow()
+    suspend fun updateJobDetail(jobId: String, body: JobBody): Flow<Resource<JobResponse>> = flow {
+        apiService.updateJobDetail(jobId, body)
+    }
 
-    suspend fun updateJobImage(jobId: String, imageUri: Uri): Flow<RemoteResponse<JobResponse>> =
+    suspend fun updateJobImage(jobId: String, imageUri: Uri): Flow<Resource<JobResponse>> =
         flow {
             firebaseService.uploadJobImage(jobId, imageUri).collect { response ->
                 when (response) {
-                    is FirebaseResponse.Success -> {
+                    is Resource.Success -> {
                         try {
                             val job = apiService.fetchJobDetail(jobId).data
-                            job!!.imageUrl = response.data
-                            emit(RemoteResponse.Success(job))
+                            job!!.imageUrl = response.data.toString()
+                            emit(Resource.Success(job))
                         } catch (e: Exception) {
-                            emit(RemoteResponse.Error(e.message.toString()))
+                            emit(Resource.Error(e.message.toString()))
                         }
                     }
-                    is FirebaseResponse.Error -> emit(RemoteResponse.Error(response.errorMessage))
-                    is FirebaseResponse.Empty -> emit(RemoteResponse.Empty())
+                    is Resource.Error -> emit(Resource.Error(response.message.toString()))
+                    is Resource.Empty -> emit(Resource.Empty())
+                    else -> {
+                        emit(Resource.Loading())
+                    }
                 }
             }
         }
 
-    suspend fun deleteJob(jobId: String) =
-        object : BaseRemoteResponse<String>() {
-            override suspend fun call(): BaseResponse<String> {
-                return apiService.deleteJob(jobId)
-            }
-        }.asFlow()
+    suspend fun deleteJob(jobId: String): Flow<Resource<JobResponse>> = flow {
+        apiService.deleteJob(jobId)
+    }
 }

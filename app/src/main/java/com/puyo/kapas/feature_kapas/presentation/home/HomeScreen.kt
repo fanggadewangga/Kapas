@@ -106,7 +106,7 @@ fun HomeScreen(navController: NavController) {
                     contentDescription = "banner",
                     modifier = Modifier
                         .fillMaxWidth()
-                        .clickable { navController.navigate(Screen.AddJobScreen.route) }
+                        .clickable { navController.navigate(Screen.PostJobScreen.route) }
                 )
 
                 Text(

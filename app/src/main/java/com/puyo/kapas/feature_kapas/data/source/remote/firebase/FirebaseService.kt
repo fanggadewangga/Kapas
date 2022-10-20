@@ -3,6 +3,7 @@ package com.puyo.kapas.feature_kapas.data.source.remote.firebase
 import android.net.Uri
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.storage.FirebaseStorage
+import com.puyo.kapas.feature_kapas.data.util.Resource
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
@@ -25,34 +26,34 @@ class FirebaseService @Inject constructor(
     fun createUserWithEmailAndPassword(
         email: String,
         password: String,
-    ): Flow<FirebaseResponse<String>> =
+    ): Flow<Resource<String>> =
         flow {
             val createUser = firebaseAuth.createUserWithEmailAndPassword(email, password).await()
             val user = createUser.user
             if (user != null) {
-                emit(FirebaseResponse.Success(user.uid))
+                emit(Resource.Success(user.uid))
             } else {
-                emit(FirebaseResponse.Empty)
+                emit(Resource.Empty())
             }
         }.catch {
-            emit(FirebaseResponse.Error(it.message.toString()))
+            emit(Resource.Error(it.message.toString()))
         }.flowOn(Dispatchers.IO)
 
     // Login
     fun signInWithEmailAndPassword(
         email: String,
         password: String,
-    ): Flow<FirebaseResponse<String>> =
+    ): Flow<Resource<String>> =
         flow {
             val signInUser = firebaseAuth.signInWithEmailAndPassword(email, password).await()
             val user = signInUser.user
             if (user != null) {
-                emit(FirebaseResponse.Success(user.uid))
+                emit(Resource.Success(user.uid))
             } else {
-                emit(FirebaseResponse.Empty)
+                emit(Resource.Empty())
             }
         }.catch {
-            emit(FirebaseResponse.Error(it.message.toString()))
+            emit(Resource.Error(it.message.toString()))
         }.flowOn(Dispatchers.IO)
 
     // Logout
@@ -62,7 +63,7 @@ class FirebaseService @Inject constructor(
     fun uploadJobImage(
         jobId: String,
         imageURI: Uri,
-    ): Flow<FirebaseResponse<String>> =
+    ): Flow<Resource<String>> =
         flow {
             var isUploaded = false
             val reference = firebaseStorage.reference
@@ -75,7 +76,7 @@ class FirebaseService @Inject constructor(
                 }
 
             if (isUploaded) {
-                emit(FirebaseResponse.Success(imageURI.toString()))
+                emit(Resource.Success(imageURI.toString()))
             }
         }
 
@@ -83,7 +84,7 @@ class FirebaseService @Inject constructor(
     fun uploadUserAvatar(
         uid: String,
         imageURI: Uri,
-    ): Flow<FirebaseResponse<String>> =
+    ): Flow<Resource<String>> =
         flow {
             var isUploaded = false
             val reference = firebaseStorage.reference
@@ -96,7 +97,7 @@ class FirebaseService @Inject constructor(
                 }
 
             if (isUploaded) {
-                emit(FirebaseResponse.Success(imageURI.toString()))
+                emit(Resource.Success(imageURI.toString()))
             }
         }
 }

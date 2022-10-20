@@ -45,6 +45,7 @@ fun LandingScreen(navController: NavController) {
             contentDescription = "Kapas Logo",
             modifier = Modifier.size(190.dp))
 
+        Spacer(modifier = Modifier.height(32.dp))
         Text(fontSize = 22.sp,
             fontWeight = FontWeight.ExtraBold,
             text = "Temukan Pekerjaan Anda\ndan Hidup Lebih Sejahtera",

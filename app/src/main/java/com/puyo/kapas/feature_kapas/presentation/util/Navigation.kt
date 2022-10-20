@@ -4,8 +4,9 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.puyo.kapas.feature_kapas.presentation.add_job.AddJobScreen
 import com.puyo.kapas.feature_kapas.presentation.add_job.JobPaymentScreen
+import com.puyo.kapas.feature_kapas.presentation.add_job.PostJobScreen
+import com.puyo.kapas.feature_kapas.presentation.add_job.components.SuccessPostJobScreen
 import com.puyo.kapas.feature_kapas.presentation.auth.LoginScreen
 import com.puyo.kapas.feature_kapas.presentation.auth.SignupScreen
 import com.puyo.kapas.feature_kapas.presentation.history.HistoryScreen
@@ -96,8 +97,8 @@ fun Navigation() {
             ProfileSettingScreen(navController = navController)
         }
         
-        composable(route = Screen.AddJobScreen.route){
-            AddJobScreen(navController = navController)
+        composable(route = Screen.PostJobScreen.route){
+            PostJobScreen(navController = navController)
         }
         
         composable(route = Screen.JobPaymentScreen.route){
@@ -118,6 +119,10 @@ fun Navigation() {
         
         composable(route = Screen.ChangePasswordScreen.route) {
             ChangePasswordScreen(navController = navController)
+        }
+        
+        composable(route = Screen.SuccessPostJobScreen.route) {
+            SuccessPostJobScreen(navController = navController)
         }
     }
 }

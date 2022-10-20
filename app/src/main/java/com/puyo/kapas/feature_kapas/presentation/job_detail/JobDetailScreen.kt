@@ -26,13 +26,10 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
-import com.google.android.gms.maps.model.CameraPosition
-import com.google.android.gms.maps.model.LatLng
-import com.google.maps.android.compose.MarkerState
-import com.google.maps.android.compose.rememberCameraPositionState
 import com.puyo.kapas.R
 import com.puyo.kapas.feature_kapas.presentation.jobs.components.DescriptionSection
 import com.puyo.kapas.feature_kapas.presentation.jobs.components.JobBottomBar
+import com.puyo.kapas.feature_kapas.presentation.util.Screen
 import com.puyo.kapas.ui.theme.Grey
 import com.puyo.kapas.ui.theme.Orange
 
@@ -42,17 +39,12 @@ fun JobDetailScreen(navController: NavController) {
     val coroutineScope = rememberCoroutineScope()
     val isVisible = mutableStateOf(false)
 
-    val singapore = LatLng(1.35, 103.87)
-    val singaporeState = MarkerState(position = singapore)
-    val cameraPositionState = rememberCameraPositionState {
-        position = CameraPosition.fromLatLngZoom(singapore, 9f)
-    }
-
     Scaffold(bottomBar = {
         JobBottomBar(
             wage = 200000.0,
             buttonText = "Melamar",
-            paymentDescription = "Jumlah Bayaran"
+            paymentDescription = "Jumlah Bayaran",
+            navController
         )
     }) {
         Column(
@@ -94,7 +86,9 @@ fun JobDetailScreen(navController: NavController) {
                     Image(
                         painter = painterResource(id = R.drawable.ic_arrow_back),
                         contentDescription = "Arrow Back",
-                        modifier = Modifier.height(24.dp)
+                        modifier = Modifier
+                            .height(24.dp)
+                            .clickable { navController.navigate(Screen.HomeScreen.route) }
                     )
                 }
 

@@ -13,9 +13,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
+import com.puyo.kapas.feature_kapas.presentation.util.Screen
 import com.puyo.kapas.ui.theme.Orange
 
 @Composable
@@ -23,6 +24,7 @@ fun JobBottomBar(
     wage: Double,
     buttonText: String,
     paymentDescription: String,
+    navController: NavController,
     trailingIcon: (@Composable () -> Unit)? = null,
 ) {
     Card(
@@ -60,7 +62,9 @@ fun JobBottomBar(
             }
 
             Button(
-                onClick = { /*TODO*/ },
+                onClick = {
+                    navController.navigate(Screen.SuccessPostJobScreen.route)
+                },
                 contentPadding = PaddingValues(0.dp),
                 shape = RoundedCornerShape(4.dp),
                 colors = ButtonDefaults.buttonColors(backgroundColor = Orange),
@@ -76,14 +80,4 @@ fun JobBottomBar(
             }
         }
     }
-}
-
-@Preview
-@Composable
-fun JobBottomBarPrev() {
-    JobBottomBar(
-        wage = 2000.0,
-        buttonText = "Melamar",
-        paymentDescription = "Jumlah Bayaran"
-    )
 }

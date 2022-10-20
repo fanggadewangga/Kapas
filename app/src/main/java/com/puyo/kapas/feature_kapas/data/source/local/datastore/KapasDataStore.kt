@@ -5,7 +5,6 @@ import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.preferencesDataStore
-import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 
 class KapasDataStore(private val context: Context) {
@@ -26,12 +25,12 @@ class KapasDataStore(private val context: Context) {
         }
     }
 
-    fun readPrefIsVerified(): Flow<Boolean> = context.userPreferenceDataStore.data
+    fun readPrefIsVerified() = context.userPreferenceDataStore.data
         .map {
             it[DataStoreUtil.IS_VERIFIED_PREF_KEY] ?: false
         }
 
-    fun readPrefUid(): Flow<String?> = context.userPreferenceDataStore.data
+    fun readPrefUid() = context.userPreferenceDataStore.data
         .map {
             it[DataStoreUtil.UID_PREF_KEY]
         }

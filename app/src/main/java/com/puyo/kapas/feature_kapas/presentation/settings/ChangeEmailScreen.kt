@@ -39,7 +39,8 @@ fun ChangeEmailScreen(navController: NavController) {
         ) {
             Row(
                 verticalAlignment = Alignment.Bottom,
-                horizontalArrangement = Arrangement.SpaceBetween
+                horizontalArrangement = Arrangement.SpaceBetween,
+                modifier = Modifier.fillMaxWidth()
             ) {
                 Image(
                     painter = painterResource(id = R.drawable.ic_arrow_back),
@@ -47,16 +48,17 @@ fun ChangeEmailScreen(navController: NavController) {
                     modifier = Modifier
                         .padding(start = 8.dp)
                         .size(24.dp)
-                        .clickable { navController.navigate(Screen.ProfileSettingScreen.route) }
+                        .clickable { navController.navigate(Screen.ProfileScreen.route) }
                 )
 
                 Text(
                     text = "Ubah Email",
                     fontWeight = FontWeight.Bold,
                     fontSize = 20.sp,
-                    color = Color.White,
-                    modifier = Modifier.padding(start = 120.dp)
+                    color = Color.White
                 )
+
+                Spacer(modifier = Modifier.width(24.dp))
             }
         }
 

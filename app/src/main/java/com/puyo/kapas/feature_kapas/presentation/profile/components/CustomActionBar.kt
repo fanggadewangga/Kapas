@@ -11,7 +11,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -23,33 +22,33 @@ fun CustomActionBar(
     title: String,
     onClick: () -> Unit
 ) {
-    Row(
-        verticalAlignment = Alignment.Bottom,
-        modifier = Modifier
+    Column(modifier = Modifier
         .fillMaxWidth()
         .background(color = Orange)
+        .padding(top = 64.dp, bottom = 8.dp)
     ) {
+        Row(
+            verticalAlignment = Alignment.Bottom,
+            horizontalArrangement = Arrangement.SpaceBetween,
+            modifier = Modifier.fillMaxWidth()
+        ) {
+            Image(
+                painter = painterResource(id = R.drawable.ic_arrow_back),
+                contentDescription = "Arrow",
+                modifier = Modifier
+                    .padding(start = 8.dp)
+                    .size(24.dp)
+                    .clickable { onClick }
+            )
 
-        Image(
-            painter = painterResource(id = R.drawable.ic_arrow_back),
-            contentDescription = "Arrow",
-            modifier = Modifier
-                .padding(bottom = 8.dp, start = 16.dp)
-                .size(24.dp)
-                .clickable {  onClick }
-        )
-
-        Column {
             Text(
                 text = title,
                 fontWeight = FontWeight.Bold,
-                fontSize = 16.sp,
-                color = Color.White,
-                textAlign = TextAlign.Center,
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(top = 64.dp, bottom = 8.dp, end = 16.dp)
+                fontSize = 20.sp,
+                color = Color.White
             )
+
+            Spacer(modifier = Modifier.width(24.dp))
         }
     }
 }

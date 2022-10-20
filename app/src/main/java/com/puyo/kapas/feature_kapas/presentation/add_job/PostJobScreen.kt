@@ -15,11 +15,9 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
-import androidx.navigation.compose.rememberNavController
 import com.puyo.kapas.R
 import com.puyo.kapas.feature_kapas.presentation.util.Screen
 import com.puyo.kapas.ui.components.CommonInputField
@@ -27,7 +25,7 @@ import com.puyo.kapas.ui.theme.Grey
 import com.puyo.kapas.ui.theme.Orange
 
 @Composable
-fun AddJobScreen(navController: NavController) {
+fun PostJobScreen(navController: NavController) {
     Column(modifier = Modifier
         .fillMaxSize()
         .background(Color.White)
@@ -41,7 +39,8 @@ fun AddJobScreen(navController: NavController) {
         ) {
             Row(
                 verticalAlignment = Alignment.Bottom,
-                horizontalArrangement = Arrangement.SpaceBetween
+                horizontalArrangement = Arrangement.SpaceBetween,
+                modifier = Modifier.fillMaxWidth()
             ) {
                 Image(
                     painter = painterResource(id = R.drawable.ic_arrow_back),
@@ -59,6 +58,8 @@ fun AddJobScreen(navController: NavController) {
                     color = Color.White,
                     modifier = Modifier.padding(start = 48.dp)
                 )
+
+                Spacer(modifier = Modifier.width(24.dp))
             }
         }
 
@@ -186,10 +187,4 @@ fun AddJobScreen(navController: NavController) {
             )
         }
     }
-}
-
-@Preview
-@Composable
-fun AddJobPrev() {
-    AddJobScreen(rememberNavController())
 }

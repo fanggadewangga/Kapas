@@ -41,7 +41,8 @@ fun ChangePasswordScreen(navController: NavController) {
         ) {
             Row(
                 verticalAlignment = Alignment.Bottom,
-                horizontalArrangement = Arrangement.SpaceBetween
+                horizontalArrangement = Arrangement.SpaceBetween,
+                modifier = Modifier.fillMaxWidth()
             ) {
                 Image(
                     painter = painterResource(id = R.drawable.ic_arrow_back),
@@ -49,16 +50,17 @@ fun ChangePasswordScreen(navController: NavController) {
                     modifier = Modifier
                         .padding(start = 8.dp)
                         .size(24.dp)
-                        .clickable { navController.navigate(Screen.ProfileSettingScreen.route) }
+                        .clickable { navController.navigate(Screen.ProfileScreen.route) }
                 )
 
                 Text(
                     text = "Ubah Kata Sandi",
                     fontWeight = FontWeight.Bold,
                     fontSize = 20.sp,
-                    color = Color.White,
-                    modifier = Modifier.padding(start = 88.dp)
+                    color = Color.White
                 )
+
+                Spacer(modifier = Modifier.width(24.dp))
             }
         }
 

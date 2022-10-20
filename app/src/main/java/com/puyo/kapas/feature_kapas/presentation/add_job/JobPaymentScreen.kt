@@ -6,10 +6,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.Card
-import androidx.compose.material.Divider
-import androidx.compose.material.Scaffold
-import androidx.compose.material.Text
+import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -22,6 +19,7 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.puyo.kapas.R
+import com.puyo.kapas.feature_kapas.presentation.add_job.components.PaymentSummary
 import com.puyo.kapas.feature_kapas.presentation.jobs.components.JobBottomBar
 import com.puyo.kapas.feature_kapas.presentation.util.Screen
 import com.puyo.kapas.ui.components.CommonInputField
@@ -37,6 +35,7 @@ fun JobPaymentScreen(navController: NavController) {
                 wage = 201000.0,
                 buttonText = "Bayar",
                 paymentDescription = "Total Bayar",
+                navController = navController,
                 trailingIcon = {
                     Image(
                         painter = painterResource(id = R.drawable.ic_arrow_down),
@@ -60,7 +59,8 @@ fun JobPaymentScreen(navController: NavController) {
             ) {
                 Row(
                     verticalAlignment = Alignment.Bottom,
-                    horizontalArrangement = Arrangement.SpaceBetween
+                    horizontalArrangement = Arrangement.SpaceBetween,
+                    modifier = Modifier.fillMaxWidth()
                 ) {
                     Image(
                         painter = painterResource(id = R.drawable.ic_arrow_back),
@@ -68,16 +68,17 @@ fun JobPaymentScreen(navController: NavController) {
                         modifier = Modifier
                             .padding(start = 8.dp)
                             .size(24.dp)
-                            .clickable { navController.navigate(Screen.AddJobScreen.route) }
+                            .clickable { navController.navigate(Screen.PostJobScreen.route) }
                     )
 
                     Text(
                         text = "Total Pembayaran",
                         fontWeight = FontWeight.Bold,
                         fontSize = 20.sp,
-                        color = Color.White,
-                        modifier = Modifier.padding(start = 92.dp)
+                        color = Color.White
                     )
+
+                    Spacer(modifier = Modifier.width(24.dp))
                 }
             }
 
@@ -198,6 +199,10 @@ fun JobPaymentScreen(navController: NavController) {
                     )
                 }
             }
+            
+            // Payment Summary
+            Spacer(modifier = Modifier.height(16.dp))
+            PaymentSummary(wage = 200000.0)
         }
     }
 
