@@ -10,6 +10,7 @@ import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Alignment.Companion.BottomEnd
@@ -26,6 +27,7 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.puyo.kapas.R
 import com.puyo.kapas.feature_kapas.domain.model.job.Job
+import com.puyo.kapas.feature_kapas.presentation.add_job.components.PostJobDialog
 import com.puyo.kapas.feature_kapas.presentation.jobs.components.DescriptionSection
 import com.puyo.kapas.feature_kapas.presentation.jobs.components.JobBottomBar
 import com.puyo.kapas.feature_kapas.presentation.util.Screen
@@ -38,13 +40,18 @@ fun JobDetailScreen(navController: NavController, job: Job) {
     val coroutineScope = rememberCoroutineScope()
     val isVisible = mutableStateOf(false)
     val isBookmarked = mutableStateOf(false)
+    val dialogState = remember {
+        mutableStateOf(false)
+    }
 
     Scaffold(bottomBar = {
         JobBottomBar(
             wage = 200000.0,
             buttonText = "Melamar",
             paymentDescription = "Jumlah Bayaran",
-            navController
+            onClick = {
+                dialogState.value = true
+            }
         )
     }) {
         Column(
@@ -134,7 +141,7 @@ fun JobDetailScreen(navController: NavController, job: Job) {
                         contentDescription = "Bookmark",
                         modifier = Modifier
                             .size(24.dp)
-                            .clickable { isBookmarked.value =! isBookmarked.value }
+                            .clickable { isBookmarked.value = !isBookmarked.value }
                     )
                 }
             }
@@ -197,7 +204,7 @@ fun JobDetailScreen(navController: NavController, job: Job) {
                         fontSize = 14.sp
                     )
                     Text(
-                        text = "Rp${job.wage.toString()}",
+                        text = "Rp${job.wage}",
                         fontSize = 14.sp,
                         fontWeight = FontWeight.Medium,
                         modifier = Modifier.padding(top = 8.dp)
@@ -298,6 +305,10 @@ fun JobDetailScreen(navController: NavController, job: Job) {
                     }
             )
             Spacer(modifier = Modifier.height(120.dp))
+
+            // Dialog
+            if (dialogState.value)
+                PostJobDialog(navController = navController)
         }
     }
 }

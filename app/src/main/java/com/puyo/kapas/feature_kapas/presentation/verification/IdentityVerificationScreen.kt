@@ -7,6 +7,8 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.SideEffect
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -23,12 +25,16 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import com.puyo.kapas.R
+import com.puyo.kapas.feature_kapas.presentation.verification.components.VerificationDialog
 import com.puyo.kapas.ui.components.TopBar
 import com.puyo.kapas.ui.theme.Orange
 import com.puyo.kapas.ui.theme.Peach
 
 @Composable
 fun IdentityVerificationScreen(navController: NavController) {
+    val dialogState = remember {
+        mutableStateOf(false)
+    }
 
     val systemUiController = rememberSystemUiController()
     SideEffect {
@@ -233,7 +239,7 @@ fun IdentityVerificationScreen(navController: NavController) {
             Spacer(modifier = Modifier.height(8.dp))
             Button(
                 onClick = {
-
+                    dialogState.value = true
                 },
                 shape = RoundedCornerShape(8.dp),
                 colors = ButtonDefaults.buttonColors(Orange),
@@ -247,6 +253,10 @@ fun IdentityVerificationScreen(navController: NavController) {
                     color = Color.White
                 )
             }
+            
+            // Dialog
+            if (dialogState.value)
+                VerificationDialog(navController = navController)
         }
     }
 }

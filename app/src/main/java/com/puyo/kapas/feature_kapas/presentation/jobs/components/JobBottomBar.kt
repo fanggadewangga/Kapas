@@ -16,7 +16,6 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
-import com.puyo.kapas.feature_kapas.presentation.util.Screen
 import com.puyo.kapas.ui.theme.Orange
 
 @Composable
@@ -24,8 +23,9 @@ fun JobBottomBar(
     wage: Double,
     buttonText: String,
     paymentDescription: String,
-    navController: NavController,
+    navController: NavController? = null,
     trailingIcon: (@Composable () -> Unit)? = null,
+    onClick: () -> Unit
 ) {
     Card(
         elevation = 4.dp,
@@ -62,9 +62,7 @@ fun JobBottomBar(
             }
 
             Button(
-                onClick = {
-                    navController.navigate(Screen.SuccessPostJobScreen.route)
-                },
+                onClick = onClick,
                 contentPadding = PaddingValues(0.dp),
                 shape = RoundedCornerShape(4.dp),
                 colors = ButtonDefaults.buttonColors(backgroundColor = Orange),
@@ -73,7 +71,7 @@ fun JobBottomBar(
             ) {
                 Text(
                     text = buttonText,
-                    fontSize = 20.sp,
+                    fontSize = 16.sp,
                     fontWeight = FontWeight.Medium,
                     color = Color.White
                 )

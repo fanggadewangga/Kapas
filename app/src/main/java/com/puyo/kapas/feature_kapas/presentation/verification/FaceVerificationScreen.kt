@@ -77,7 +77,7 @@ fun FaceVerificationScreen(navController: NavController) {
         Spacer(modifier = Modifier.height(16.dp))
         Button(
             onClick = {
-                      navController.navigate(Screen.VerificationSuccessScreen.route)
+                navController.navigate(Screen.FaceVerificationCameraScreen.route)
             },
             shape = RoundedCornerShape(8.dp),
             colors = ButtonDefaults.buttonColors(Orange),

@@ -3,6 +3,8 @@ package com.puyo.kapas.feature_kapas.presentation.history.components
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.Button
+import androidx.compose.material.ButtonDefaults
 import androidx.compose.material.Card
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
@@ -17,6 +19,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.puyo.kapas.R
 import com.puyo.kapas.feature_kapas.domain.model.job.Job
+import com.puyo.kapas.ui.theme.DarkGreen
+import com.puyo.kapas.ui.theme.LightGreen
 
 @Composable
 fun HistoryItem(
@@ -69,11 +73,23 @@ fun HistoryItem(
                     modifier = Modifier.padding(start = 4.dp)
                 )
 
-                Spacer(modifier = Modifier.width(120.dp))
-                Image(
-                    painter = painterResource(id = R.drawable.img_done),
-                    contentDescription = "Done"
+                Spacer(modifier = Modifier.width(110.dp))
+                Button(
+                    onClick = {
+                    },
+                    contentPadding = PaddingValues(0.dp),
+                    modifier = Modifier.size(height = 24.dp, width = 80.dp),
+                    shape = RoundedCornerShape(4.dp),
+                    colors = ButtonDefaults.buttonColors(backgroundColor = LightGreen)
                 )
+                {
+                    Text(
+                        text = "Selesai",
+                        fontSize = 14.sp,
+                        color = DarkGreen,
+                        modifier = Modifier.padding(horizontal = 8.dp, vertical = 3.dp)
+                    )
+                }
             }
 
         }

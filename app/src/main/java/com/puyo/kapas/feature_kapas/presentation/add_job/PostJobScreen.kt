@@ -48,15 +48,14 @@ fun PostJobScreen(navController: NavController) {
                     modifier = Modifier
                         .padding(start = 8.dp)
                         .size(24.dp)
-                        .clickable { navController.navigate(Screen.HomeScreen.route) }
+                        .clickable { navController.navigate(Screen.ProfileScreen.route) }
                 )
 
                 Text(
                     text = "Pasang Lowongan Pekerjaan",
                     fontWeight = FontWeight.Bold,
                     fontSize = 20.sp,
-                    color = Color.White,
-                    modifier = Modifier.padding(start = 48.dp)
+                    color = Color.White
                 )
 
                 Spacer(modifier = Modifier.width(24.dp))

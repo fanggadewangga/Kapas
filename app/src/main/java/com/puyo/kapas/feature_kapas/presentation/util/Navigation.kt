@@ -10,6 +10,8 @@ import com.puyo.kapas.feature_kapas.presentation.add_job.PostJobScreen
 import com.puyo.kapas.feature_kapas.presentation.add_job.components.SuccessPostJobScreen
 import com.puyo.kapas.feature_kapas.presentation.auth.LoginScreen
 import com.puyo.kapas.feature_kapas.presentation.auth.SignupScreen
+import com.puyo.kapas.feature_kapas.presentation.camera.CardVerificationCameraScreen
+import com.puyo.kapas.feature_kapas.presentation.camera.FaceVerificationCameraScreen
 import com.puyo.kapas.feature_kapas.presentation.history.HistoryScreen
 import com.puyo.kapas.feature_kapas.presentation.home.HomeScreen
 import com.puyo.kapas.feature_kapas.presentation.job_detail.JobDetailScreen
@@ -50,16 +52,20 @@ fun Navigation() {
             SignupScreen(navController = navController)
         }
 
-        composable(route = Screen.CameraScreen.route) {
-
-        }
-
         composable(route = Screen.CardVerificationScreen.route) {
             CardVerificationScreen(navController = navController)
         }
 
+        composable(route = Screen.CardVerificationCameraScreen.route) {
+            CardVerificationCameraScreen(navController = navController)
+        }
+
         composable(Screen.FaceVerificationScreen.route) {
             FaceVerificationScreen(navController = navController)
+        }
+        
+        composable(Screen.FaceVerificationCameraScreen.route) {
+            FaceVerificationCameraScreen(navController = navController)
         }
 
         composable(Screen.IdentityVerificationScreen.route) {

@@ -73,7 +73,7 @@ fun JobItem(
                     modifier = Modifier.padding(start = 4.dp)
                 )
 
-                Spacer(modifier = Modifier.width(140.dp))
+                Spacer(modifier = Modifier.width(110.dp))
                 Button(
                     onClick = {
                         navController.currentBackStackEntry?.savedStateHandle?.set(
