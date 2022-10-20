@@ -14,24 +14,25 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import com.puyo.kapas.R
 import com.puyo.kapas.feature_kapas.domain.model.job.Job
+import com.puyo.kapas.feature_kapas.presentation.util.Screen
 import com.puyo.kapas.ui.theme.Orange
 
 @Composable
 fun JobItem(
     job: Job,
+    navController: NavController,
 ) {
 
     Card(
         shape = RoundedCornerShape(8.dp),
         backgroundColor = Color.White,
         elevation = 4.dp,
-        modifier = Modifier
-            .wrapContentSize()
+        modifier = Modifier.wrapContentSize()
     ) {
 
         Column(
@@ -55,7 +56,7 @@ fun JobItem(
             )
 
             // Bottom Section
-            Spacer(modifier = Modifier.height(8.dp))
+            Spacer(modifier = Modifier.height(16.dp))
             Row(
                 verticalAlignment = Alignment.CenterVertically,
                 modifier = Modifier.fillMaxWidth()
@@ -72,9 +73,15 @@ fun JobItem(
                     modifier = Modifier.padding(start = 4.dp)
                 )
 
-                Spacer(modifier = Modifier.width(120.dp))
+                Spacer(modifier = Modifier.width(140.dp))
                 Button(
-                    onClick = { /*TODO*/ },
+                    onClick = {
+                        navController.currentBackStackEntry?.savedStateHandle?.set(
+                            key = "job",
+                            value = job
+                        )
+                        navController.navigate(Screen.JobDetailScreen.route)
+                    },
                     contentPadding = PaddingValues(0.dp),
                     modifier = Modifier.size(height = 24.dp, width = 80.dp),
                     shape = RoundedCornerShape(4.dp),
@@ -91,25 +98,4 @@ fun JobItem(
             }
         }
     }
-}
-
-
-@Preview
-@Composable
-fun JobItemPrev() {
-    JobItem(
-        job = Job(
-            title = "Pembantu Penyetrika",
-            posterId = "udauiwdiauwdbada",
-            posterAvatarUrl = "wodaodadadw",
-            posterName = "Tester",
-            location = "Malang",
-            wage = 23000.0,
-            address = "Jalan Malang",
-            description = "Mencari orang yang bisa menyetrika pakaian",
-            image_url = "wdaawdadawda",
-            latitude = 210.0,
-            longitude = 120.0
-        )
-    )
 }

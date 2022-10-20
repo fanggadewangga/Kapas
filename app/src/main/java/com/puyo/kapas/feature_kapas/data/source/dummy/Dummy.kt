@@ -45,7 +45,7 @@ object Dummy {
             location = "Gedung G",
             wage = 320000.0,
             address = "Jl. Veteran No.8, Ketawanggede, Kec. Lowokwaru, Kota Malang, Jawa Timur 65145",
-            description = "Mencari orang yang bisa mengerjakan soal fis ...",
+            description = "Mencari orang yang bisa mengerjakan soal fisika",
             image_url = "url",
             latitude = 0.0,
             longitude = 0.0

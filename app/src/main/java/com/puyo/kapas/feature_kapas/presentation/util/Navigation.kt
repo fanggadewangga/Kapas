@@ -4,6 +4,7 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.puyo.kapas.feature_kapas.domain.model.job.Job
 import com.puyo.kapas.feature_kapas.presentation.add_job.JobPaymentScreen
 import com.puyo.kapas.feature_kapas.presentation.add_job.PostJobScreen
 import com.puyo.kapas.feature_kapas.presentation.add_job.components.SuccessPostJobScreen
@@ -78,7 +79,10 @@ fun Navigation() {
         }
 
         composable(route = Screen.JobDetailScreen.route) {
-            JobDetailScreen(navController = navController)
+            val result = navController.previousBackStackEntry?.savedStateHandle?.get<Job>(
+                key = "job"
+            )
+            result?.let { it1 -> JobDetailScreen(navController = navController, job = it1) }
         }
 
         composable(route = Screen.HistoryScreen.route) {

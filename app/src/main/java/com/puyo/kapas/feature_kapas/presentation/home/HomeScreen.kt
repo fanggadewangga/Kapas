@@ -117,7 +117,7 @@ fun HomeScreen(navController: NavController) {
                 )
 
                 dummy.jobs.forEach {
-                    JobItem(job = it)
+                    JobItem(job = it, navController = navController)
                     Spacer(modifier = Modifier.height(16.dp))
                 }
             }

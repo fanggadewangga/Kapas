@@ -21,12 +21,11 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
-import androidx.navigation.compose.rememberNavController
 import com.puyo.kapas.R
+import com.puyo.kapas.feature_kapas.domain.model.job.Job
 import com.puyo.kapas.feature_kapas.presentation.jobs.components.DescriptionSection
 import com.puyo.kapas.feature_kapas.presentation.jobs.components.JobBottomBar
 import com.puyo.kapas.feature_kapas.presentation.util.Screen
@@ -35,9 +34,10 @@ import com.puyo.kapas.ui.theme.Orange
 
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter", "UnrememberedMutableState")
 @Composable
-fun JobDetailScreen(navController: NavController) {
+fun JobDetailScreen(navController: NavController, job: Job) {
     val coroutineScope = rememberCoroutineScope()
     val isVisible = mutableStateOf(false)
+    val isBookmarked = mutableStateOf(false)
 
     Scaffold(bottomBar = {
         JobBottomBar(
@@ -126,17 +126,22 @@ fun JobDetailScreen(navController: NavController) {
                 ) {
                     Spacer(modifier = Modifier.height(16.dp))
                     Image(
-                        painter = painterResource(id = R.drawable.ic_bookmark_unselected),
+                        painter =
+                        if (isBookmarked.value)
+                            painterResource(id = R.drawable.ic_bookmark_unselected)
+                        else
+                            painterResource(id = R.drawable.ic_bookmark_outlined),
                         contentDescription = "Bookmark",
                         modifier = Modifier
                             .size(24.dp)
+                            .clickable { isBookmarked.value =! isBookmarked.value }
                     )
                 }
             }
 
             // Job Title
             Text(
-                text = "Pembantu Penyetrika",
+                text = job.title,
                 fontWeight = FontWeight.Bold,
                 fontSize = 20.sp,
                 modifier = Modifier
@@ -146,7 +151,7 @@ fun JobDetailScreen(navController: NavController) {
 
             // Posted by
             Text(
-                text = "Diunggah oleh Fanggi Dhyana",
+                text = "Diunggah ${job.posterName}",
                 color = Color.Gray,
                 fontSize = 12.sp,
                 modifier = Modifier
@@ -170,7 +175,7 @@ fun JobDetailScreen(navController: NavController) {
                         fontSize = 14.sp
                     )
                     Text(
-                        text = "Rumah Pribadi",
+                        text = job.location,
                         fontSize = 14.sp,
                         fontWeight = FontWeight.Medium,
                         modifier = Modifier.padding(top = 8.dp)
@@ -192,7 +197,7 @@ fun JobDetailScreen(navController: NavController) {
                         fontSize = 14.sp
                     )
                     Text(
-                        text = "Rp200.000",
+                        text = "Rp${job.wage.toString()}",
                         fontSize = 14.sp,
                         fontWeight = FontWeight.Medium,
                         modifier = Modifier.padding(top = 8.dp)
@@ -248,7 +253,7 @@ fun JobDetailScreen(navController: NavController) {
                 )
                 Spacer(modifier = Modifier.width(8.dp))
                 Text(
-                    text = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+                    text = job.address,
                     maxLines = 3,
                     overflow = TextOverflow.Ellipsis,
                     fontSize = 12.sp
@@ -278,12 +283,7 @@ fun JobDetailScreen(navController: NavController) {
                 exit = fadeOut() + slideOutVertically()
             ) {
                 DescriptionSection(
-                    description =
-                    "Pembantu penyeterika adalah pekerjaan harian untuk seseorang yang bisa menyeterikan berbagai macam jenis pakaian. \n" +
-                            "\n" +
-                            "Banyak pakaian yang disetrika adalah 2 Kg dengan waktu menyeterika selama jam 13.00 - 15.00 WIB. \n" +
-                            "\n" +
-                            "Jangan ragu untuk melamar pekerjaan ini. "
+                    description = job.description
                 )
             }
             Spacer(modifier = Modifier.height(16.dp))
@@ -300,11 +300,4 @@ fun JobDetailScreen(navController: NavController) {
             Spacer(modifier = Modifier.height(120.dp))
         }
     }
-}
-
-
-@Preview
-@Composable
-fun DetailPrev() {
-    JobDetailScreen(navController = rememberNavController())
 }

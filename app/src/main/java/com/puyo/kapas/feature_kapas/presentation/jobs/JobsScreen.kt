@@ -92,7 +92,7 @@ fun JobScreen(navController: NavController) {
                     .padding(horizontal = 16.dp)
             ) {
                 items(dummy.jobs) {
-                    JobItem(job = it)
+                    JobItem(job = it, navController = navController)
                     Spacer(modifier = Modifier.height(16.dp))
                 }
             }
