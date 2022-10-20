@@ -1,5 +1,9 @@
 package com.puyo.kapas.feature_kapas.domain.model.user
 
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
+
+@Parcelize
 data class User(
     val uid: String,
     val cardNumber: String?,
@@ -16,5 +20,5 @@ data class User(
     val outcome: Double,
     val point: Int,
     val score: Int,
-    val rank: Int
-)
+    val rank: Int,
+) : Parcelable
