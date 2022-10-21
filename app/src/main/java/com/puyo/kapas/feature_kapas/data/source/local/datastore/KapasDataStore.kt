@@ -8,7 +8,6 @@ import androidx.datastore.preferences.preferencesDataStore
 import kotlinx.coroutines.flow.map
 
 class KapasDataStore(private val context: Context) {
-
     private val Context.userPreferenceDataStore: DataStore<Preferences> by preferencesDataStore(
         name = DataStoreUtil.DATA_STORE_NAME
     )

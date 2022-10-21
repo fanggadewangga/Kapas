@@ -1,4 +1,4 @@
-package com.puyo.kapas.feature_kapas.presentation.settings
+package com.puyo.kapas.feature_kapas.presentation.settings.email
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -15,19 +15,20 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
-import androidx.navigation.compose.rememberNavController
 import com.puyo.kapas.R
 import com.puyo.kapas.feature_kapas.presentation.profile.components.UserIdentityItem
 import com.puyo.kapas.feature_kapas.presentation.util.Screen
 import com.puyo.kapas.ui.components.CommonInputField
 import com.puyo.kapas.ui.theme.Orange
+import org.koin.androidx.compose.getViewModel
 
 @Composable
-fun ChangePasswordScreen(navController: NavController) {
+fun ChangeEmailScreen(navController: NavController) {
+    val viewModel = getViewModel<ChangeEmailViewModel>()
+
     Column(modifier = Modifier
         .fillMaxSize()
         .background(Color.White)
@@ -50,11 +51,11 @@ fun ChangePasswordScreen(navController: NavController) {
                     modifier = Modifier
                         .padding(start = 8.dp)
                         .size(24.dp)
-                        .clickable { navController.navigate(Screen.ProfileScreen.route) }
+                        .clickable { navController.navigate(Screen.ProfileSettingScreen.route) }
                 )
 
                 Text(
-                    text = "Ubah Kata Sandi",
+                    text = "Ubah Email",
                     fontWeight = FontWeight.Bold,
                     fontSize = 20.sp,
                     color = Color.White
@@ -64,38 +65,25 @@ fun ChangePasswordScreen(navController: NavController) {
             }
         }
 
-        // Old password
+        // Old email
         UserIdentityItem(
-            title = "Kata sandi saat ini",
+            title = "Email saat ini",
             description = null,
-            value = "**********",
+            value = "fanggadhyana22@gmail.com",
             modifier = Modifier.padding(start = 16.dp, top = 16.dp, end = 16.dp)
         )
 
-        // New password
+        // New email
         Text(
             fontWeight = FontWeight.Medium,
-            text = "Kata sandi baru",
+            text = "Email baru",
             fontSize = 14.sp,
             color = Color.Gray,
             modifier = Modifier.padding(start = 16.dp, bottom = 8.dp)
         )
         CommonInputField(
-            placeholder = "****************",
-            isVisible = false
-        )
-
-        // Confirm new password
-        Text(
-            fontWeight = FontWeight.Medium,
-            text = "Konfirmasi kata sandi baru",
-            fontSize = 14.sp,
-            color = Color.Gray,
-            modifier = Modifier.padding(start = 16.dp, top = 16.dp, bottom = 8.dp)
-        )
-        CommonInputField(
-            placeholder = "****************",
-            isVisible = false
+            placeholder = "Isi email baru",
+            valueState = viewModel.newEmail
         )
 
         // Button
@@ -118,10 +106,4 @@ fun ChangePasswordScreen(navController: NavController) {
             )
         }
     }
-}
-
-@Preview
-@Composable
-fun ChangePasswordPreview() {
-    ChangePasswordScreen(navController = rememberNavController())
 }

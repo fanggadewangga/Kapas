@@ -1,4 +1,4 @@
-package com.puyo.kapas.feature_kapas.presentation.verification
+package com.puyo.kapas.feature_kapas.presentation.verification.success_verification
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -13,11 +13,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.SpanStyle
-import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
@@ -28,7 +25,7 @@ import com.puyo.kapas.ui.components.TopBar
 import com.puyo.kapas.ui.theme.Orange
 
 @Composable
-fun CardVerificationScreen(navController: NavController) {
+fun VerificationSuccessScreen(navController: NavController) {
     val systemUiController = rememberSystemUiController()
 
     SideEffect {
@@ -43,57 +40,30 @@ fun CardVerificationScreen(navController: NavController) {
             .background(color = Color.White)
     ) {
         Row {
-            TopBar(text = "Verifikasi KTP/E-KTP")
+            TopBar(text = "Pengiriman Data Berhasil")
         }
 
-        Spacer(modifier = Modifier.height(72.dp))
-        Text(
-            text = "Siapkan E-KTP Fisik Anda",
-            fontWeight = FontWeight.ExtraBold,
-            fontSize = 20.sp
+        Spacer(modifier = Modifier.height(160.dp))
+        Image(painter = painterResource(
+            id = R.drawable.img_verification_success),
+            contentDescription = "Card",
+            modifier = Modifier
+                .size(240.dp)
         )
 
         Spacer(modifier = Modifier.height(32.dp))
         Text(
-            text = buildAnnotatedString {
-                append("Harap tambahkan dokumen pendukung, jika E-KTP fisik anda ")
-                withStyle(style = SpanStyle(
-                    fontWeight = FontWeight.Bold,
-                )) {
-                    append("tidak dapat dibaca ")
-                }
-                append("atau dalam ")
-                withStyle(style = SpanStyle(
-                    fontWeight = FontWeight.Bold,
-                )) {
-                    append("kondisi yang buruk.")
-                }
-            },
+            text = "Kami telah menerima data Anda dan sekarang akan segera diproses. Silahkan tunggu, kami sedang bekerja secepat yang kami bisa!",
             fontWeight = FontWeight.Light,
             fontSize = 12.sp,
             textAlign = TextAlign.Center,
             modifier = Modifier.padding(horizontal = 40.dp)
         )
 
-        Spacer(modifier = Modifier.height(120.dp))
-        Image(painter = painterResource(
-            id = R.drawable.img_card_verification),
-            contentDescription = "Card",
-            modifier = Modifier
-                .size(240.dp)
-        )
-
-        Spacer(modifier = Modifier.height(72.dp))
-        Image(
-            painter = painterResource(id = R.drawable.img_data),
-            contentDescription = "Data",
-            modifier = Modifier.padding(horizontal = 28.dp)
-        )
-
-        Spacer(modifier = Modifier.height(16.dp))
+        Spacer(modifier = Modifier.height(166.dp))
         Button(
             onClick = {
-                navController.navigate(Screen.CardVerificationCameraScreen.route)
+                navController.navigate(Screen.HomeScreen.route)
             },
             shape = RoundedCornerShape(8.dp),
             colors = ButtonDefaults.buttonColors(Orange),
@@ -102,7 +72,7 @@ fun CardVerificationScreen(navController: NavController) {
                 .padding(horizontal = 28.dp)
         ) {
             Text(
-                text = "Mulai",
+                text = "Lanjut",
                 textAlign = TextAlign.Center,
                 fontWeight = FontWeight.Bold,
                 color = Color.White

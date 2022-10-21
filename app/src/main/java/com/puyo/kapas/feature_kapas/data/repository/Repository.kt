@@ -6,14 +6,13 @@ import com.puyo.kapas.feature_kapas.data.source.local.database.entity.JobEntity
 import com.puyo.kapas.feature_kapas.data.source.remote.RemoteDataSource
 import com.puyo.kapas.feature_kapas.data.source.remote.api.response.job.JobBody
 import com.puyo.kapas.feature_kapas.data.source.remote.api.response.user.UserBody
-import javax.inject.Inject
 
-class Repository @Inject constructor(
+class Repository(
     private val localRepository: LocalDataSource,
-    private val remoteRepository: RemoteDataSource,
+    private val remoteRepository: RemoteDataSource
 ) {
     // User
-    suspend fun signUpUser(email: String, password: String, body: UserBody) = remoteRepository.signUpUser(email, password, body)
+    suspend fun signUpUser(email: String, password: String, body: UserBody)= remoteRepository.signUpUser(email, password, body)
     suspend fun signInUser(email: String, password: String) = remoteRepository.signInUser(email, password)
     suspend fun fetchUserDetail(uid: String) = remoteRepository.fetchUserDetail(uid)
     suspend fun fetchLeaderboard() = remoteRepository.fetchLeaderboard()

@@ -15,9 +15,8 @@ import kotlinx.coroutines.flow.flow
 
 class RemoteDataSource(
     private val apiService: KapasApi,
-    private val firebaseService: FirebaseService,
+    private val firebaseService: FirebaseService
 ) {
-
     fun isLoggedIn() = firebaseService.isLoggedIn()
 
     fun getCurrentUserId() = firebaseService.getCurrentUserId()

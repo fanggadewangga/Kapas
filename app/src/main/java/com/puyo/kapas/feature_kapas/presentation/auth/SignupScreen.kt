@@ -11,6 +11,7 @@ import androidx.compose.material.Divider
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.SideEffect
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Alignment.Companion.CenterHorizontally
 import androidx.compose.ui.Modifier
@@ -33,6 +34,8 @@ import com.puyo.kapas.ui.components.CustomPasswordField
 import com.puyo.kapas.ui.components.CustomTextField
 import com.puyo.kapas.ui.theme.Orange
 import com.puyo.kapas.ui.theme.Peach
+import kotlinx.coroutines.launch
+import org.koin.androidx.compose.getViewModel
 
 @Composable
 fun SignupScreen(navController: NavController) {
@@ -86,6 +89,8 @@ fun SignupScreen(navController: NavController) {
 
 @Composable
 fun SignupSection(navController: NavController) {
+    val coroutineScope = rememberCoroutineScope()
+    val viewModel = getViewModel<SignupViewModel>()
     Column(
         modifier = Modifier
             .fillMaxWidth()
@@ -114,7 +119,8 @@ fun SignupSection(navController: NavController) {
                     modifier = Modifier.size(20.dp))
             },
             placeholder = "Email",
-            fontSize = 12.sp
+            fontSize = 12.sp,
+            valueState =  viewModel.emailState
         )
 
         // Password
@@ -126,7 +132,8 @@ fun SignupSection(navController: NavController) {
                     modifier = Modifier.size(20.dp))
             },
             placeholder = "Kata Sandi",
-            fontSize = 12.sp
+            fontSize = 12.sp,
+            valueState = viewModel.passwordState
         )
 
         // Password Confirmation
@@ -138,7 +145,8 @@ fun SignupSection(navController: NavController) {
                     modifier = Modifier.size(20.dp))
             },
             placeholder = "Konfirmasi Kata Sandi",
-            fontSize = 12.sp
+            fontSize = 12.sp,
+            valueState = viewModel.confirmPasswordState
         )
 
         // Terms and Condition
@@ -215,6 +223,9 @@ fun SignupSection(navController: NavController) {
 
         Button(
             onClick = {
+                coroutineScope.launch {
+                    viewModel.signUpUser()
+                }
                 navController.navigate(Screen.LoginScreen.route) {
                     popUpTo(Screen.SignupScreen.route) {
                         inclusive = true

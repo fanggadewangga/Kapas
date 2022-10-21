@@ -1,4 +1,4 @@
-package com.puyo.kapas.feature_kapas.presentation.add_job
+package com.puyo.kapas.feature_kapas.presentation.post_job
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -21,11 +21,13 @@ import androidx.navigation.NavController
 import com.puyo.kapas.R
 import com.puyo.kapas.feature_kapas.presentation.util.Screen
 import com.puyo.kapas.ui.components.CommonInputField
-import com.puyo.kapas.ui.theme.Grey
 import com.puyo.kapas.ui.theme.Orange
+import org.koin.androidx.compose.getViewModel
 
 @Composable
 fun PostJobScreen(navController: NavController) {
+    val viewModel = getViewModel<PostJobViewModel>()
+
     Column(modifier = Modifier
         .fillMaxSize()
         .background(Color.White)
@@ -66,8 +68,8 @@ fun PostJobScreen(navController: NavController) {
         
         Text(
             text = "Pasang lowongan pekerjaan Anda di sini!",
-            fontSize = 12.sp,
-            color = Grey,
+            fontSize = 14.sp,
+            color = Color.Gray,
             modifier = Modifier.padding(start = 16.dp)
         )
 
@@ -81,7 +83,8 @@ fun PostJobScreen(navController: NavController) {
             modifier = Modifier.padding(start = 16.dp, bottom = 8.dp)
         )
         CommonInputField(
-            placeholder = "Pembantu Penyetrika"
+            placeholder = "Pembantu Penyetrika",
+            valueState = viewModel.jobName
         )
         Text(
             text = "Tulis nama pekerjaan yang akan Anda pasang",
@@ -100,7 +103,8 @@ fun PostJobScreen(navController: NavController) {
             modifier = Modifier.padding(start = 16.dp, bottom = 8.dp)
         )
         CommonInputField(
-            placeholder = "Jl. Veteran No.8, Ketawanggede, Kec. Lowokwaru, Kota Malang, Jawa Timur 65145"
+            placeholder = "Jl. Veteran No.8",
+            valueState = viewModel.jobAddress
         )
         Text(
             text = "Tulis lokasi pekerjaan yang sesuai",
@@ -119,7 +123,8 @@ fun PostJobScreen(navController: NavController) {
             modifier = Modifier.padding(start = 16.dp, bottom = 8.dp)
         )
         CommonInputField(
-            placeholder = "Rumah Pribadi"
+            placeholder = "Rumah Pribadi",
+            valueState = viewModel.jobLocation
         )
         Text(
             text = "Tulis tempat pekerjaan yang sesuai ",
@@ -138,7 +143,8 @@ fun PostJobScreen(navController: NavController) {
             modifier = Modifier.padding(start = 16.dp, bottom = 8.dp)
         )
         CommonInputField(
-            placeholder = "200.000"
+            placeholder = "200.000",
+            valueState = viewModel.jobWage
         )
         Text(
             text = "Tulis bayaran yang Anda tawarkan dalam rupiah ",
@@ -157,7 +163,8 @@ fun PostJobScreen(navController: NavController) {
             modifier = Modifier.padding(start = 16.dp, bottom = 8.dp)
         )
         CommonInputField(
-            placeholder = "Lorem Ipsum"
+            placeholder = "Lorem Ipsum",
+            valueState = viewModel.jobDescription
         )
         Text(
             text = "Tulis deskripsi pekerjaan secara detail",

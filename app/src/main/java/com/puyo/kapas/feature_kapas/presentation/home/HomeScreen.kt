@@ -28,10 +28,12 @@ import com.puyo.kapas.feature_kapas.presentation.home.components.UserWallet
 import com.puyo.kapas.feature_kapas.presentation.util.Screen
 import com.puyo.kapas.feature_kapas.presentation.util.components.BottomNavigationBar
 import com.puyo.kapas.ui.components.CustomSearchField
+import org.koin.androidx.compose.getViewModel
 
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
 fun HomeScreen(navController: NavController) {
+    val viewModel = getViewModel<HomeViewModel>()
 
     val dummy = remember {Dummy}
     val coroutineScope = rememberCoroutineScope()
@@ -69,7 +71,8 @@ fun HomeScreen(navController: NavController) {
                                 modifier = Modifier.size(24.dp)
                             )
                         },
-                        placeholder = "Temukan pekerjaan harianmu!"
+                        placeholder = "Temukan pekerjaan harianmu!",
+                        valueState = viewModel.query
                     )
                 }
                

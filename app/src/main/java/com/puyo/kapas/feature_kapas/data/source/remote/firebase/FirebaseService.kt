@@ -10,12 +10,11 @@ import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.tasks.await
-import javax.inject.Inject
 
-class FirebaseService @Inject constructor(
-    private val firebaseAuth: FirebaseAuth,
-    private val firebaseStorage: FirebaseStorage,
-) {
+class FirebaseService {
+    private val firebaseAuth: FirebaseAuth = FirebaseAuth.getInstance()
+    private val firebaseStorage: FirebaseStorage = FirebaseStorage.getInstance()
+
     // Check logged in status
     fun isLoggedIn(): Boolean = firebaseAuth.currentUser != null
 

@@ -27,7 +27,7 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.puyo.kapas.R
 import com.puyo.kapas.feature_kapas.domain.model.job.Job
-import com.puyo.kapas.feature_kapas.presentation.add_job.components.PostJobDialog
+import com.puyo.kapas.feature_kapas.presentation.post_job.components.PostJobDialog
 import com.puyo.kapas.feature_kapas.presentation.jobs.components.DescriptionSection
 import com.puyo.kapas.feature_kapas.presentation.jobs.components.JobBottomBar
 import com.puyo.kapas.feature_kapas.presentation.util.Screen
@@ -46,7 +46,7 @@ fun JobDetailScreen(navController: NavController, job: Job) {
 
     Scaffold(bottomBar = {
         JobBottomBar(
-            wage = 200000.0,
+            wage = job.wage,
             buttonText = "Melamar",
             paymentDescription = "Jumlah Bayaran",
             onClick = {

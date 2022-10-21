@@ -1,4 +1,4 @@
-package com.puyo.kapas.feature_kapas.presentation.profile
+package com.puyo.kapas.feature_kapas.presentation.profile.profile_main
 
 import android.annotation.SuppressLint
 import androidx.compose.foundation.Image
@@ -88,7 +88,7 @@ fun ProfileScreen(navController: NavController) {
                         Spacer(modifier = Modifier.width(16.dp))
                         Column {
                             Text(
-                                text = "Username",
+                                text = "Afwan Mulia Pratama",
                                 fontSize = 16.sp,
                                 color = Color.White,
                                 fontWeight = FontWeight.Medium
@@ -105,7 +105,7 @@ fun ProfileScreen(navController: NavController) {
                                     modifier = Modifier.size(16.dp)
                                 )
                                 Text(
-                                    text = "Useremail@gmail.com",
+                                    text = "afwanmp@gmail.com",
                                     fontSize = 12.sp,
                                     color = Color.White,
                                     modifier = Modifier.padding(start = 8.dp)
@@ -122,7 +122,7 @@ fun ProfileScreen(navController: NavController) {
                                     modifier = Modifier.size(16.dp)
                                 )
                                 Text(
-                                    text = "081234567890",
+                                    text = "081295574111",
                                     fontSize = 12.sp,
                                     color = Color.White,
                                     modifier = Modifier.padding(start = 8.dp)
@@ -131,10 +131,10 @@ fun ProfileScreen(navController: NavController) {
                         }
                     }
                     Wallet(
-                        balance = 200000.0,
-                        points = 1282,
-                        income = 1212.0,
-                        outcome = 2222.0,
+                        balance = 350000.0,
+                        points = 235,
+                        income = 100000.0,
+                        outcome = 50000.0,
                         modifier = Modifier.padding(top = 64.dp)
                     )
                 }
@@ -146,7 +146,7 @@ fun ProfileScreen(navController: NavController) {
                 color = Color.Gray,
                 modifier = Modifier.padding(top = 16.dp, bottom = 12.dp, start = 16.dp)
             )
-            Rank(score = 2191, rank = 407)
+            Rank(score = 1500, rank = 10)
 
             Text(
                 text = "Fitur",

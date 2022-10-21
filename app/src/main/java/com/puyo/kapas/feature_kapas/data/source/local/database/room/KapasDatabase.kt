@@ -9,5 +9,5 @@ import com.puyo.kapas.feature_kapas.data.source.local.database.entity.JobEntity
     version = 1
 )
 abstract class KapasDatabase: RoomDatabase() {
-    abstract fun kapasDao(): KapasDao
+    abstract fun jobDao(): JobDao
 }

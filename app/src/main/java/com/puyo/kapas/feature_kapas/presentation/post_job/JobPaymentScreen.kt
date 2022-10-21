@@ -1,4 +1,4 @@
-package com.puyo.kapas.feature_kapas.presentation.add_job
+package com.puyo.kapas.feature_kapas.presentation.post_job
 
 import android.annotation.SuppressLint
 import androidx.compose.foundation.Image
@@ -7,7 +7,7 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
-import androidx.compose.runtime.Composable
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -19,7 +19,7 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.puyo.kapas.R
-import com.puyo.kapas.feature_kapas.presentation.add_job.components.PaymentSummary
+import com.puyo.kapas.feature_kapas.presentation.post_job.components.PaymentSummary
 import com.puyo.kapas.feature_kapas.presentation.jobs.components.JobBottomBar
 import com.puyo.kapas.feature_kapas.presentation.util.Screen
 import com.puyo.kapas.ui.components.CommonInputField
@@ -28,11 +28,14 @@ import com.puyo.kapas.ui.theme.Orange
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
 fun JobPaymentScreen(navController: NavController) {
+    var wage: MutableState<String> = remember {
+        mutableStateOf("")
+    }
 
     Scaffold(
         bottomBar = {
             JobBottomBar(
-                wage = 201000.0,
+                wage = 200.0,
                 buttonText = "Bayar",
                 paymentDescription = "Total Bayar",
                 navController = navController,
@@ -102,7 +105,8 @@ fun JobPaymentScreen(navController: NavController) {
                         modifier = Modifier.padding(start = 16.dp, top = 16.dp, bottom = 8.dp)
                     )
                     CommonInputField(
-                        placeholder = "200.000"
+                        placeholder = "",
+                        valueState = wage
                     )
                     Spacer(modifier = Modifier.height(16.dp))
                 }

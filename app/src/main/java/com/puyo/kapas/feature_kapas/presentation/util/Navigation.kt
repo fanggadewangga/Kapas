@@ -5,9 +5,9 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.puyo.kapas.feature_kapas.domain.model.job.Job
-import com.puyo.kapas.feature_kapas.presentation.add_job.JobPaymentScreen
-import com.puyo.kapas.feature_kapas.presentation.add_job.PostJobScreen
-import com.puyo.kapas.feature_kapas.presentation.add_job.components.SuccessPostJobScreen
+import com.puyo.kapas.feature_kapas.presentation.post_job.JobPaymentScreen
+import com.puyo.kapas.feature_kapas.presentation.post_job.PostJobScreen
+import com.puyo.kapas.feature_kapas.presentation.post_job.components.SuccessPostJobScreen
 import com.puyo.kapas.feature_kapas.presentation.auth.LoginScreen
 import com.puyo.kapas.feature_kapas.presentation.auth.SignupScreen
 import com.puyo.kapas.feature_kapas.presentation.camera.CardVerificationCameraScreen
@@ -18,17 +18,17 @@ import com.puyo.kapas.feature_kapas.presentation.job_detail.JobDetailScreen
 import com.puyo.kapas.feature_kapas.presentation.jobs.JobScreen
 import com.puyo.kapas.feature_kapas.presentation.landing.LandingScreen
 import com.puyo.kapas.feature_kapas.presentation.leaderboard.LeaderboardScreen
-import com.puyo.kapas.feature_kapas.presentation.profile.ProfileScreen
 import com.puyo.kapas.feature_kapas.presentation.profile.ProfileSettingScreen
+import com.puyo.kapas.feature_kapas.presentation.profile.profile_main.ProfileScreen
 import com.puyo.kapas.feature_kapas.presentation.reward.RewardScreen
-import com.puyo.kapas.feature_kapas.presentation.settings.ChangeEmailScreen
-import com.puyo.kapas.feature_kapas.presentation.settings.ChangeNumberScreen
+import com.puyo.kapas.feature_kapas.presentation.settings.email.ChangeEmailScreen
 import com.puyo.kapas.feature_kapas.presentation.settings.ChangePasswordScreen
+import com.puyo.kapas.feature_kapas.presentation.settings.number.ChangeNumberScreen
 import com.puyo.kapas.feature_kapas.presentation.splash.SplashScreen
-import com.puyo.kapas.feature_kapas.presentation.verification.CardVerificationScreen
-import com.puyo.kapas.feature_kapas.presentation.verification.FaceVerificationScreen
-import com.puyo.kapas.feature_kapas.presentation.verification.IdentityVerificationScreen
-import com.puyo.kapas.feature_kapas.presentation.verification.VerificationSuccessScreen
+import com.puyo.kapas.feature_kapas.presentation.verification.card_verification.CardVerificationScreen
+import com.puyo.kapas.feature_kapas.presentation.verification.face_verification.FaceVerificationScreen
+import com.puyo.kapas.feature_kapas.presentation.verification.identity_verification.IdentityVerificationScreen
+import com.puyo.kapas.feature_kapas.presentation.verification.success_verification.VerificationSuccessScreen
 
 @Composable
 fun Navigation() {

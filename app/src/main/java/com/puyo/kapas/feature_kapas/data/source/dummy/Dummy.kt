@@ -1,6 +1,7 @@
 package com.puyo.kapas.feature_kapas.data.source.dummy
 
 import com.puyo.kapas.feature_kapas.domain.model.job.Job
+import com.puyo.kapas.feature_kapas.domain.model.leaderboard.Leaderboard
 
 object Dummy {
     val jobs = listOf(
@@ -238,6 +239,126 @@ object Dummy {
             image_url = "url",
             latitude = 0.0,
             longitude = 0.0
+        ),
+    )
+
+    val leaderboards = listOf(
+        Leaderboard(
+            uid = "1",
+            name = "Fanggi Dhyana",
+            score = 2500,
+            avatarUrl = "https://unsplash.com/photos/mEZ3PoFGs_k"
+        ),
+        Leaderboard(
+            uid = "2",
+            name = "Shawn",
+            score = 2492,
+            avatarUrl = "https://unsplash.com/photos/C8Ta0gwPbQg"
+        ),
+        Leaderboard(
+            uid = "3",
+            name = "Ahmad",
+            score = 2490,
+            avatarUrl = "https://unsplash.com/photos/ZHvM3XIOHoE"
+        ),
+        Leaderboard(
+            uid = "4",
+            name = "Hanna",
+            score = 2486,
+            avatarUrl = "https://unsplash.com/photos/rDEOVtE7vOs"
+        ),
+        Leaderboard(
+            uid = "5",
+            name = "Abimanyu",
+            score = 2430,
+            avatarUrl = "https://unsplash.com/photos/iFgRcqHznqg"
+        ),
+        Leaderboard(
+            uid = "6",
+            name = "Avril",
+            score = 2425,
+            avatarUrl = "https://unsplash.com/photos/rdHrrFA1KKg"
+        ),
+        Leaderboard(
+            uid = "7",
+            name = "Kevin",
+            score = 2210,
+            avatarUrl = "https://unsplash.com/photos/kVg2DQTAK7c"
+        ),Leaderboard(
+            uid = "8",
+            name = "Sukma",
+            score = 2150,
+            avatarUrl = "https://unsplash.com/photos/XxkTaY1UpZU"
+        ),Leaderboard(
+            uid = "9",
+            name = "Valenta",
+            score = 2001,
+            avatarUrl = "https://unsplash.com/photos/tTdC88_6a_I"
+        ),Leaderboard(
+            uid = "9",
+            name = "Arya",
+            score = 1820,
+            avatarUrl = "https://unsplash.com/photos/-Tc8w2Kvsf8"
+        ),Leaderboard(
+            uid = "10",
+            name = "Dewangga",
+            score = 1798,
+            avatarUrl = "https://unsplash.com/photos/WMlRkqt1vII"
+        ),Leaderboard(
+            uid = "11",
+            name = "Billie",
+            score = 1609,
+            avatarUrl = "https://unsplash.com/photos/2EdIX-O2lkI"
+        ),Leaderboard(
+            uid = "12",
+            name = "Budi",
+            score = 1502,
+            avatarUrl = "https://unsplash.com/photos/Rv1_qkmO4C4"
+        ),Leaderboard(
+            uid = "13",
+            name = "Camilla",
+            score = 1400,
+            avatarUrl = "https://unsplash.com/photos/-5kerUxMu6I"
+        ),Leaderboard(
+            uid = "14",
+            name = "Ken",
+            score = 1321,
+            avatarUrl = "https://unsplash.com/photos/ZaU21K_4ZpA"
+        ),Leaderboard(
+            uid = "15",
+            name = "Elon",
+            score = 1220,
+            avatarUrl = "https://unsplash.com/photos/q7rAYyWZeBs"
+        ),Leaderboard(
+            uid = "16",
+            name = "Sugi",
+            score = 1200,
+            avatarUrl = "https://unsplash.com/photos/7OdV2TFfeKE"
+        ),Leaderboard(
+            uid = "17",
+            name = "Febi",
+            score = 1172,
+            avatarUrl = "https://unsplash.com/photos/T3SoA8-aTTQ"
+        ),Leaderboard(
+            uid = "18",
+            name = "Nicky",
+            score = 988,
+            avatarUrl = "https://unsplash.com/photos/-lhiafvOQAU"
+        ),Leaderboard(
+            uid = "19",
+            name = "Paula",
+            score = 877,
+            avatarUrl = "https://unsplash.com/photos/OKeu92CvolE"
+        ),Leaderboard(
+            uid = "20",
+            name = "Rose",
+            score = 660,
+            avatarUrl = "https://unsplash.com/photos/n34dhlh0spw"
+        ),Leaderboard(
+            uid = "21",
+            name = "Momo",
+            score = 652,
+            avatarUrl = "https://unsplash.com/photos/vLB8VYEDYb4"
         ),
     )
 }

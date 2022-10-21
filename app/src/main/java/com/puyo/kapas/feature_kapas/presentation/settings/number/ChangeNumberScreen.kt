@@ -1,4 +1,4 @@
-package com.puyo.kapas.feature_kapas.presentation.settings
+package com.puyo.kapas.feature_kapas.presentation.settings.number
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -23,9 +23,12 @@ import com.puyo.kapas.feature_kapas.presentation.profile.components.UserIdentity
 import com.puyo.kapas.feature_kapas.presentation.util.Screen
 import com.puyo.kapas.ui.components.CommonInputField
 import com.puyo.kapas.ui.theme.Orange
+import org.koin.androidx.compose.getViewModel
 
 @Composable
 fun ChangeNumberScreen(navController: NavController) {
+    val viewModel = getViewModel<ChangeNumberViewModel>()
+
     Column(modifier = Modifier
         .fillMaxSize()
         .background(Color.White)
@@ -48,7 +51,7 @@ fun ChangeNumberScreen(navController: NavController) {
                     modifier = Modifier
                         .padding(start = 8.dp)
                         .size(24.dp)
-                        .clickable { navController.navigate(Screen.ProfileScreen.route) }
+                        .clickable { navController.navigate(Screen.ProfileSettingScreen.route) }
                 )
 
                 Text(
@@ -79,7 +82,8 @@ fun ChangeNumberScreen(navController: NavController) {
             modifier = Modifier.padding(start = 16.dp, bottom = 8.dp)
         )
         CommonInputField(
-            placeholder = "Isi nomor telepon baru"
+            placeholder = "Isi nomor telepon baru",
+            valueState = viewModel.newNumber
         )
 
         // Button

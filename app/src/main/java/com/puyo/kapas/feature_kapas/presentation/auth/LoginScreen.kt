@@ -32,9 +32,11 @@ import com.puyo.kapas.ui.components.CustomPasswordField
 import com.puyo.kapas.ui.components.CustomTextField
 import com.puyo.kapas.ui.theme.Orange
 import com.puyo.kapas.ui.theme.Peach
+import org.koin.androidx.compose.getViewModel
 
 @Composable
 fun LoginScreen(navController: NavController) {
+
     val systemUiController = rememberSystemUiController()
 
     SideEffect {
@@ -85,6 +87,7 @@ fun LoginScreen(navController: NavController) {
 
 @Composable
 fun LoginSection(navController: NavController) {
+    val viewModel = getViewModel<LoginViewModel>()
     Column(
         modifier = Modifier
             .fillMaxWidth()
@@ -112,7 +115,8 @@ fun LoginSection(navController: NavController) {
                     modifier = Modifier.size(20.dp))
             },
             placeholder = "Email",
-            fontSize = 12.sp
+            fontSize = 12.sp,
+            valueState = viewModel.emailState
         )
 
         // Password
@@ -124,7 +128,8 @@ fun LoginSection(navController: NavController) {
                     modifier = Modifier.size(20.dp))
             },
             placeholder = "Kata Sandi",
-            fontSize = 12.sp
+            fontSize = 12.sp,
+            valueState = viewModel.passwordState
         )
 
         // Terms and Condition

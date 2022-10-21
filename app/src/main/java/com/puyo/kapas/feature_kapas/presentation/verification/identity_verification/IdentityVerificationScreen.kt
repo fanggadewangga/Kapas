@@ -1,4 +1,4 @@
-package com.puyo.kapas.feature_kapas.presentation.verification
+package com.puyo.kapas.feature_kapas.presentation.verification.identity_verification
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -11,11 +11,8 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
-import androidx.compose.ui.draw.scale
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
@@ -26,12 +23,17 @@ import androidx.navigation.compose.rememberNavController
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import com.puyo.kapas.R
 import com.puyo.kapas.feature_kapas.presentation.verification.components.VerificationDialog
+import com.puyo.kapas.ui.components.CustomTextField
 import com.puyo.kapas.ui.components.TopBar
 import com.puyo.kapas.ui.theme.Orange
-import com.puyo.kapas.ui.theme.Peach
+import org.koin.androidx.compose.getViewModel
 
 @Composable
-fun IdentityVerificationScreen(navController: NavController) {
+fun IdentityVerificationScreen(
+    navController: NavController
+) {
+    val viewModel = getViewModel<IdentityVerificationViewModel>()
+
     val dialogState = remember {
         mutableStateOf(false)
     }
@@ -90,24 +92,10 @@ fun IdentityVerificationScreen(navController: NavController) {
                 fontWeight = FontWeight.Medium,
                 color = Color.Gray
             )
-            TextField(
-                value = "",
-                onValueChange = {
-
-                },
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .scale(scaleY = 0.7F, scaleX = 1F)
-                    .clip(RoundedCornerShape(8.dp)),
-                colors = TextFieldDefaults.textFieldColors(
-                    cursorColor = Color.Gray,
-                    backgroundColor = Peach,
-                    focusedIndicatorColor = Peach,
-                    unfocusedIndicatorColor = Peach
-                ),
-                textStyle = TextStyle(
-                    fontSize = 14.sp, fontWeight = FontWeight.Bold
-                )
+            CustomTextField(
+                placeholder = "",
+                fontSize = 12.sp,
+                valueState = viewModel.cardNumber
             )
             Text(
                 text = "Masukkan nomor E-KTP Anda",
@@ -124,24 +112,10 @@ fun IdentityVerificationScreen(navController: NavController) {
                 fontWeight = FontWeight.Medium,
                 color = Color.Gray
             )
-            TextField(
-                value = "",
-                onValueChange = {
-
-                },
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .scale(scaleY = 0.7F, scaleX = 1F)
-                    .clip(RoundedCornerShape(8.dp)),
-                colors = TextFieldDefaults.textFieldColors(
-                    cursorColor = Color.Gray,
-                    backgroundColor = Peach,
-                    focusedIndicatorColor = Peach,
-                    unfocusedIndicatorColor = Peach
-                ),
-                textStyle = TextStyle(
-                    fontSize = 14.sp, fontWeight = FontWeight.Bold
-                )
+            CustomTextField(
+                placeholder = "",
+                fontSize = 12.sp,
+                valueState = viewModel.name
             )
             Text(
                 text = "Masukkan nama lengkap sesuai E-KTP Anda",
@@ -158,24 +132,10 @@ fun IdentityVerificationScreen(navController: NavController) {
                 fontWeight = FontWeight.Medium,
                 color = Color.Gray
             )
-            TextField(
-                value = "",
-                onValueChange = {
-
-                },
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .scale(scaleY = 0.7F, scaleX = 1F)
-                    .clip(RoundedCornerShape(8.dp)),
-                colors = TextFieldDefaults.textFieldColors(
-                    cursorColor = Color.Gray,
-                    backgroundColor = Peach,
-                    focusedIndicatorColor = Peach,
-                    unfocusedIndicatorColor = Peach
-                ),
-                textStyle = TextStyle(
-                    fontSize = 14.sp, fontWeight = FontWeight.Bold
-                )
+            CustomTextField(
+                placeholder = "",
+                fontSize = 12.sp,
+                valueState = viewModel.birthPlace
             )
             Text(
                 text = "Masukkan tempat lahir sesuai E-KTP Anda",
@@ -192,24 +152,10 @@ fun IdentityVerificationScreen(navController: NavController) {
                 fontWeight = FontWeight.Medium,
                 color = Color.Gray
             )
-            TextField(
-                value = "",
-                onValueChange = {
-
-                },
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .scale(scaleY = 0.7F, scaleX = 1F)
-                    .clip(RoundedCornerShape(8.dp)),
-                colors = TextFieldDefaults.textFieldColors(
-                    cursorColor = Color.Gray,
-                    backgroundColor = Peach,
-                    focusedIndicatorColor = Peach,
-                    unfocusedIndicatorColor = Peach
-                ),
-                textStyle = TextStyle(
-                    fontSize = 14.sp, fontWeight = FontWeight.Bold
-                )
+            CustomTextField(
+                placeholder = "",
+                fontSize = 12.sp,
+                valueState = viewModel.birthDate
             )
             Text(
                 text = "Masukkan tanggal lahir sesuai E-KTP Anda",
@@ -226,9 +172,34 @@ fun IdentityVerificationScreen(navController: NavController) {
                 fontWeight = FontWeight.Medium,
                 color = Color.Gray
             )
+            Row(verticalAlignment = Alignment.CenterVertically) {
+                RadioButton(
+                    selected = viewModel.selectedGender.value == "Pria",
+                    onClick = { viewModel.selectedGender.value = "Pria" },
+                    colors = RadioButtonDefaults.colors(Orange)
+                )
+                Text(
+                    text = "Pria",
+                    fontWeight = FontWeight.Bold,
+                    fontSize = 14.sp
+                )
+
+                Spacer(modifier = Modifier.width(24.dp))
+                RadioButton(
+                    selected = viewModel.selectedGender.value == "Wanita",
+                    onClick = { viewModel.selectedGender.value = "Wanita" },
+                    colors = RadioButtonDefaults.colors(Orange)
+                )
+                Text(
+                    text = "Wanita",
+                    fontWeight = FontWeight.Bold,
+                    fontSize = 14.sp
+                )
+            }
+
 
             // Terms
-            Spacer(modifier = Modifier.height(16.dp))
+            Spacer(modifier = Modifier.height(24.dp))
             Image(
                 painter = painterResource(id = R.drawable.img_verification_terms),
                 contentDescription = "Terms",
@@ -253,7 +224,7 @@ fun IdentityVerificationScreen(navController: NavController) {
                     color = Color.White
                 )
             }
-            
+
             // Dialog
             if (dialogState.value)
                 VerificationDialog(navController = navController)

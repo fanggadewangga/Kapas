@@ -29,11 +29,12 @@ fun CustomTextField(
     modifier: Modifier = Modifier,
     leadingIcon: (@Composable () -> Unit)? = null,
     trailingIcon: (@Composable () -> Unit)? = null,
-    valueState: MutableState<String>? = null,
+    valueState: MutableState<String>,
     placeholder: String = "placeholder",
     fontSize: TextUnit = MaterialTheme.typography.button.fontSize,
+    keyboardOptions: KeyboardOptions = KeyboardOptions.Default,
+    keyboardActions: KeyboardActions = KeyboardActions.Default
 ) {
-    var text by remember { mutableStateOf("") }
     BasicTextField(
         modifier = modifier
             .background(
@@ -43,10 +44,12 @@ fun CustomTextField(
             .fillMaxWidth()
             .padding(horizontal = 16.dp, vertical = 4.dp)
         ,
-        value = text,
+        value = valueState.value,
         onValueChange = {
-            text = it
+            valueState.value = it
         },
+        keyboardActions = keyboardActions,
+        keyboardOptions = keyboardOptions,
         singleLine = true,
         cursorBrush = SolidColor(Color.Transparent),
         textStyle = LocalTextStyle.current.copy(
@@ -64,7 +67,7 @@ fun CustomTextField(
                 Box(modifier = Modifier
                     .weight(1f)
                 ) {
-                    if (text.isEmpty())
+                    if (valueState.value.isEmpty())
                         Text(
                             text = placeholder,
                             style = TextStyle(
@@ -86,11 +89,12 @@ fun CustomSearchField(
     modifier: Modifier = Modifier,
     leadingIcon: (@Composable () -> Unit)? = null,
     trailingIcon: (@Composable () -> Unit)? = null,
-    valueState: MutableState<String>? = null,
+    valueState: MutableState<String>,
     placeholder: String = "placeholder",
     fontSize: TextUnit = MaterialTheme.typography.button.fontSize,
+    keyboardOptions: KeyboardOptions = KeyboardOptions.Default,
+    keyboardActions: KeyboardActions = KeyboardActions.Default
 ) {
-    var text by remember { mutableStateOf("") }
     Card(shape = RoundedCornerShape(12.dp),
         backgroundColor = Color.White,
         elevation = 8.dp,
@@ -107,10 +111,12 @@ fun CustomSearchField(
                 .fillMaxWidth()
                 .padding(horizontal = 16.dp, vertical = 4.dp)
             ,
-            value = text,
+            value = valueState.value,
             onValueChange = {
-                text = it
+                valueState.value = it
             },
+            keyboardActions = keyboardActions,
+            keyboardOptions = keyboardOptions,
             singleLine = true,
             cursorBrush = SolidColor(Color.Transparent),
             textStyle = LocalTextStyle.current.copy(
@@ -128,7 +134,7 @@ fun CustomSearchField(
                     Box(modifier = Modifier
                         .weight(1f)
                     ) {
-                        if (text.isEmpty())
+                        if (valueState.value.isEmpty())
                             Text(
                                 text = placeholder,
                                 style = TextStyle(
@@ -151,14 +157,12 @@ fun CustomPasswordField(
     modifier: Modifier = Modifier,
     leadingIcon: (@Composable () -> Unit)? = null,
     trailingIcon: (@Composable () -> Unit)? = null,
-    valueState: MutableState<String>? = null,
+    valueState: MutableState<String>,
     placeholder: String = "placeholder",
     fontSize: TextUnit = MaterialTheme.typography.button.fontSize,
 ) {
-
     val focusManager = LocalFocusManager.current
-    var isVisible by remember { mutableStateOf(false) }
-    var text by remember { mutableStateOf("") }
+    val isVisible by remember { mutableStateOf(false) }
 
     BasicTextField(
         modifier = modifier
@@ -169,9 +173,9 @@ fun CustomPasswordField(
             .fillMaxWidth()
             .padding(horizontal = 16.dp, vertical = 4.dp)
         ,
-        value = text,
+        value = valueState.value,
         onValueChange = {
-            text = it
+            valueState.value = it
         },
         singleLine = true,
         cursorBrush = SolidColor(Color.Transparent),
@@ -190,7 +194,7 @@ fun CustomPasswordField(
                 Box(modifier = Modifier
                     .weight(1f)
                 ) {
-                    if (text.isEmpty())
+                    if (valueState.value.isEmpty())
                         Text(
                             text = placeholder,
                             style = TextStyle(
@@ -215,12 +219,13 @@ fun CommonInputField(
     modifier: Modifier = Modifier,
     leadingIcon: (@Composable () -> Unit)? = null,
     trailingIcon: (@Composable () -> Unit)? = null,
-    valueState: MutableState<String>? = null,
+    valueState: MutableState<String>,
     placeholder: String = "placeholder",
     fontSize: TextUnit = MaterialTheme.typography.button.fontSize,
-    isVisible: Boolean = true
+    keyboardOptions: KeyboardOptions = KeyboardOptions.Default,
+    keyboardActions: KeyboardActions = KeyboardActions.Default
 ) {
-    var text by remember { mutableStateOf("") }
+    val isVisible by remember { mutableStateOf(true) }
     Card(shape = RoundedCornerShape(12.dp),
         backgroundColor = Peach,
         modifier = modifier
@@ -236,16 +241,18 @@ fun CommonInputField(
                 .fillMaxWidth()
                 .padding(horizontal = 16.dp, vertical = 4.dp)
             ,
-            value = text,
+            value = valueState.value,
             onValueChange = {
-                text = it
+                valueState.value = it
             },
+            keyboardActions = keyboardActions,
+            keyboardOptions = keyboardOptions,
             singleLine = true,
             cursorBrush = SolidColor(Color.Transparent),
             textStyle = LocalTextStyle.current.copy(
                 color = MaterialTheme.colors.onSurface,
                 fontSize = fontSize,
-                fontWeight = FontWeight.ExtraBold
+                fontWeight = FontWeight.Bold
             ),
             decorationBox = {
                     innerTextField ->
@@ -258,7 +265,7 @@ fun CommonInputField(
                     Box(modifier = Modifier
                         .weight(1f)
                     ) {
-                        if (text.isEmpty())
+                        if (valueState.value.isEmpty())
                             Text(
                                 text = placeholder,
                                 style = TextStyle(

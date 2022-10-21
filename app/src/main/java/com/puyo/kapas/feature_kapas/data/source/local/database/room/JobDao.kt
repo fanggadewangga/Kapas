@@ -4,7 +4,7 @@ import androidx.room.*
 import com.puyo.kapas.feature_kapas.data.source.local.database.entity.JobEntity
 
 @Dao
-interface KapasDao {
+interface JobDao {
     @Query("SELECT * FROM job_table")
     fun getJobs(): List<JobEntity>
 

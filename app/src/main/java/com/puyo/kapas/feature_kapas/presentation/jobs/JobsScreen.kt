@@ -25,10 +25,13 @@ import com.puyo.kapas.feature_kapas.presentation.home.components.JobItem
 import com.puyo.kapas.feature_kapas.presentation.util.Screen
 import com.puyo.kapas.feature_kapas.presentation.util.components.BottomNavigationBar
 import com.puyo.kapas.ui.components.CustomSearchField
+import org.koin.androidx.compose.getViewModel
 
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
 fun JobScreen(navController: NavController) {
+    val viewModel = getViewModel<JobsViewModel>()
+
     val dummy = remember { Dummy }
     val coroutineScope = rememberCoroutineScope()
     val systemUiController = rememberSystemUiController()
@@ -71,7 +74,8 @@ fun JobScreen(navController: NavController) {
                             )
                         },
                         placeholder = "Temukan pekerjaan harianmu!",
-                        modifier = Modifier.fillMaxWidth()
+                        modifier = Modifier.fillMaxWidth(),
+                        valueState = viewModel.query
                     )
                 }
 
