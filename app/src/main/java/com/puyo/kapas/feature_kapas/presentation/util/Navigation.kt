@@ -5,24 +5,25 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.puyo.kapas.feature_kapas.domain.model.job.Job
-import com.puyo.kapas.feature_kapas.presentation.post_job.JobPaymentScreen
-import com.puyo.kapas.feature_kapas.presentation.post_job.PostJobScreen
-import com.puyo.kapas.feature_kapas.presentation.post_job.components.SuccessPostJobScreen
 import com.puyo.kapas.feature_kapas.presentation.auth.LoginScreen
 import com.puyo.kapas.feature_kapas.presentation.auth.SignupScreen
 import com.puyo.kapas.feature_kapas.presentation.camera.CardVerificationCameraScreen
 import com.puyo.kapas.feature_kapas.presentation.camera.FaceVerificationCameraScreen
+import com.puyo.kapas.feature_kapas.presentation.coupons.CouponScreen
 import com.puyo.kapas.feature_kapas.presentation.history.HistoryScreen
 import com.puyo.kapas.feature_kapas.presentation.home.HomeScreen
 import com.puyo.kapas.feature_kapas.presentation.job_detail.JobDetailScreen
 import com.puyo.kapas.feature_kapas.presentation.jobs.JobScreen
 import com.puyo.kapas.feature_kapas.presentation.landing.LandingScreen
 import com.puyo.kapas.feature_kapas.presentation.leaderboard.LeaderboardScreen
+import com.puyo.kapas.feature_kapas.presentation.post_job.JobPaymentScreen
+import com.puyo.kapas.feature_kapas.presentation.post_job.PostJobScreen
+import com.puyo.kapas.feature_kapas.presentation.post_job.components.SuccessPostJobScreen
 import com.puyo.kapas.feature_kapas.presentation.profile.ProfileSettingScreen
 import com.puyo.kapas.feature_kapas.presentation.profile.profile_main.ProfileScreen
 import com.puyo.kapas.feature_kapas.presentation.reward.RewardScreen
-import com.puyo.kapas.feature_kapas.presentation.settings.email.ChangeEmailScreen
 import com.puyo.kapas.feature_kapas.presentation.settings.ChangePasswordScreen
+import com.puyo.kapas.feature_kapas.presentation.settings.email.ChangeEmailScreen
 import com.puyo.kapas.feature_kapas.presentation.settings.number.ChangeNumberScreen
 import com.puyo.kapas.feature_kapas.presentation.splash.SplashScreen
 import com.puyo.kapas.feature_kapas.presentation.verification.card_verification.CardVerificationScreen
@@ -133,6 +134,10 @@ fun Navigation() {
         
         composable(route = Screen.SuccessPostJobScreen.route) {
             SuccessPostJobScreen(navController = navController)
+        }
+        
+        composable(route = Screen.CouponScreen.route) {
+            CouponScreen(navController = navController)
         }
     }
 }

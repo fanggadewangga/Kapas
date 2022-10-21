@@ -42,6 +42,9 @@ sealed class Screen(val route: String) {
     object ChangeNumberScreen: Screen("change_number_screen")
     object ChangePasswordScreen: Screen("change_password_screen")
 
+    // Reward
+    object CouponScreen: Screen("coupon_screen")
+
     // args helper
     fun withArgs(vararg args: String): String{
         return buildString{

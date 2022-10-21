@@ -19,8 +19,8 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.puyo.kapas.R
-import com.puyo.kapas.feature_kapas.presentation.post_job.components.PaymentSummary
 import com.puyo.kapas.feature_kapas.presentation.jobs.components.JobBottomBar
+import com.puyo.kapas.feature_kapas.presentation.post_job.components.PaymentSummary
 import com.puyo.kapas.feature_kapas.presentation.util.Screen
 import com.puyo.kapas.ui.components.CommonInputField
 import com.puyo.kapas.ui.theme.Orange
@@ -191,6 +191,7 @@ fun JobPaymentScreen(navController: NavController) {
                     verticalAlignment = Alignment.CenterVertically,
                     modifier = Modifier
                         .padding(horizontal = 16.dp, vertical = 8.dp)
+                        .clickable { navController.navigate(Screen.CouponScreen.route) }
                 ) {
                     Image(
                         painter = painterResource(id = R.drawable.ic_point),

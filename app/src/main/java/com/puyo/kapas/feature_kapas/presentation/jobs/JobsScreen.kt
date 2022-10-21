@@ -60,7 +60,7 @@ fun JobScreen(navController: NavController) {
                         modifier = Modifier
                             .fillMaxWidth()
                             .padding(horizontal = 16.dp)
-                            .clickable { navController.navigate(Screen.JobDetailScreen.route) }
+                            .clickable { navController.navigate(Screen.PostJobScreen.route) }
                     )
 
                     Spacer(modifier = Modifier.height(16.dp))
