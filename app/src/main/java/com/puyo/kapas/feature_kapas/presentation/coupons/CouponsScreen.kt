@@ -50,11 +50,13 @@ fun CouponScreen(navController: NavController) {
                         contentDescription = "Point",
                         modifier = Modifier.size(20.dp)
                     )
+                    Spacer(modifier = Modifier.width(4.dp))
                     Text(
                         text = "Point Saya",
                         fontSize = 12.sp,
                         color = Color.Gray,
-                        fontWeight = FontWeight.Bold
+                        fontWeight = FontWeight.Bold,
+                        modifier = Modifier.padding(top = 2.dp)
                     )
                 }
                 Text(

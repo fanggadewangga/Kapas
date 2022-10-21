@@ -24,18 +24,19 @@ import com.puyo.kapas.feature_kapas.presentation.post_job.components.PaymentSumm
 import com.puyo.kapas.feature_kapas.presentation.util.Screen
 import com.puyo.kapas.ui.components.CommonInputField
 import com.puyo.kapas.ui.theme.Orange
+import org.koin.androidx.compose.getViewModel
 
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
 fun JobPaymentScreen(navController: NavController) {
-    var wage: MutableState<String> = remember {
-        mutableStateOf("")
-    }
+    val viewModel = getViewModel<JobPaymentViewModel>()
 
     Scaffold(
         bottomBar = {
             JobBottomBar(
-                wage = 200.0,
+                wage =
+                if (viewModel.jobWage.value != "") viewModel.jobWage.value.toDouble() + viewModel.totalPayment.value
+                else viewModel.totalPayment.value,
                 buttonText = "Bayar",
                 paymentDescription = "Total Bayar",
                 navController = navController,
@@ -106,7 +107,7 @@ fun JobPaymentScreen(navController: NavController) {
                     )
                     CommonInputField(
                         placeholder = "",
-                        valueState = wage
+                        valueState = viewModel.jobWage
                     )
                     Spacer(modifier = Modifier.height(16.dp))
                 }
@@ -207,10 +208,14 @@ fun JobPaymentScreen(navController: NavController) {
                     )
                 }
             }
-            
+
             // Payment Summary
             Spacer(modifier = Modifier.height(16.dp))
-            PaymentSummary(wage = 200000.0)
+            PaymentSummary(
+                wage =
+                if (viewModel.jobWage.value != "") viewModel.jobWage.value.toDouble()
+                else 0.0
+            )
         }
     }
 

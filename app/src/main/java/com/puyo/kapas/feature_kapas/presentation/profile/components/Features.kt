@@ -110,7 +110,7 @@ fun Features(navController: NavController) {
                 verticalAlignment = Alignment.CenterVertically,
                 modifier = Modifier
                     .padding(top = 8.dp)
-                    .clickable { /*TODO*/ }
+                    .clickable { navController.navigate(Screen.CouponScreen.route) }
             ) {
                 Image(
                     painter = painterResource(id = R.drawable.ic_point_outlined),

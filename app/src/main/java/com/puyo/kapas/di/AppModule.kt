@@ -17,6 +17,7 @@ import com.puyo.kapas.feature_kapas.presentation.auth.LoginViewModel
 import com.puyo.kapas.feature_kapas.presentation.auth.SignupViewModel
 import com.puyo.kapas.feature_kapas.presentation.home.HomeViewModel
 import com.puyo.kapas.feature_kapas.presentation.jobs.JobsViewModel
+import com.puyo.kapas.feature_kapas.presentation.post_job.JobPaymentViewModel
 import com.puyo.kapas.feature_kapas.presentation.post_job.PostJobViewModel
 import com.puyo.kapas.feature_kapas.presentation.settings.email.ChangeEmailViewModel
 import com.puyo.kapas.feature_kapas.presentation.settings.number.ChangeNumberViewModel
@@ -80,6 +81,7 @@ val viewModelModule = module {
     viewModel { HomeViewModel(get()) }
     viewModel { JobsViewModel(get()) }
     viewModel { PostJobViewModel(get()) }
+    viewModel { JobPaymentViewModel(get()) }
     viewModel { ChangeEmailViewModel(get()) }
     viewModel { ChangeNumberViewModel(get()) }
     viewModel { ChangePasswordViewModel(get()) }

@@ -18,7 +18,7 @@ import com.puyo.kapas.feature_kapas.presentation.landing.LandingScreen
 import com.puyo.kapas.feature_kapas.presentation.leaderboard.LeaderboardScreen
 import com.puyo.kapas.feature_kapas.presentation.post_job.JobPaymentScreen
 import com.puyo.kapas.feature_kapas.presentation.post_job.PostJobScreen
-import com.puyo.kapas.feature_kapas.presentation.post_job.components.SuccessPostJobScreen
+import com.puyo.kapas.feature_kapas.presentation.post_job.SuccessPostJobScreen
 import com.puyo.kapas.feature_kapas.presentation.profile.ProfileSettingScreen
 import com.puyo.kapas.feature_kapas.presentation.profile.profile_main.ProfileScreen
 import com.puyo.kapas.feature_kapas.presentation.reward.RewardScreen
