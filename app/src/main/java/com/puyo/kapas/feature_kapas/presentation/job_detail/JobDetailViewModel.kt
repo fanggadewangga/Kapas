@@ -1,4 +1,4 @@
-package com.puyo.kapas.feature_kapas.presentation.job_detail.components
+package com.puyo.kapas.feature_kapas.presentation.job_detail
 
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateListOf
@@ -11,13 +11,9 @@ import com.google.android.gms.maps.model.LatLng
 import com.puyo.kapas.feature_kapas.data.repository.Repository
 import kotlinx.coroutines.launch
 import org.osmdroid.util.GeoPoint
-import javax.inject.Inject
 
 
-class JobDetailViewModel @Inject constructor(
-    private val repository: Repository,
-    jobId: String
-): ViewModel() {
+class JobDetailViewModel(private val repository: Repository) : ViewModel() {
 
     private var _userCurrentLongitude = mutableStateOf(0.0)
     var userCurrentLongitude: MutableState<Double> = _userCurrentLongitude
@@ -43,7 +39,7 @@ class JobDetailViewModel @Inject constructor(
 
     fun fetchJobDetail(jobId: String) {
         viewModelScope.launch {
-            
+
         }
     }
 }

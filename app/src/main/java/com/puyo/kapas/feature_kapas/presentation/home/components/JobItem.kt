@@ -18,13 +18,13 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.puyo.kapas.R
-import com.puyo.kapas.feature_kapas.domain.model.job.Job
+import com.puyo.kapas.feature_kapas.data.source.remote.api.response.job.JobListResponse
 import com.puyo.kapas.feature_kapas.presentation.util.Screen
 import com.puyo.kapas.ui.theme.Orange
 
 @Composable
 fun JobItem(
-    job: Job,
+    job: JobListResponse,
     navController: NavController,
 ) {
 
@@ -77,8 +77,8 @@ fun JobItem(
                 Button(
                     onClick = {
                         navController.currentBackStackEntry?.savedStateHandle?.set(
-                            key = "job",
-                            value = job
+                            key = "jobId",
+                            value = job.jobId
                         )
                         navController.navigate(Screen.JobDetailScreen.route)
                     },

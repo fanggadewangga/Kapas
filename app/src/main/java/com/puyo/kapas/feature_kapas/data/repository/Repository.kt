@@ -12,19 +12,19 @@ class Repository(
     private val remoteRepository: RemoteDataSource
 ) {
     // User
-    suspend fun signUpUser(email: String, password: String, body: UserBody)= remoteRepository.signUpUser(email, password, body)
-    suspend fun signInUser(email: String, password: String) = remoteRepository.signInUser(email, password)
-    suspend fun fetchUserDetail(uid: String) = remoteRepository.fetchUserDetail(uid)
-    suspend fun fetchLeaderboard() = remoteRepository.fetchLeaderboard()
-    suspend fun updateUserDetail(uid: String, body: UserBody) = remoteRepository.updateUserDetail(uid, body)
-    suspend fun updateUserAvatar(uid: String, imageUri: Uri) = remoteRepository.updateUserAvatar(uid, imageUri)
+    suspend fun signUpUser(email: String, password: String) = remoteRepository.signUpUser(email, password)
+    fun signInUser(email: String, password: String) = remoteRepository.signInUser(email, password)
+    suspend fun fetchUserDetail(uid: String) = remoteRepository.fetchUserDetail(uid).data
+    suspend fun fetchLeaderboard() = remoteRepository.fetchLeaderboard().data
+    suspend fun updateUserDetail(uid: String, body: UserBody) = remoteRepository.updateUserDetail(uid, body).data
+    fun updateUserAvatar(uid: String, imageUri: Uri) = remoteRepository.updateUserAvatar(uid, imageUri)
     fun getCurrentUserId() = remoteRepository.getCurrentUserId()
     fun isLoggedIn() = remoteRepository.isLoggedIn()
     fun logOut() = remoteRepository.logOut()
 
     // Job
     suspend fun postJob(body: JobBody) = remoteRepository.postJob(body)
-    suspend fun fetchJobs() = remoteRepository.fetchJobs()
+    suspend fun fetchJobs() = remoteRepository.fetchJobs().data
     suspend fun fetchJobDetail(jobId: String) = remoteRepository.fetchJobDetail(jobId)
     suspend fun fetchSearchJobs(query: String) = remoteRepository.fetchSearchJob(query)
     suspend fun updateJobDetail(jobId: String, body: JobBody) = remoteRepository.updateJobDetail(jobId, body)

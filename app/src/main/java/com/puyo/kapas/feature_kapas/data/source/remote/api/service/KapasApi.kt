@@ -26,10 +26,10 @@ interface KapasApi {
     suspend fun updateUserDetail(
         @Path("uid") uid: String,
         @Body userBody: UserBody
-    ): BaseResponse<UserResponse>
+    ): BaseResponse<String>
 
     @GET("/leaderboard")
-    suspend fun fetchLeaderboard(): BaseResponse<List<LeaderboardResponse>>
+        suspend fun fetchLeaderboard(): BaseResponse<List<LeaderboardResponse>>
 
     // Job
     @POST("/job")
@@ -59,5 +59,5 @@ interface KapasApi {
     suspend fun updateJobDetail(
         @Path("jobId") jobId: String,
         @Body jobBody: JobBody
-    ): BaseResponse<JobResponse>
+    ): BaseResponse<String>
 }

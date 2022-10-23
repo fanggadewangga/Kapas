@@ -3,12 +3,14 @@ package com.puyo.kapas.feature_kapas.presentation.leaderboard.components
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Card
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
@@ -17,11 +19,11 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import coil.compose.AsyncImage
 import com.puyo.kapas.R
 import com.puyo.kapas.feature_kapas.domain.model.leaderboard.Leaderboard
 import com.puyo.kapas.ui.theme.Orange
 import com.puyo.kapas.ui.theme.Peach
+import com.skydoves.landscapist.glide.GlideImage
 
 @Composable
 fun LeaderboardItem(
@@ -57,12 +59,12 @@ fun LeaderboardItem(
 
             // Image
             Box(modifier = Modifier.size(32.dp)) {
-                AsyncImage(
-                    placeholder = painterResource(id = R.drawable.img_avatar),
-                    error = painterResource(id = R.drawable.img_avatar),
-                    model = user.avatarUrl,
-                    contentDescription = "User Avatar",
-                    modifier = Modifier.size(32.dp)
+                GlideImage(
+                    imageModel = {
+                        user.avatarUrl ?: user.avatar
+                    },
+                    modifier = Modifier.clip(CircleShape),
+                    previewPlaceholder = R.drawable.img_avatar
                 )
 
                 Image(
@@ -72,8 +74,6 @@ fun LeaderboardItem(
                         .size(12.dp)
                         .align(Alignment.BottomEnd)
                 )
-
-
             }
 
             // Name

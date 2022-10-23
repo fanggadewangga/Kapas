@@ -69,7 +69,7 @@ fun ChangeEmailScreen(navController: NavController) {
         UserIdentityItem(
             title = "Email saat ini",
             description = null,
-            value = "fanggadhyana22@gmail.com",
+            value = "afwanmp@gmail.com",
             modifier = Modifier.padding(start = 16.dp, top = 16.dp, end = 16.dp)
         )
 

@@ -1,10 +1,11 @@
-package com.puyo.kapas.feature_kapas.presentation.profile
+package com.puyo.kapas.feature_kapas.presentation.profile.profile_setting
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Card
 import androidx.compose.material.Text
@@ -13,7 +14,9 @@ import androidx.compose.runtime.SideEffect
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -68,9 +71,12 @@ fun ProfileSettingScreen(navController: NavController) {
                 
                 // Avatar
                 Image(
-                    painter = painterResource(id = R.drawable.img_avatar),
+                    painter = painterResource(id = R.drawable.img_avatar_male),
                     contentDescription = "Avatar",
-                    modifier = Modifier.size(64.dp)
+                    contentScale = ContentScale.Crop,
+                    modifier = Modifier
+                        .size(64.dp)
+                        .clip(CircleShape)
                 )
                 
                 // Buttons
@@ -146,12 +152,12 @@ fun ProfileSettingScreen(navController: NavController) {
             UserIdentityItem(
                 title = "Nama Lengkap",
                 description = "Masukkan nama lengkap sesuai E-KTP Anda",
-                value = "FANGGI DHYANA"
+                value = "Afwan Mulia Pratama"
             )
             UserIdentityItem(
                 title = "Tempat Lahir" ,
                 description = "Masukkan tempat lahir sesuai E-KTP Anda",
-                value = "MALANG"
+                value = "Malang"
             )
         }
     }

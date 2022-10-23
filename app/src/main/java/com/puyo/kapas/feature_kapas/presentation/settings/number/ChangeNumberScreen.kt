@@ -69,7 +69,7 @@ fun ChangeNumberScreen(navController: NavController) {
         UserIdentityItem(
             title = "Nomor telepon saat ini",
             description = null,
-            value = "081330723755",
+            value = "081295584111",
             modifier = Modifier.padding(start = 16.dp, top = 16.dp, end = 16.dp)
         )
 

@@ -7,31 +7,31 @@ data class UserBody(
     var uid: String,
 
     @field:SerializedName("card_number")
-    val cardNumber: String? = "",
+    val cardNumber: String? = " ",
 
     @field:SerializedName("name")
-    val name: String? = "",
+    val name: String? = " ",
 
     @field:SerializedName("address")
-    val address: String? = "",
+    val address: String? = " ",
 
     @field:SerializedName("birth_place")
-    val birthPlace: String? = "",
+    val birthPlace: String? = " ",
 
     @field:SerializedName("birth_date")
-    val birthDate: String? = "",
+    val birthDate: String? = " ",
 
     @field:SerializedName("email")
     var email: String,
 
     @field:SerializedName("phone")
-    val phone: String? = "",
+    val phone: String? = " ",
 
     @field:SerializedName("avatar_url")
-    val avatarUrl: String? = "",
+    val avatarUrl: String? = " ",
 
     @field:SerializedName("gender")
-    val gender: String? = "",
+    val gender: String? = " ",
 
     @field:SerializedName("balance")
     val balance: Double = 0.0,

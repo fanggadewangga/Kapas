@@ -34,7 +34,6 @@ import com.puyo.kapas.ui.components.CustomPasswordField
 import com.puyo.kapas.ui.components.CustomTextField
 import com.puyo.kapas.ui.theme.Orange
 import com.puyo.kapas.ui.theme.Peach
-import kotlinx.coroutines.launch
 import org.koin.androidx.compose.getViewModel
 
 @Composable
@@ -223,9 +222,6 @@ fun SignupSection(navController: NavController) {
 
         Button(
             onClick = {
-                coroutineScope.launch {
-                    viewModel.signUpUser()
-                }
                 navController.navigate(Screen.LoginScreen.route) {
                     popUpTo(Screen.SignupScreen.route) {
                         inclusive = true

@@ -26,7 +26,6 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.puyo.kapas.R
-import com.puyo.kapas.feature_kapas.domain.model.job.Job
 import com.puyo.kapas.feature_kapas.presentation.post_job.components.PostJobDialog
 import com.puyo.kapas.feature_kapas.presentation.jobs.components.DescriptionSection
 import com.puyo.kapas.feature_kapas.presentation.jobs.components.JobBottomBar
@@ -36,7 +35,7 @@ import com.puyo.kapas.ui.theme.Orange
 
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter", "UnrememberedMutableState")
 @Composable
-fun JobDetailScreen(navController: NavController, job: Job) {
+fun JobDetailScreen(navController: NavController, job: String) {
     val coroutineScope = rememberCoroutineScope()
     val isVisible = mutableStateOf(false)
     val isBookmarked = mutableStateOf(false)

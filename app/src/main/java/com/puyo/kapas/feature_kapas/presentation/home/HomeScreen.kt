@@ -11,7 +11,6 @@ import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.SideEffect
-import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
@@ -22,7 +21,6 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import com.puyo.kapas.R
-import com.puyo.kapas.feature_kapas.data.source.dummy.Dummy
 import com.puyo.kapas.feature_kapas.presentation.home.components.JobItem
 import com.puyo.kapas.feature_kapas.presentation.home.components.UserWallet
 import com.puyo.kapas.feature_kapas.presentation.util.Screen
@@ -35,7 +33,6 @@ import org.koin.androidx.compose.getViewModel
 fun HomeScreen(navController: NavController) {
     val viewModel = getViewModel<HomeViewModel>()
 
-    val dummy = remember {Dummy}
     val coroutineScope = rememberCoroutineScope()
     val systemUiController = rememberSystemUiController()
 
@@ -86,7 +83,7 @@ fun HomeScreen(navController: NavController) {
 
                 Spacer(modifier = Modifier.height(24.dp))
                 // Wallet
-                UserWallet(balance = 300000.0, point = 1272)
+                UserWallet(balance = 350000.0, point = 235)
 
                 Spacer(modifier = Modifier.height(24.dp))
                 // Banner
@@ -119,10 +116,10 @@ fun HomeScreen(navController: NavController) {
                     modifier = Modifier.padding(vertical = 16.dp)
                 )
 
-                dummy.jobs.forEach {
-                    JobItem(job = it, navController = navController)
-                    Spacer(modifier = Modifier.height(16.dp))
-                }
+               viewModel.jobs.value.forEach {
+                   JobItem(job = it, navController = navController)
+                   Spacer(modifier = Modifier.height(16.dp))
+               }
             }
             Spacer(modifier = Modifier.height(64.dp))
         }

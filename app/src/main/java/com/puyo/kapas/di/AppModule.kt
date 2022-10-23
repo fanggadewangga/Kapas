@@ -16,6 +16,7 @@ import com.puyo.kapas.feature_kapas.data.source.remote.firebase.FirebaseService
 import com.puyo.kapas.feature_kapas.presentation.auth.LoginViewModel
 import com.puyo.kapas.feature_kapas.presentation.auth.SignupViewModel
 import com.puyo.kapas.feature_kapas.presentation.home.HomeViewModel
+import com.puyo.kapas.feature_kapas.presentation.job_detail.JobDetailViewModel
 import com.puyo.kapas.feature_kapas.presentation.jobs.JobsViewModel
 import com.puyo.kapas.feature_kapas.presentation.post_job.JobPaymentViewModel
 import com.puyo.kapas.feature_kapas.presentation.post_job.PostJobViewModel
@@ -80,6 +81,7 @@ val viewModelModule = module {
     viewModel { SignupViewModel(get()) }
     viewModel { HomeViewModel(get()) }
     viewModel { JobsViewModel(get()) }
+    viewModel { JobDetailViewModel(get()) }
     viewModel { PostJobViewModel(get()) }
     viewModel { JobPaymentViewModel(get()) }
     viewModel { ChangeEmailViewModel(get()) }
