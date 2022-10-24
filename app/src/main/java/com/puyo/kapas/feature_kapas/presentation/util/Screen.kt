@@ -23,6 +23,7 @@ sealed class Screen(val route: String) {
     object PostJobScreen: Screen("post_job_screen")
     object JobPaymentScreen: Screen("job_payment_screen")
     object SuccessPostJobScreen: Screen("success_post_job_screen")
+    object UploadedJobScreen: Screen("uploaded_job_screen")
 
     // History
     object HistoryScreen: Screen("history_screen")

@@ -1,4 +1,4 @@
-package com.puyo.kapas.feature_kapas.presentation.reward
+package com.puyo.kapas.feature_kapas.presentation.uploaded_job
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -21,12 +21,12 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.puyo.kapas.R
 import com.puyo.kapas.feature_kapas.data.source.dummy.Dummy
-import com.puyo.kapas.feature_kapas.presentation.reward.components.RewardItem
+import com.puyo.kapas.feature_kapas.presentation.uploaded_job.component.UploadedJobItem
 import com.puyo.kapas.feature_kapas.presentation.util.Screen
 import com.puyo.kapas.ui.theme.Orange
 
 @Composable
-fun RewardScreen(navController: NavController) {
+fun UploadedJobScreen(navController: NavController) {
     val dummy = remember { Dummy }
     Column(
         verticalArrangement = Arrangement.Top,
@@ -36,7 +36,7 @@ fun RewardScreen(navController: NavController) {
             .background(color = Color.White)
     ) {
 
-            // Action Bar
+        // Action Bar
         Column(modifier = Modifier
             .fillMaxWidth()
             .background(color = Orange)
@@ -53,11 +53,11 @@ fun RewardScreen(navController: NavController) {
                     modifier = Modifier
                         .padding(start = 8.dp)
                         .size(24.dp)
-                        .clickable { navController.navigate(Screen.LeaderboardScreen.route) }
+                        .clickable { navController.navigate(Screen.ProfileScreen.route) }
                 )
 
                 Text(
-                    text = "Hadiah Penghargaan",
+                    text = "Pekerjaan yang Diunggah",
                     fontWeight = FontWeight.Bold,
                     fontSize = 20.sp,
                     color = Color.White
@@ -75,8 +75,8 @@ fun RewardScreen(navController: NavController) {
                 .fillMaxWidth()
                 .padding(horizontal = 16.dp)
         ) {
-            items(dummy.rewards) {
-                RewardItem(reward = it)
+            items(dummy.jobs) {
+                UploadedJobItem(job = it, navController = navController)
                 Spacer(modifier = Modifier.height(8.dp))
             }
         }
@@ -85,6 +85,6 @@ fun RewardScreen(navController: NavController) {
 
 @Preview
 @Composable
-fun RewardScreenPreview() {
-    RewardScreen(navController = rememberNavController())
+fun UploadedJobScreenPreview() {
+    UploadedJobScreen(navController = rememberNavController())
 }

@@ -34,13 +34,13 @@ fun Features(navController: NavController) {
         ) {
 
 
-            // Job History
+            // Uploaded Jobs
             Row(
                 verticalAlignment = Alignment.CenterVertically,
                 modifier = Modifier
                     .padding(top = 4.dp, bottom = 8.dp)
                     .clickable {
-                    navController.navigate(Screen.HistoryScreen.route)
+                    navController.navigate(Screen.UploadedJobScreen.route)
                 }
             ) {
                 Image(

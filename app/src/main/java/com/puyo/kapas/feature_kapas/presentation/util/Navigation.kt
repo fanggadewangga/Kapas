@@ -25,6 +25,7 @@ import com.puyo.kapas.feature_kapas.presentation.settings.ChangePasswordScreen
 import com.puyo.kapas.feature_kapas.presentation.settings.email.ChangeEmailScreen
 import com.puyo.kapas.feature_kapas.presentation.settings.number.ChangeNumberScreen
 import com.puyo.kapas.feature_kapas.presentation.splash.SplashScreen
+import com.puyo.kapas.feature_kapas.presentation.uploaded_job.UploadedJobScreen
 import com.puyo.kapas.feature_kapas.presentation.verification.card_verification.CardVerificationScreen
 import com.puyo.kapas.feature_kapas.presentation.verification.face_verification.FaceVerificationScreen
 import com.puyo.kapas.feature_kapas.presentation.verification.identity_verification.IdentityVerificationScreen
@@ -141,6 +142,10 @@ fun Navigation() {
         
         composable(route = Screen.RewardScreen.route) {
             RewardScreen(navController = navController)
+        }
+        
+        composable(route = Screen.UploadedJobScreen.route) {
+            UploadedJobScreen(navController = navController)
         }
     }
 }

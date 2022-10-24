@@ -2,6 +2,7 @@ package com.puyo.kapas.feature_kapas.presentation.coupons
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.Divider
@@ -19,19 +20,43 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.puyo.kapas.R
 import com.puyo.kapas.feature_kapas.presentation.coupons.components.CouponItem
-import com.puyo.kapas.feature_kapas.presentation.profile.components.CustomActionBar
 import com.puyo.kapas.feature_kapas.presentation.util.Screen
 import com.puyo.kapas.ui.theme.Grey
+import com.puyo.kapas.ui.theme.Orange
 
 @Composable
 fun CouponScreen(navController: NavController) {
     Column(modifier = Modifier.fillMaxWidth()) {
-        CustomActionBar(
-            title = "Tukarkan Poin Hadiah",
-            onClick = {
-                navController.navigate(Screen.PostJobScreen.route)
+        // Action Bar
+        Column(modifier = Modifier
+            .fillMaxWidth()
+            .background(color = Orange)
+            .padding(top = 64.dp, bottom = 8.dp)
+        ) {
+            Row(
+                verticalAlignment = Alignment.Bottom,
+                horizontalArrangement = Arrangement.SpaceBetween,
+                modifier = Modifier.fillMaxWidth()
+            ) {
+                Image(
+                    painter = painterResource(id = R.drawable.ic_arrow_back),
+                    contentDescription = "Arrow",
+                    modifier = Modifier
+                        .padding(start = 8.dp)
+                        .size(24.dp)
+                        .clickable { navController.navigate(Screen.ProfileScreen.route) }
+                )
+
+                Text(
+                    text = "Tukarkan Poin Hadiah",
+                    fontWeight = FontWeight.Bold,
+                    fontSize = 20.sp,
+                    color = Color.White
+                )
+
+                Spacer(modifier = Modifier.width(24.dp))
             }
-        )
+        }
         Column(
             modifier = Modifier
                 .fillMaxSize()
