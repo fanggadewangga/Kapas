@@ -25,7 +25,7 @@ class Repository(
     // Job
     suspend fun postJob(body: JobBody) = remoteRepository.postJob(body)
     suspend fun fetchJobs() = remoteRepository.fetchJobs().data
-    suspend fun fetchJobDetail(jobId: String) = remoteRepository.fetchJobDetail(jobId)
+    suspend fun fetchJobDetail(jobId: String) = remoteRepository.fetchJobDetail(jobId).data
     suspend fun fetchSearchJobs(query: String) = remoteRepository.fetchSearchJob(query)
     suspend fun updateJobDetail(jobId: String, body: JobBody) = remoteRepository.updateJobDetail(jobId, body)
     suspend fun updateJobImage(jobId: String, imageUri: Uri) = remoteRepository.updateJobImage(jobId, imageUri)

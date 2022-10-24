@@ -3,6 +3,7 @@ package com.puyo.kapas.feature_kapas.data.source.dummy
 import com.puyo.kapas.R
 import com.puyo.kapas.feature_kapas.domain.model.job.Job
 import com.puyo.kapas.feature_kapas.domain.model.leaderboard.Leaderboard
+import com.puyo.kapas.feature_kapas.domain.model.reward.Reward
 
 object Dummy {
     val jobs = listOf(
@@ -360,6 +361,64 @@ object Dummy {
             name = "Momo",
             score = 652,
             avatarUrl = "https://media.suara.com/pictures/970x544/2020/01/29/56403-momo-geisha-instagramtherealmomogeisha.jpg"
+        ),
+    )
+    val rewards = listOf(
+        Reward(
+            title = "Hadiah Skor > 10",
+            content = listOf(
+                "Poin Hadiah 30%"
+            )
+        ),
+        Reward(
+            title = "Hadiah Skor > 30",
+            content = listOf(
+                "Poin Hadiah 30%",
+                "Kupon Pulsa Rp10.000"
+            )
+        ),
+        Reward(
+            title = "Hadiah Skor > 60",
+            content = listOf(
+                "Poin Hadiah 30%",
+                "Kupon Google Play Store Rp10.000",
+                "Kupon Pulsa Rp10.000"
+            )
+        ),Reward(
+            title = "Hadiah Skor > 90",
+            content = listOf(
+                "Poin Hadiah 30%",
+                "Kupon Google Play Store Rp10.000",
+                "Kupon Pulsa Rp10.000"
+            )
+        ),Reward(
+            title = "Hadiah Skor > 120",
+            content = listOf(
+                "Poin Hadiah 30%",
+                "Kupon Google Play Store Rp10.000",
+                "Kupon Pulsa Rp10.000"
+            )
+        ),Reward(
+            title = "Hadiah Skor > 160",
+            content = listOf(
+                "Poin Hadiah 30%",
+                "Kupon Google Play Store Rp10.000",
+                "Kupon Pulsa Rp10.000"
+            )
+        ),Reward(
+            title = "Hadiah Skor > 180",
+            content = listOf(
+                "Poin Hadiah 30%",
+                "Kupon Google Play Store Rp10.000",
+                "Kupon Pulsa Rp10.000"
+            )
+        ),Reward(
+            title = "Hadiah Skor > 200",
+            content = listOf(
+                "Poin Hadiah 30%",
+                "Kupon Google Play Store Rp10.000",
+                "Kupon Pulsa Rp10.000"
+            )
         ),
     )
 }

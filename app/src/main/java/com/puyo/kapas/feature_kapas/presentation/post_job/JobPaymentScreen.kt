@@ -46,11 +46,10 @@ fun JobPaymentScreen(navController: NavController) {
                         contentDescription = "Arrow Down",
                         modifier = Modifier.size(14.dp)
                     )
-                },
-                onClick = {
-                    navController.navigate(Screen.SuccessPostJobScreen.route)
                 }
-            )
+            ) {
+                navController.navigate(Screen.SuccessPostJobScreen.route)
+            }
         }
     ) {
         Column(modifier = Modifier

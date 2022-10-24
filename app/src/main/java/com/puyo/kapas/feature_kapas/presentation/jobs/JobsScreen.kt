@@ -20,6 +20,7 @@ import androidx.navigation.NavController
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import com.puyo.kapas.R
 import com.puyo.kapas.feature_kapas.data.source.dummy.Dummy
+import com.puyo.kapas.feature_kapas.presentation.home.components.JobItem
 import com.puyo.kapas.feature_kapas.presentation.util.Screen
 import com.puyo.kapas.feature_kapas.presentation.util.components.BottomNavigationBar
 import com.puyo.kapas.ui.components.CustomSearchField
@@ -93,7 +94,12 @@ fun JobScreen(navController: NavController) {
                     .fillMaxWidth()
                     .padding(horizontal = 16.dp)
             ) {
-
+                item {
+                    viewModel.jobs.value.forEach { job ->
+                        JobItem(job = job, navController = navController)
+                        Spacer(modifier = Modifier.height(16.dp))
+                    }
+                }
             }
         }
     }

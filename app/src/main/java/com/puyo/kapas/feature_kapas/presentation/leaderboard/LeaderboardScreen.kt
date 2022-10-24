@@ -31,10 +31,12 @@ import com.puyo.kapas.feature_kapas.data.source.dummy.Dummy
 import com.puyo.kapas.feature_kapas.presentation.leaderboard.components.LeaderboardItem
 import com.puyo.kapas.feature_kapas.presentation.util.components.BottomNavigationBar
 import com.puyo.kapas.ui.theme.Orange
+import org.koin.androidx.compose.getViewModel
 
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
 fun LeaderboardScreen(navController: NavController) {
+    val viewModel = getViewModel<LeaderboardViewModel>()
     val dummy = remember { Dummy }
     val coroutineScope = rememberCoroutineScope()
     val systemUiController = rememberSystemUiController()
@@ -142,7 +144,7 @@ fun LeaderboardScreen(navController: NavController) {
                 modifier = Modifier.fillMaxWidth()
             ) {
                 items(dummy.leaderboards) {
-                    LeaderboardItem(user = it)
+                    LeaderboardItem(user = it, navController = navController)
                     Spacer(modifier = Modifier.height(8.dp))
                 }
             }

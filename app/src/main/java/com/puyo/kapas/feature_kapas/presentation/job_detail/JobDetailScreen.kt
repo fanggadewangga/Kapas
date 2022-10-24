@@ -26,32 +26,35 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.puyo.kapas.R
-import com.puyo.kapas.feature_kapas.presentation.post_job.components.PostJobDialog
 import com.puyo.kapas.feature_kapas.presentation.jobs.components.DescriptionSection
 import com.puyo.kapas.feature_kapas.presentation.jobs.components.JobBottomBar
+import com.puyo.kapas.feature_kapas.presentation.post_job.components.PostJobDialog
 import com.puyo.kapas.feature_kapas.presentation.util.Screen
 import com.puyo.kapas.ui.theme.Grey
 import com.puyo.kapas.ui.theme.Orange
+import org.koin.androidx.compose.getViewModel
 
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter", "UnrememberedMutableState")
 @Composable
-fun JobDetailScreen(navController: NavController, job: String) {
+fun JobDetailScreen(navController: NavController, jobId: String) {
+    val viewModel = getViewModel<JobDetailViewModel>()
     val coroutineScope = rememberCoroutineScope()
     val isVisible = mutableStateOf(false)
     val isBookmarked = mutableStateOf(false)
     val dialogState = remember {
         mutableStateOf(false)
     }
+    val searchResult = viewModel.fetchJobDetail(jobId)
+    val job = viewModel.job.value
 
     Scaffold(bottomBar = {
         JobBottomBar(
-            wage = job.wage,
+            wage = job?.wage,
             buttonText = "Melamar",
-            paymentDescription = "Jumlah Bayaran",
-            onClick = {
-                dialogState.value = true
-            }
-        )
+            paymentDescription = "Jumlah Bayaran"
+        ) {
+            dialogState.value = true
+        }
     }) {
         Column(
             modifier = Modifier
@@ -146,24 +149,28 @@ fun JobDetailScreen(navController: NavController, job: String) {
             }
 
             // Job Title
-            Text(
-                text = job.title,
-                fontWeight = FontWeight.Bold,
-                fontSize = 20.sp,
-                modifier = Modifier
-                    .align(CenterHorizontally)
-                    .padding(top = 16.dp)
-            )
+            job?.title?.let { it1 ->
+                Text(
+                    text = it1,
+                    fontWeight = FontWeight.Bold,
+                    fontSize = 20.sp,
+                    modifier = Modifier
+                        .align(CenterHorizontally)
+                        .padding(top = 16.dp)
+                )
+            }
 
             // Posted by
-            Text(
-                text = "Diunggah ${job.posterName}",
-                color = Color.Gray,
-                fontSize = 12.sp,
-                modifier = Modifier
-                    .align(CenterHorizontally)
-                    .padding(top = 8.dp)
-            )
+            if (job != null) {
+                Text(
+                    text = "Diunggah ${job.posterName}",
+                    color = Color.Gray,
+                    fontSize = 12.sp,
+                    modifier = Modifier
+                        .align(CenterHorizontally)
+                        .padding(top = 8.dp)
+                )
+            }
 
             // Location and Wage
             Spacer(modifier = Modifier.height(24.dp))
@@ -180,12 +187,14 @@ fun JobDetailScreen(navController: NavController, job: String) {
                         color = Color.Gray,
                         fontSize = 14.sp
                     )
-                    Text(
-                        text = job.location,
-                        fontSize = 14.sp,
-                        fontWeight = FontWeight.Medium,
-                        modifier = Modifier.padding(top = 8.dp)
-                    )
+                    if (job != null) {
+                        Text(
+                            text = job.location,
+                            fontSize = 14.sp,
+                            fontWeight = FontWeight.Medium,
+                            modifier = Modifier.padding(top = 8.dp)
+                        )
+                    }
 
                 }
 
@@ -202,12 +211,14 @@ fun JobDetailScreen(navController: NavController, job: String) {
                         color = Color.Gray,
                         fontSize = 14.sp
                     )
-                    Text(
-                        text = "Rp${job.wage}",
-                        fontSize = 14.sp,
-                        fontWeight = FontWeight.Medium,
-                        modifier = Modifier.padding(top = 8.dp)
-                    )
+                    if (job != null) {
+                        Text(
+                            text = "Rp${job.wage}",
+                            fontSize = 14.sp,
+                            fontWeight = FontWeight.Medium,
+                            modifier = Modifier.padding(top = 8.dp)
+                        )
+                    }
 
                 }
             }
@@ -258,12 +269,14 @@ fun JobDetailScreen(navController: NavController, job: String) {
                     modifier = Modifier.size(24.dp)
                 )
                 Spacer(modifier = Modifier.width(8.dp))
-                Text(
-                    text = job.address,
-                    maxLines = 3,
-                    overflow = TextOverflow.Ellipsis,
-                    fontSize = 12.sp
-                )
+                job?.let { it1 ->
+                    Text(
+                        text = it1.address,
+                        maxLines = 3,
+                        overflow = TextOverflow.Ellipsis,
+                        fontSize = 12.sp
+                    )
+                }
             }
 
             // Divider
@@ -288,9 +301,11 @@ fun JobDetailScreen(navController: NavController, job: String) {
                 enter = fadeIn() + slideInVertically(),
                 exit = fadeOut() + slideOutVertically()
             ) {
-                DescriptionSection(
-                    description = job.description
-                )
+                job?.let { it1 ->
+                    DescriptionSection(
+                        description = it1.description
+                    )
+                }
             }
             Spacer(modifier = Modifier.height(16.dp))
             Text(

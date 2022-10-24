@@ -20,7 +20,7 @@ import com.puyo.kapas.ui.theme.Orange
 
 @Composable
 fun JobBottomBar(
-    wage: Double,
+    wage: Double?,
     buttonText: String,
     paymentDescription: String,
     navController: NavController? = null,

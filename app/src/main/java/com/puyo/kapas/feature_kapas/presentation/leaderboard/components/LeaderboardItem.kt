@@ -2,6 +2,7 @@ package com.puyo.kapas.feature_kapas.presentation.leaderboard.components
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -16,11 +17,12 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import com.puyo.kapas.R
 import com.puyo.kapas.feature_kapas.domain.model.leaderboard.Leaderboard
+import com.puyo.kapas.feature_kapas.presentation.util.Screen
 import com.puyo.kapas.ui.theme.Orange
 import com.puyo.kapas.ui.theme.Peach
 import com.skydoves.landscapist.glide.GlideImage
@@ -28,6 +30,7 @@ import com.skydoves.landscapist.glide.GlideImage
 @Composable
 fun LeaderboardItem(
     user: Leaderboard,
+    navController: NavController,
 ) {
     Card(
         backgroundColor = if (user.uid.toInt() == 1) Peach else Color.White,
@@ -36,7 +39,11 @@ fun LeaderboardItem(
         modifier = Modifier
             .fillMaxWidth()
             .padding(horizontal = 16.dp)
-            .height(56.dp)) {
+            .height(56.dp)
+            .clickable {
+                navController.navigate(Screen.RewardScreen.route)
+            }
+    ) {
 
         Row(
             verticalAlignment = Alignment.CenterVertically,
@@ -114,17 +121,4 @@ fun LeaderboardItem(
         }
     }
 
-}
-
-@Preview
-@Composable
-fun LeaderboardItemPreview() {
-    LeaderboardItem(
-        user = Leaderboard(
-            uid = "1",
-            name = "Faiq Arya Dewangga",
-            avatarUrl = "avatarURL",
-            score = 200
-        )
-    )
 }

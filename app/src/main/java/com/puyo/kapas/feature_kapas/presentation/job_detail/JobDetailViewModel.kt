@@ -9,11 +9,13 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.google.android.gms.maps.model.LatLng
 import com.puyo.kapas.feature_kapas.data.repository.Repository
+import com.puyo.kapas.feature_kapas.data.source.remote.api.response.job.JobResponse
 import kotlinx.coroutines.launch
 import org.osmdroid.util.GeoPoint
 
 
 class JobDetailViewModel(private val repository: Repository) : ViewModel() {
+    var job: MutableState<JobResponse?> = mutableStateOf(null)
 
     private var _userCurrentLongitude = mutableStateOf(0.0)
     var userCurrentLongitude: MutableState<Double> = _userCurrentLongitude
@@ -39,7 +41,8 @@ class JobDetailViewModel(private val repository: Repository) : ViewModel() {
 
     fun fetchJobDetail(jobId: String) {
         viewModelScope.launch {
-
+            val result = repository.fetchJobDetail(jobId)
+            job.value = result
         }
     }
 }

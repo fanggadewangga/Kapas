@@ -88,7 +88,7 @@ fun Navigation() {
             val result = navController.previousBackStackEntry?.savedStateHandle?.get<String>(
                 key = "jobId"
             )
-            result?.let { it1 -> JobDetailScreen(navController = navController, job = it1) }
+            result?.let { it1 -> JobDetailScreen(navController = navController, jobId = it1) }
         }
 
         composable(route = Screen.HistoryScreen.route) {
@@ -137,6 +137,10 @@ fun Navigation() {
         
         composable(route = Screen.CouponScreen.route) {
             CouponScreen(navController = navController)
+        }
+        
+        composable(route = Screen.RewardScreen.route) {
+            RewardScreen(navController = navController)
         }
     }
 }

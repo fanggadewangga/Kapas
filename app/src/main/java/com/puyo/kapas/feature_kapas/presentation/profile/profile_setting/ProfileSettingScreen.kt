@@ -27,7 +27,6 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import com.puyo.kapas.R
-import com.puyo.kapas.feature_kapas.presentation.profile.components.CustomActionBar
 import com.puyo.kapas.feature_kapas.presentation.profile.components.UserIdentityItem
 import com.puyo.kapas.feature_kapas.presentation.profile.components.UserSetting
 import com.puyo.kapas.feature_kapas.presentation.util.Screen
@@ -48,13 +47,36 @@ fun ProfileSettingScreen(navController: NavController) {
         .background(color = Color.White)
     ) {
 
-        // Top Bar
-        CustomActionBar(
-            title = "Pengaturan Profil",
-            onClick = {
-                navController.navigate(Screen.ProfileScreen.route)
+        // Action Bar
+        Column(modifier = Modifier
+            .fillMaxWidth()
+            .background(color = Orange)
+            .padding(top = 64.dp, bottom = 8.dp)
+        ) {
+            Row(
+                verticalAlignment = Alignment.Bottom,
+                horizontalArrangement = Arrangement.SpaceBetween,
+                modifier = Modifier.fillMaxWidth()
+            ) {
+                Image(
+                    painter = painterResource(id = R.drawable.ic_arrow_back),
+                    contentDescription = "Arrow",
+                    modifier = Modifier
+                        .padding(start = 8.dp)
+                        .size(24.dp)
+                        .clickable { navController.navigate(Screen.ProfileScreen.route) }
+                )
+
+                Text(
+                    text = "Ubah Email",
+                    fontWeight = FontWeight.Bold,
+                    fontSize = 20.sp,
+                    color = Color.White
+                )
+
+                Spacer(modifier = Modifier.width(24.dp))
             }
-        )
+        }
 
         // Content
         Column(modifier = Modifier.padding(16.dp)
