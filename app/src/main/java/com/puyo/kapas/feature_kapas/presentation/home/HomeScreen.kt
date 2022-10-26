@@ -32,9 +32,9 @@ import org.koin.androidx.compose.getViewModel
 @Composable
 fun HomeScreen(navController: NavController) {
     val viewModel = getViewModel<HomeViewModel>()
-
     val coroutineScope = rememberCoroutineScope()
     val systemUiController = rememberSystemUiController()
+    var jobs = viewModel.jobs.value
 
     SideEffect {
         systemUiController.statusBarDarkContentEnabled = true
@@ -69,10 +69,12 @@ fun HomeScreen(navController: NavController) {
                             )
                         },
                         placeholder = "Temukan pekerjaan harianmu!",
-                        valueState = viewModel.query
+                        valueState = viewModel.query,
+                        onSearch = {
+                            viewModel.searchJobs(it)
+                        }
                     )
                 }
-               
             }
 
             // Content
@@ -116,7 +118,7 @@ fun HomeScreen(navController: NavController) {
                     modifier = Modifier.padding(vertical = 16.dp)
                 )
 
-               viewModel.jobs.value.forEach {
+               jobs.forEach {
                    JobItem(job = it, navController = navController)
                    Spacer(modifier = Modifier.height(16.dp))
                }

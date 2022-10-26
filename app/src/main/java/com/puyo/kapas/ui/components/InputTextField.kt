@@ -93,7 +93,8 @@ fun CustomSearchField(
     placeholder: String = "placeholder",
     fontSize: TextUnit = MaterialTheme.typography.button.fontSize,
     keyboardOptions: KeyboardOptions = KeyboardOptions.Default,
-    keyboardActions: KeyboardActions = KeyboardActions.Default
+    keyboardActions: KeyboardActions = KeyboardActions.Default,
+    onSearch: (String) -> Unit
 ) {
     Card(shape = RoundedCornerShape(12.dp),
         backgroundColor = Color.White,
@@ -114,6 +115,7 @@ fun CustomSearchField(
             value = valueState.value,
             onValueChange = {
                 valueState.value = it
+                onSearch(it)
             },
             keyboardActions = keyboardActions,
             keyboardOptions = keyboardOptions,

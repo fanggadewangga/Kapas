@@ -30,7 +30,7 @@ import org.koin.androidx.compose.getViewModel
 @Composable
 fun JobScreen(navController: NavController) {
     val viewModel = getViewModel<JobsViewModel>()
-
+    var jobs = viewModel.jobs
     val dummy = remember { Dummy }
     val coroutineScope = rememberCoroutineScope()
     val systemUiController = rememberSystemUiController()
@@ -74,7 +74,10 @@ fun JobScreen(navController: NavController) {
                         },
                         placeholder = "Temukan pekerjaan harianmu!",
                         modifier = Modifier.fillMaxWidth(),
-                        valueState = viewModel.query
+                        valueState = viewModel.query,
+                        onSearch = {
+                            viewModel.searchJobs(it)
+                        }
                     )
                 }
 
@@ -95,7 +98,7 @@ fun JobScreen(navController: NavController) {
                     .padding(horizontal = 16.dp)
             ) {
                 item {
-                    viewModel.jobs.value.forEach { job ->
+                    jobs.value.forEach { job ->
                         JobItem(job = job, navController = navController)
                         Spacer(modifier = Modifier.height(16.dp))
                     }

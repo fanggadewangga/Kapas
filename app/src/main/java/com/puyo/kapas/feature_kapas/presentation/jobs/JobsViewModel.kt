@@ -12,6 +12,14 @@ class JobsViewModel(private val repository: Repository): ViewModel() {
     var jobs: MutableState<List<JobListResponse>> = mutableStateOf(ArrayList())
     var query = mutableStateOf("")
 
+    fun searchJobs(query: String) {
+        viewModelScope.launch {
+            val result = repository.fetchSearchJobs(query).data
+            if (result != null)
+                jobs.value = result
+        }
+    }
+
     init {
         viewModelScope.launch {
             val result = repository.fetchJobs()
