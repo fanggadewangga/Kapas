@@ -13,5 +13,8 @@ data class LeaderboardResponse(
     val score: Int,
 
     @field:SerializedName("avatar_url")
-    val avatarUrl: String?
+    val avatarUrl: String?,
+
+    @field:SerializedName("rank")
+    val rank: Int
 )

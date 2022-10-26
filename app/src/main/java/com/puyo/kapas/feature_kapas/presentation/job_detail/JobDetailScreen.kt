@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import androidx.compose.animation.*
 import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Divider
 import androidx.compose.material.Scaffold
@@ -32,6 +33,8 @@ import com.puyo.kapas.feature_kapas.presentation.post_job.components.PostJobDial
 import com.puyo.kapas.feature_kapas.presentation.util.Screen
 import com.puyo.kapas.ui.theme.Grey
 import com.puyo.kapas.ui.theme.Orange
+import com.skydoves.landscapist.ImageOptions
+import com.skydoves.landscapist.glide.GlideImage
 import org.koin.androidx.compose.getViewModel
 
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter", "UnrememberedMutableState")
@@ -69,16 +72,18 @@ fun JobDetailScreen(navController: NavController, jobId: String) {
             ) {
 
                 // Job image
-                Image(
-                    painter = painterResource(id = R.drawable.img_job_bg),
-                    contentDescription = "Job Image",
-                    contentScale = ContentScale.FillWidth,
+                GlideImage(
+                    imageModel = {
+                        job?.imageUrl
+                    },
+                    previewPlaceholder = R.drawable.img_job_bg,
+                    imageOptions = ImageOptions(contentScale = ContentScale.FillWidth, contentDescription = "Job Background"),
                     modifier = Modifier.height(197.dp)
                 )
 
                 Image(
                     painter = painterResource(id = R.drawable.ic_edit_job_background),
-                    contentDescription = "Job Background",
+                    contentDescription = "Edit Job Image",
                     modifier = Modifier
                         .padding(bottom = 40.dp)
                         .size(height = 16.dp, width = 120.dp)
@@ -116,10 +121,15 @@ fun JobDetailScreen(navController: NavController, jobId: String) {
                     .padding(top = 164.dp)
                     .align(Alignment.Center)
                 ) {
-                    Image(
-                        painter = painterResource(id = R.drawable.img_avatar),
-                        contentDescription = "User Avatar",
-                        modifier = Modifier.size(64.dp)
+                    GlideImage(
+                        imageModel = {
+                            job?.posterAvatarUrl
+                        },
+                        modifier = Modifier
+                            .clip(CircleShape)
+                            .size(64.dp)
+                        ,
+                        previewPlaceholder = R.drawable.img_avatar
                     )
                     Image(
                         painter = painterResource(id = R.drawable.ic_verified),
@@ -177,7 +187,7 @@ fun JobDetailScreen(navController: NavController, jobId: String) {
             Row(
                 horizontalArrangement = Arrangement.SpaceBetween,
                 modifier = Modifier
-                    .width(212.dp)
+                    .width(240.dp)
                     .align(CenterHorizontally)
             ) {
                 // Location

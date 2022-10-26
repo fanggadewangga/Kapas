@@ -21,7 +21,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.puyo.kapas.R
-import com.puyo.kapas.feature_kapas.domain.model.leaderboard.Leaderboard
+import com.puyo.kapas.feature_kapas.data.source.remote.api.response.leaderboard.LeaderboardResponse
 import com.puyo.kapas.feature_kapas.presentation.util.Screen
 import com.puyo.kapas.ui.theme.Orange
 import com.puyo.kapas.ui.theme.Peach
@@ -29,7 +29,7 @@ import com.skydoves.landscapist.glide.GlideImage
 
 @Composable
 fun LeaderboardItem(
-    user: Leaderboard,
+    user: LeaderboardResponse,
     navController: NavController,
 ) {
     Card(
@@ -51,15 +51,15 @@ fun LeaderboardItem(
 
             // Rank
             Text(
-                text = user.uid,
+                text = user.rank.toString(),
                 fontSize = 24.sp,
                 fontWeight = FontWeight.Bold,
                 textAlign = TextAlign.Center,
-                color = if (user.uid.toInt() == 1) Orange else Color.Black,
+                color = if (user.rank == 1) Orange else Color.Black,
                 modifier = Modifier.padding(
                     start = 16.dp,
                     end =
-                    if (user.uid.toInt() >= 10) 8.dp
+                    if (user.rank >= 10) 8.dp
                     else 20.dp
                 )
             )
@@ -68,7 +68,7 @@ fun LeaderboardItem(
             Box(modifier = Modifier.size(32.dp)) {
                 GlideImage(
                     imageModel = {
-                        user.avatarUrl ?: user.avatar
+                        user.avatarUrl
                     },
                     modifier = Modifier.clip(CircleShape),
                     previewPlaceholder = R.drawable.img_avatar
