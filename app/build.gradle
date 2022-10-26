@@ -107,14 +107,16 @@ dependencies {
     // jetpack compose constraint layout
     implementation "androidx.constraintlayout:constraintlayout-compose:1.1.0-alpha04"
 
-    // coil
-    implementation("io.coil-kt:coil-compose:2.2.2")
-
     // paging
     implementation("androidx.paging:paging-compose:1.0.0-alpha16")
 
     // OpenStreetMap
     implementation 'org.osmdroid:osmdroid-android:6.1.13'
+
+    // map
+    implementation "com.google.maps.android:maps-compose:1.0.0"
+    implementation "com.google.android.gms:play-services-maps:18.0.2"
+    implementation 'com.google.android.gms:play-services-location:19.0.1'
 
     // firebase
     implementation platform('com.google.firebase:firebase-bom:29.2.1')

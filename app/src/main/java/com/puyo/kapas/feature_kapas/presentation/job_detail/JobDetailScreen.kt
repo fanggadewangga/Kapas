@@ -26,6 +26,13 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import com.google.android.gms.maps.model.BitmapDescriptorFactory
+import com.google.android.gms.maps.model.CameraPosition
+import com.google.android.gms.maps.model.LatLng
+import com.google.maps.android.compose.GoogleMap
+import com.google.maps.android.compose.Marker
+import com.google.maps.android.compose.MarkerState
+import com.google.maps.android.compose.rememberCameraPositionState
 import com.puyo.kapas.R
 import com.puyo.kapas.feature_kapas.presentation.jobs.components.DescriptionSection
 import com.puyo.kapas.feature_kapas.presentation.jobs.components.JobBottomBar
@@ -49,6 +56,11 @@ fun JobDetailScreen(navController: NavController, jobId: String) {
     }
     val searchResult = viewModel.fetchJobDetail(jobId)
     val job = viewModel.job.value
+    val jobLocation = LatLng(job?.latitude ?: -7.983908, job?.longitude ?: 112.621391)
+    val jobLocationState = MarkerState(position = jobLocation)
+    val cameraPositionState = rememberCameraPositionState {
+        position = CameraPosition.fromLatLngZoom(jobLocation, 10f)
+    }
 
     Scaffold(bottomBar = {
         JobBottomBar(
@@ -242,30 +254,21 @@ fun JobDetailScreen(navController: NavController, jobId: String) {
                 modifier = Modifier.padding(start = 16.dp)
             )
             Spacer(modifier = Modifier.height(16.dp))
-            Image(
-                painter = painterResource(id = R.drawable.img_maps_dummy),
-                contentDescription = "Maps",
-                contentScale = ContentScale.FillWidth,
-                modifier = Modifier
-                    .height(160.dp)
-                    .padding(horizontal = 16.dp)
-                    .clip(RoundedCornerShape(8.dp))
-            )
-
-            /* TODO : MAPS API KEY FOR GMS */
-            /* GoogleMap(
+             GoogleMap(
                  cameraPositionState = cameraPositionState,
                  modifier = Modifier
-                     .fillMaxWidth()
                      .height(160.dp)
+                     .padding(horizontal = 16.dp)
                      .clip(RoundedCornerShape(8.dp))
              ) {
-                 val markerIcon = BitmapDescriptorFactory.fromResource(R.drawable.ic_location)
-                 Marker(
-                     icon = markerIcon,
-                     state = singaporeState
+                 val markerIcon = BitmapDescriptorFactory.defaultMarker(
+                     BitmapDescriptorFactory.HUE_ORANGE
                  )
-             }*/
+                 Marker(
+                     state = jobLocationState,
+                     icon = markerIcon
+                 )
+             }
 
             // Address
             Spacer(modifier = Modifier.height(24.dp))
