@@ -19,6 +19,7 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.puyo.kapas.R
 import com.puyo.kapas.feature_kapas.domain.model.job.Job
+import com.puyo.kapas.feature_kapas.presentation.util.Screen
 import com.puyo.kapas.ui.theme.Orange
 
 @Composable
@@ -75,7 +76,7 @@ fun UploadedJobItem(
                 Spacer(modifier = Modifier.width(100.dp))
                 Button(
                     onClick = {
-
+                        navController.navigate(Screen.JobApplierScreen.route)
                     },
                     contentPadding = PaddingValues(0.dp),
                     modifier = Modifier.size(height = 24.dp, width = 120.dp),

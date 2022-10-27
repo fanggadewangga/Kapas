@@ -4,6 +4,7 @@ import com.puyo.kapas.R
 import com.puyo.kapas.feature_kapas.domain.model.job.Job
 import com.puyo.kapas.feature_kapas.domain.model.leaderboard.Leaderboard
 import com.puyo.kapas.feature_kapas.domain.model.reward.Reward
+import com.puyo.kapas.feature_kapas.domain.model.user.User
 
 object Dummy {
     val jobs = listOf(
@@ -286,77 +287,92 @@ object Dummy {
             name = "Kevin",
             score = 2210,
             avatarUrl = "https://avatars.githubusercontent.com/u/74236720?v=4"
-        ),Leaderboard(
+        ),
+        Leaderboard(
             uid = "8",
             name = "Sukma",
             score = 2150,
             avatarUrl = "https://avatars.githubusercontent.com/u/73153475?v=4"
-        ),Leaderboard(
+        ),
+        Leaderboard(
             uid = "9",
             name = "Valenta",
             score = 2001,
             avatarUrl = "https://avatars.githubusercontent.com/u/63717232?v=4"
-        ),Leaderboard(
+        ),
+        Leaderboard(
             uid = "9",
             name = "Arya",
             score = 1820,
             avatarUrl = "https://avatars.githubusercontent.com/u/61609492?v=4"
-        ),Leaderboard(
+        ),
+        Leaderboard(
             uid = "10",
             name = "Dewangga",
             score = 1798,
             avatarUrl = "https://avatars.githubusercontent.com/u/102126925?v=4"
-        ),Leaderboard(
+        ),
+        Leaderboard(
             uid = "11",
             name = "Billie",
             score = 1609,
             avatarUrl = "https://media.allure.com/photos/605247e1bddfa641546fa160/1:1/w_2264,h_2264,c_limit/billie%20eilish.jpg"
-        ),Leaderboard(
+        ),
+        Leaderboard(
             uid = "12",
             name = "Budi",
             score = 1502,
             avatarUrl = "https://avatars.githubusercontent.com/u/15706578?v=4"
-        ),Leaderboard(
+        ),
+        Leaderboard(
             uid = "13",
             name = "Camilla",
             score = 1400,
             avatarUrl = "https://avatars.githubusercontent.com/u/36577162?s=100&v=4"
-        ),Leaderboard(
+        ),
+        Leaderboard(
             uid = "14",
             name = "Ken",
             score = 1321,
             avatarUrl = "https://avatars.githubusercontent.com/u/96952912?s=100&v=4"
-        ),Leaderboard(
+        ),
+        Leaderboard(
             uid = "15",
             name = "Elon",
             score = 1220,
             avatarUrl = "https://avatars.githubusercontent.com/u/65366405?s=100&v=4"
-        ),Leaderboard(
+        ),
+        Leaderboard(
             uid = "16",
             name = "Sugi",
             score = 1200,
             avatarUrl = "https://avatars.githubusercontent.com/u/39896367?s=100&v=4"
-        ),Leaderboard(
+        ),
+        Leaderboard(
             uid = "17",
             name = "Febi",
             score = 1172,
             avatarUrl = "https://avatars.githubusercontent.com/u/22599111?s=100&v=4"
-        ),Leaderboard(
+        ),
+        Leaderboard(
             uid = "18",
             name = "Nicky",
             score = 988,
             avatarUrl = "https://avatars.githubusercontent.com/u/75328768?s=100&v=4"
-        ),Leaderboard(
+        ),
+        Leaderboard(
             uid = "19",
             name = "Paula",
             score = 877,
             avatarUrl = "https://avatars.githubusercontent.com/u/57114886?v=4"
-        ),Leaderboard(
+        ),
+        Leaderboard(
             uid = "20",
             name = "Rose",
             score = 660,
             avatarUrl = "https://cdn.antaranews.com/cache/800x533/2022/02/28/Screenshot_2022-02-28-13-06-10-12_copy_1024x683.jpg"
-        ),Leaderboard(
+        ),
+        Leaderboard(
             uid = "21",
             name = "Momo",
             score = 652,
@@ -384,41 +400,79 @@ object Dummy {
                 "Kupon Google Play Store Rp10.000",
                 "Kupon Pulsa Rp10.000"
             )
-        ),Reward(
+        ),
+        Reward(
             title = "Hadiah Skor > 90",
             content = listOf(
                 "Poin Hadiah 30%",
                 "Kupon Google Play Store Rp10.000",
                 "Kupon Pulsa Rp10.000"
             )
-        ),Reward(
+        ),
+        Reward(
             title = "Hadiah Skor > 120",
             content = listOf(
                 "Poin Hadiah 30%",
                 "Kupon Google Play Store Rp10.000",
                 "Kupon Pulsa Rp10.000"
             )
-        ),Reward(
+        ),
+        Reward(
             title = "Hadiah Skor > 160",
             content = listOf(
                 "Poin Hadiah 30%",
                 "Kupon Google Play Store Rp10.000",
                 "Kupon Pulsa Rp10.000"
             )
-        ),Reward(
+        ),
+        Reward(
             title = "Hadiah Skor > 180",
             content = listOf(
                 "Poin Hadiah 30%",
                 "Kupon Google Play Store Rp10.000",
                 "Kupon Pulsa Rp10.000"
             )
-        ),Reward(
+        ),
+        Reward(
             title = "Hadiah Skor > 200",
             content = listOf(
                 "Poin Hadiah 30%",
                 "Kupon Google Play Store Rp10.000",
                 "Kupon Pulsa Rp10.000"
             )
+        ),
+    )
+
+    val applier = listOf(
+        User(
+            name = "Ahmad",
+            email = "Ahmad@gmail.com",
+            phone = "082912841922",
+            avatarUrl = "https://avatars.githubusercontent.com/u/87322409?v=4"
+        ),
+        User(
+            name = "Abimanyu",
+            email = "Abimanyu@gmail.com",
+            phone = "08219294911241",
+            avatarUrl = "https://avatars.githubusercontent.com/u/53933333?v=4"
+        ),
+        User(
+            name = "Sukma",
+            email = "Sukma@gmail.com",
+            phone = "08521291921",
+            avatarUrl = "https://avatars.githubusercontent.com/u/73153475?v=4"
+        ),
+        User(
+            name = "Ken",
+            email = "KenDn@gmail.com",
+            phone = "08294242922",
+            avatarUrl = "https://avatars.githubusercontent.com/u/96952912?s=100&v=4"
+        ),
+        User(
+            name = "Paula",
+            email = "Paula@gmail.com",
+            phone = "081292292121",
+            avatarUrl = "https://avatars.githubusercontent.com/u/57114886?v=4"
         ),
     )
 }

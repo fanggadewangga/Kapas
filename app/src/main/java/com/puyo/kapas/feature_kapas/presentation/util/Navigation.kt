@@ -11,6 +11,7 @@ import com.puyo.kapas.feature_kapas.presentation.camera.FaceVerificationCameraSc
 import com.puyo.kapas.feature_kapas.presentation.coupons.CouponScreen
 import com.puyo.kapas.feature_kapas.presentation.history.HistoryScreen
 import com.puyo.kapas.feature_kapas.presentation.home.HomeScreen
+import com.puyo.kapas.feature_kapas.presentation.job_applier.JobApplierScreen
 import com.puyo.kapas.feature_kapas.presentation.job_detail.JobDetailScreen
 import com.puyo.kapas.feature_kapas.presentation.jobs.JobScreen
 import com.puyo.kapas.feature_kapas.presentation.landing.LandingScreen
@@ -146,6 +147,10 @@ fun Navigation() {
         
         composable(route = Screen.UploadedJobScreen.route) {
             UploadedJobScreen(navController = navController)
+        }
+
+        composable(route = Screen.JobApplierScreen.route) {
+            JobApplierScreen(navController = navController)
         }
     }
 }
