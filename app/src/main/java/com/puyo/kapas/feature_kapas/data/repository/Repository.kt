@@ -12,8 +12,9 @@ class Repository(
     private val remoteRepository: RemoteDataSource
 ) {
     // User
-    suspend fun signUpUser(email: String, password: String) = remoteRepository.signUpUser(email, password)
+    fun signUpUser(email: String, password: String) = remoteRepository.signUpUser(email, password)
     fun signInUser(email: String, password: String) = remoteRepository.signInUser(email, password)
+    suspend fun postNewUser(body: UserBody) = remoteRepository.postNewUser(body)
     suspend fun fetchUserDetail(uid: String) = remoteRepository.fetchUserDetail(uid).data
     suspend fun fetchLeaderboard() = remoteRepository.fetchLeaderboard().data
     suspend fun updateUserDetail(uid: String, body: UserBody) = remoteRepository.updateUserDetail(uid, body).data

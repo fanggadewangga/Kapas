@@ -23,6 +23,7 @@ import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import com.puyo.kapas.R
 import com.puyo.kapas.feature_kapas.presentation.home.components.JobItem
 import com.puyo.kapas.feature_kapas.presentation.home.components.UserWallet
+import com.puyo.kapas.feature_kapas.presentation.jobs.components.AnimatedShimmer
 import com.puyo.kapas.feature_kapas.presentation.util.Screen
 import com.puyo.kapas.feature_kapas.presentation.util.components.BottomNavigationBar
 import com.puyo.kapas.ui.components.CustomSearchField
@@ -34,7 +35,8 @@ fun HomeScreen(navController: NavController) {
     val viewModel = getViewModel<HomeViewModel>()
     val coroutineScope = rememberCoroutineScope()
     val systemUiController = rememberSystemUiController()
-    var jobs = viewModel.jobs.value
+    val jobs = viewModel.jobs.value
+    val isJobsLoading = viewModel.isJobsLoading.value
 
     SideEffect {
         systemUiController.statusBarDarkContentEnabled = true
@@ -118,10 +120,19 @@ fun HomeScreen(navController: NavController) {
                     modifier = Modifier.padding(vertical = 16.dp)
                 )
 
-               jobs.forEach {
-                   JobItem(job = it, navController = navController)
-                   Spacer(modifier = Modifier.height(16.dp))
-               }
+                if (isJobsLoading)
+                    Column {
+                        repeat(10) {
+                            AnimatedShimmer()
+                        }
+                    }
+                else {
+                    jobs.forEach {
+                        JobItem(job = it, navController = navController)
+                        Spacer(modifier = Modifier.height(16.dp))
+                    }
+                }
+
             }
             Spacer(modifier = Modifier.height(64.dp))
         }

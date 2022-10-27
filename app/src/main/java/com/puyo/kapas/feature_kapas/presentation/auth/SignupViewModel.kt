@@ -3,9 +3,7 @@ package com.puyo.kapas.feature_kapas.presentation.auth
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.google.firebase.firestore.auth.User
 import com.puyo.kapas.feature_kapas.data.repository.Repository
-import com.puyo.kapas.feature_kapas.data.source.remote.api.response.user.UserBody
 import kotlinx.coroutines.launch
 
 class SignupViewModel(private val repository: Repository) : ViewModel() {
@@ -19,6 +17,9 @@ class SignupViewModel(private val repository: Repository) : ViewModel() {
                 emailState.value,
                 passwordState.value
             )
+            repository.signInUser(emailState.value, passwordState.value)
+            val uid = repository.getCurrentUserId().toString()
+            repository.logOut()
         }
     }
 }

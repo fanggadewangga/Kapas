@@ -3,7 +3,6 @@ package com.puyo.kapas.feature_kapas.data.source.remote.firebase
 import android.net.Uri
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.storage.FirebaseStorage
-import kotlinx.coroutines.tasks.await
 
 class FirebaseService {
     private val firebaseAuth: FirebaseAuth = FirebaseAuth.getInstance()
@@ -16,24 +15,16 @@ class FirebaseService {
     fun getCurrentUserId() = firebaseAuth.currentUser?.uid
 
     // Register
-    suspend fun createUserWithEmailAndPassword(
+    fun createUserWithEmailAndPassword(
         email: String,
         password: String,
-    ): String {
-        val createUser = firebaseAuth.createUserWithEmailAndPassword(email, password).await()
-        val createdUser = createUser.user
-        return createdUser?.uid ?: "Failed"
-    }
+    ) = firebaseAuth.createUserWithEmailAndPassword(email, password)
 
     // Login
     fun signInWithEmailAndPassword(
         email: String,
         password: String,
-    ): String {
-        val signInUser = firebaseAuth.signInWithEmailAndPassword(email, password)
-        val user = signInUser.result.user
-        return user?.uid ?: ""
-    }
+    ) = firebaseAuth.signInWithEmailAndPassword(email, password)
 
     // Logout
     fun logout() = firebaseAuth.signOut()

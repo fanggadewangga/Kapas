@@ -10,9 +10,6 @@ import com.puyo.kapas.feature_kapas.data.source.remote.api.response.user.UserBod
 import com.puyo.kapas.feature_kapas.data.source.remote.api.response.user.UserResponse
 import com.puyo.kapas.feature_kapas.data.source.remote.api.service.KapasApi
 import com.puyo.kapas.feature_kapas.data.source.remote.firebase.FirebaseService
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 
 class RemoteDataSource(
     private val apiService: KapasApi,
@@ -24,28 +21,14 @@ class RemoteDataSource(
 
     fun logOut() = firebaseService.logout()
 
-    suspend fun signUpUser(
-        email: String,
-        password: String,
-    ): String {
-        var uid = ""
-        CoroutineScope(Dispatchers.IO).launch {
-            uid = firebaseService.createUserWithEmailAndPassword(email, password)
-        }
-        if (uid != "") {
-            val body = UserBody(
-                uid = uid,
-                email = email
-            )
-            apiService.postNewUser(body)
-        }
-        return if (uid != "") uid
-        else ""
+    fun signUpUser(email: String, password: String) {
+        firebaseService.createUserWithEmailAndPassword(email, password)
     }
 
-    fun signInUser(email: String, password: String): String {
-        return firebaseService.signInWithEmailAndPassword(email, password)
-    }
+    suspend fun postNewUser(body: UserBody): BaseResponse<String> = apiService.postNewUser(body)
+
+    fun signInUser(email: String, password: String) =
+        firebaseService.signInWithEmailAndPassword(email, password)
 
     fun updateUserAvatar(uid: String, image: Uri): String {
         val imageUri = firebaseService.uploadUserAvatar(uid, image)

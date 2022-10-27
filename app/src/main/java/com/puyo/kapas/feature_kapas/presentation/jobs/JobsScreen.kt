@@ -21,6 +21,7 @@ import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import com.puyo.kapas.R
 import com.puyo.kapas.feature_kapas.data.source.dummy.Dummy
 import com.puyo.kapas.feature_kapas.presentation.home.components.JobItem
+import com.puyo.kapas.feature_kapas.presentation.jobs.components.AnimatedShimmer
 import com.puyo.kapas.feature_kapas.presentation.util.Screen
 import com.puyo.kapas.feature_kapas.presentation.util.components.BottomNavigationBar
 import com.puyo.kapas.ui.components.CustomSearchField
@@ -30,7 +31,8 @@ import org.koin.androidx.compose.getViewModel
 @Composable
 fun JobScreen(navController: NavController) {
     val viewModel = getViewModel<JobsViewModel>()
-    var jobs = viewModel.jobs
+    val jobs = viewModel.jobs.value
+    val isJobsLoading = viewModel.isJobsLoading.value
     val dummy = remember { Dummy }
     val coroutineScope = rememberCoroutineScope()
     val systemUiController = rememberSystemUiController()
@@ -98,9 +100,15 @@ fun JobScreen(navController: NavController) {
                     .padding(horizontal = 16.dp)
             ) {
                 item {
-                    jobs.value.forEach { job ->
-                        JobItem(job = job, navController = navController)
-                        Spacer(modifier = Modifier.height(16.dp))
+                    if (isJobsLoading) {
+                        repeat(15) {
+                            AnimatedShimmer()
+                        }
+                    } else {
+                        jobs.forEach { job ->
+                            JobItem(job = job, navController = navController)
+                            Spacer(modifier = Modifier.height(16.dp))
+                        }
                     }
                 }
             }

@@ -222,6 +222,7 @@ fun SignupSection(navController: NavController) {
 
         Button(
             onClick = {
+                //viewModel.signUp()
                 navController.navigate(Screen.LoginScreen.route) {
                     popUpTo(Screen.SignupScreen.route) {
                         inclusive = true
