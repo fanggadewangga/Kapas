@@ -11,7 +11,6 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.SideEffect
-import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -27,18 +26,21 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import com.puyo.kapas.R
-import com.puyo.kapas.feature_kapas.presentation.profile.components.Features
-import com.puyo.kapas.feature_kapas.presentation.profile.components.Rank
-import com.puyo.kapas.feature_kapas.presentation.profile.components.Wallet
+import com.puyo.kapas.feature_kapas.presentation.profile.components.*
 import com.puyo.kapas.feature_kapas.presentation.util.Screen
 import com.puyo.kapas.feature_kapas.presentation.util.components.BottomNavigationBar
 import com.puyo.kapas.ui.theme.Orange
+import com.skydoves.landscapist.ImageOptions
+import com.skydoves.landscapist.glide.GlideImage
+import org.koin.androidx.compose.getViewModel
 
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
 fun ProfileScreen(navController: NavController) {
     val systemUiController = rememberSystemUiController()
-    val coroutineScope = rememberCoroutineScope()
+    val viewModel = getViewModel<ProfileViewModel>()
+    val isLoading = viewModel.isLoading.value
+    val user = viewModel.user.value
     val scrollState = rememberScrollState()
 
     SideEffect {
@@ -66,83 +68,90 @@ fun ProfileScreen(navController: NavController) {
                         .height(196.dp)
                 )
 
-                Column(modifier = Modifier.padding(top = 72.dp)) {
-                    // Avatar, Username, Email, and Phone
-                    Row(modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(start = 24.dp)
-                    ) {
-                        // Avatar
-                        Box {
-                            Image(
-                                painter = painterResource(id = R.drawable.img_avatar_male),
-                                contentDescription = "Avatar",
-                                contentScale = ContentScale.Crop,
-                                modifier = Modifier
-                                    .size(64.dp)
-                                    .clip(CircleShape)
-                            )
-                            Image(
-                                painter = painterResource(id = R.drawable.ic_verified),
-                                contentDescription = "Verified",
-                                modifier = Modifier
-                                    .size(18.dp)
-                                    .align(Alignment.BottomEnd)
-                            )
+                if (isLoading)
+                    ShimmerProfileTopSection()
+                else
+                    Column(modifier = Modifier.padding(top = 72.dp)) {
+                        // Avatar, Username, Email, and Phone
+                        Row(modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(start = 24.dp)
+                        ) {
+                            // Avatar
+                            Box {
+                                GlideImage(
+                                    imageModel = {
+                                        user?.avatarUrl
+                                    },
+                                    modifier = Modifier
+                                        .clip(CircleShape)
+                                        .size(64.dp),
+                                    imageOptions = ImageOptions(contentScale = ContentScale.Crop,contentDescription = "Avatar"),
+                                    previewPlaceholder = R.drawable.img_avatar
+                                )
+                                Image(
+                                    painter = painterResource(id = R.drawable.ic_verified),
+                                    contentDescription = "Verified",
+                                    modifier = Modifier
+                                        .size(18.dp)
+                                        .align(Alignment.BottomEnd)
+                                )
+                            }
+                            Spacer(modifier = Modifier.width(16.dp))
+                            Column {
+                                Text(
+                                    text = user?.name ?: "User",
+                                    fontSize = 16.sp,
+                                    color = Color.White,
+                                    fontWeight = FontWeight.Medium
+                                )
+
+
+                                // Email
+                                Spacer(modifier = Modifier.height(4.dp))
+                                Row {
+                                    Icon(
+                                        painter = painterResource(id = R.drawable.ic_email),
+                                        contentDescription = "Email",
+                                        tint = Color.White,
+                                        modifier = Modifier.size(16.dp)
+                                    )
+                                    Text(
+                                        text = user?.email ?: "UserEmail@gmail.com",
+                                        fontSize = 12.sp,
+                                        color = Color.White,
+                                        modifier = Modifier.padding(start = 8.dp)
+                                    )
+                                }
+
+                                // Phone Number
+                                Spacer(modifier = Modifier.height(4.dp))
+                                Row {
+                                    Icon(
+                                        painter = painterResource(id = R.drawable.ic_phone),
+                                        contentDescription = "Phone",
+                                        tint = Color.White,
+                                        modifier = Modifier.size(16.dp)
+                                    )
+                                    Text(
+                                        text = user?.phone ?: "08xxxxxxxxx",
+                                        fontSize = 12.sp,
+                                        color = Color.White,
+                                        modifier = Modifier.padding(start = 8.dp)
+                                    )
+                                }
+                            }
                         }
-                        Spacer(modifier = Modifier.width(16.dp))
-                        Column {
-                            Text(
-                                text = "Afwan Mulia Pratama",
-                                fontSize = 16.sp,
-                                color = Color.White,
-                                fontWeight = FontWeight.Medium
+                        user?.let { it1 ->
+                            Wallet(
+                                balance = it1.balance,
+                                points = user.point,
+                                income = user.income,
+                                outcome = user.outcome,
+                                modifier = Modifier.padding(top = 64.dp)
                             )
-
-
-                            // Email
-                            Spacer(modifier = Modifier.height(4.dp))
-                            Row {
-                                Icon(
-                                    painter = painterResource(id = R.drawable.ic_email),
-                                    contentDescription = "Email",
-                                    tint = Color.White,
-                                    modifier = Modifier.size(16.dp)
-                                )
-                                Text(
-                                    text = "afwanmp@gmail.com",
-                                    fontSize = 12.sp,
-                                    color = Color.White,
-                                    modifier = Modifier.padding(start = 8.dp)
-                                )
-                            }
-
-                            // Phone Number
-                            Spacer(modifier = Modifier.height(4.dp))
-                            Row {
-                                Icon(
-                                    painter = painterResource(id = R.drawable.ic_phone),
-                                    contentDescription = "Phone",
-                                    tint = Color.White,
-                                    modifier = Modifier.size(16.dp)
-                                )
-                                Text(
-                                    text = "081295574111",
-                                    fontSize = 12.sp,
-                                    color = Color.White,
-                                    modifier = Modifier.padding(start = 8.dp)
-                                )
-                            }
                         }
                     }
-                    Wallet(
-                        balance = 350000.0,
-                        points = 235,
-                        income = 100000.0,
-                        outcome = 50000.0,
-                        modifier = Modifier.padding(top = 64.dp)
-                    )
-                }
             }
 
             Text(
@@ -151,7 +160,10 @@ fun ProfileScreen(navController: NavController) {
                 color = Color.Gray,
                 modifier = Modifier.padding(top = 16.dp, bottom = 12.dp, start = 16.dp)
             )
-            Rank(score = 2500, rank = 1)
+            if (isLoading)
+                ShimmerRank()
+            else
+                user?.let { it1 -> Rank(score = it1.score, rank = user.rank) }
 
             Text(
                 text = "Fitur",
