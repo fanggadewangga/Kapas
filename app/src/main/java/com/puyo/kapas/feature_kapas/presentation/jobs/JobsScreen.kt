@@ -21,7 +21,7 @@ import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import com.puyo.kapas.R
 import com.puyo.kapas.feature_kapas.data.source.dummy.Dummy
 import com.puyo.kapas.feature_kapas.presentation.home.components.JobItem
-import com.puyo.kapas.feature_kapas.presentation.jobs.components.AnimatedShimmer
+import com.puyo.kapas.feature_kapas.presentation.jobs.components.ShimmerJobItem
 import com.puyo.kapas.feature_kapas.presentation.util.Screen
 import com.puyo.kapas.feature_kapas.presentation.util.components.BottomNavigationBar
 import com.puyo.kapas.ui.components.CustomSearchField
@@ -102,7 +102,7 @@ fun JobScreen(navController: NavController) {
                 item {
                     if (isJobsLoading) {
                         repeat(15) {
-                            AnimatedShimmer()
+                            ShimmerJobItem()
                             Spacer(modifier = Modifier.height(16.dp))
                         }
                     } else {

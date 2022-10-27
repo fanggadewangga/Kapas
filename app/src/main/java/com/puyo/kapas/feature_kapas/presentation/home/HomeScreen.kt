@@ -22,8 +22,9 @@ import androidx.navigation.NavController
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import com.puyo.kapas.R
 import com.puyo.kapas.feature_kapas.presentation.home.components.JobItem
+import com.puyo.kapas.feature_kapas.presentation.home.components.ShimmerWallet
 import com.puyo.kapas.feature_kapas.presentation.home.components.UserWallet
-import com.puyo.kapas.feature_kapas.presentation.jobs.components.AnimatedShimmer
+import com.puyo.kapas.feature_kapas.presentation.jobs.components.ShimmerJobItem
 import com.puyo.kapas.feature_kapas.presentation.util.Screen
 import com.puyo.kapas.feature_kapas.presentation.util.components.BottomNavigationBar
 import com.puyo.kapas.ui.components.CustomSearchField
@@ -36,7 +37,8 @@ fun HomeScreen(navController: NavController) {
     val coroutineScope = rememberCoroutineScope()
     val systemUiController = rememberSystemUiController()
     val jobs = viewModel.jobs.value
-    val isJobsLoading = viewModel.isJobsLoading.value
+    val user = viewModel.user.value
+    val isLoading = viewModel.isLoading.value
 
     SideEffect {
         systemUiController.statusBarDarkContentEnabled = true
@@ -87,7 +89,13 @@ fun HomeScreen(navController: NavController) {
 
                 Spacer(modifier = Modifier.height(24.dp))
                 // Wallet
-                UserWallet(balance = 350000.0, point = 235)
+                if (isLoading)
+                    ShimmerWallet()
+                else
+                    UserWallet(
+                        balance = user?.balance ?: 0.0,
+                        point = user?.point ?: 0
+                    )
 
                 Spacer(modifier = Modifier.height(24.dp))
                 // Banner
@@ -120,10 +128,10 @@ fun HomeScreen(navController: NavController) {
                     modifier = Modifier.padding(vertical = 16.dp)
                 )
 
-                if (isJobsLoading)
+                if (isLoading)
                     Column {
                         repeat(10) {
-                            AnimatedShimmer()
+                            ShimmerJobItem()
                             Spacer(modifier = Modifier.height(16.dp))
                         }
                     }

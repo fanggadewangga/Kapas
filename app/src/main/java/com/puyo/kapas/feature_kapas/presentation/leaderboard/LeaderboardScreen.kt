@@ -10,8 +10,6 @@ import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.SideEffect
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -26,8 +24,8 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import com.puyo.kapas.R
-import com.puyo.kapas.feature_kapas.data.source.dummy.Dummy
 import com.puyo.kapas.feature_kapas.presentation.leaderboard.components.LeaderboardItem
+import com.puyo.kapas.feature_kapas.presentation.leaderboard.components.ShimmerLeaderboardItem
 import com.puyo.kapas.feature_kapas.presentation.util.components.BottomNavigationBar
 import com.puyo.kapas.ui.theme.Orange
 import org.koin.androidx.compose.getViewModel
@@ -36,8 +34,7 @@ import org.koin.androidx.compose.getViewModel
 @Composable
 fun LeaderboardScreen(navController: NavController) {
     val viewModel = getViewModel<LeaderboardViewModel>()
-    val dummy = remember { Dummy }
-    val coroutineScope = rememberCoroutineScope()
+    val isLoading = viewModel.isLoading.value
     val systemUiController = rememberSystemUiController()
 
     SideEffect {
@@ -143,10 +140,16 @@ fun LeaderboardScreen(navController: NavController) {
                 modifier = Modifier.fillMaxWidth()
             ) {
                 item {
-                    viewModel.users.value.forEach { user ->
-                        LeaderboardItem(user = user, navController = navController)
-                        Spacer(modifier = Modifier.height(16.dp))
-                    }
+                    if (isLoading)
+                        repeat(15) {
+                            Spacer(modifier = Modifier.height(16.dp))
+                            ShimmerLeaderboardItem()
+                        }
+                    else
+                        viewModel.users.value.forEach { user ->
+                            LeaderboardItem(user = user, navController = navController)
+                            Spacer(modifier = Modifier.height(16.dp))
+                        }
                 }
             }
         }

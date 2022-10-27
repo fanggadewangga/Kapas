@@ -20,7 +20,7 @@ interface KapasApi {
     @GET("/user/{uid}")
     suspend fun fetchUserDetail(
         @Path("uid") uid: String
-    ): BaseResponse<UserResponse>
+    ): BaseResponse<UserResponse?>
 
     @PUT("/user/{uid}")
     suspend fun updateUserDetail(

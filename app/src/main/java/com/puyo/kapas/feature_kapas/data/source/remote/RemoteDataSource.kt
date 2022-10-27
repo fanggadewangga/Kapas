@@ -36,7 +36,7 @@ class RemoteDataSource(
         return ""
     }
 
-    suspend fun fetchUserDetail(uid: String): BaseResponse<UserResponse> =
+    suspend fun fetchUserDetail(uid: String): BaseResponse<UserResponse?> =
         apiService.fetchUserDetail(uid)
 
     suspend fun fetchLeaderboard(): BaseResponse<List<LeaderboardResponse>> =

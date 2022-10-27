@@ -1,19 +1,22 @@
-package com.puyo.kapas.feature_kapas.presentation.jobs.components
+package com.puyo.kapas.feature_kapas.presentation.leaderboard.components
 
 import androidx.compose.animation.core.*
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.Card
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 
 @Composable
-fun ShimmerJobItem() {
+fun ShimmerLeaderboardItem() {
     val colors = listOf(
         Color.LightGray.copy(alpha = 0.6f),
         Color.LightGray.copy(alpha = 0.2f),
@@ -38,35 +41,41 @@ fun ShimmerJobItem() {
         end = Offset(x = translateAnimation.value, y = translateAnimation.value)
     )
 
-    Column(
+    Card(
+        shape = RoundedCornerShape(8.dp),
+        elevation = 8.dp,
         modifier = Modifier
             .fillMaxWidth()
-            .padding(10.dp)
+            .padding(horizontal = 16.dp)
+            .height(56.dp)
     ) {
-        Spacer(modifier = Modifier
-            .height(40.dp)
-            .fillMaxWidth(fraction = 0.9f)
-            .clip(RoundedCornerShape(12.dp))
-            .background(brush)
-        )
-        Spacer(modifier = Modifier.height(16.dp))
+
         Row(
+            verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.SpaceBetween,
-            modifier = Modifier.fillMaxWidth()
+            modifier = Modifier.padding(horizontal = 16.dp)
         ) {
+
+            // Rank
             Spacer(modifier = Modifier
-                .height(20.dp)
-                .width(220.dp)
+                .height(24.dp)
+                .width(240.dp)
                 .clip(RoundedCornerShape(12.dp))
                 .background(brush)
             )
 
             Spacer(modifier = Modifier
-                .height(20.dp)
-                .width(100.dp)
+                .height(24.dp)
+                .width(80.dp)
                 .clip(RoundedCornerShape(12.dp))
                 .background(brush)
             )
         }
     }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun ShimmerLeaderboardItemPreview() {
+    ShimmerLeaderboardItem()
 }
