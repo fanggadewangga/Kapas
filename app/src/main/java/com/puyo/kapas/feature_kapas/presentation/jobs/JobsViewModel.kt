@@ -32,7 +32,7 @@ class JobsViewModel(private val repository: Repository): ViewModel() {
             if (result != null) {
                 jobs.value = result
             }
-            delay(1500L)
+            delay(3000L)
             isJobsLoading.value = false
         }
     }

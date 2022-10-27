@@ -103,6 +103,7 @@ fun JobScreen(navController: NavController) {
                     if (isJobsLoading) {
                         repeat(15) {
                             AnimatedShimmer()
+                            Spacer(modifier = Modifier.height(16.dp))
                         }
                     } else {
                         jobs.forEach { job ->

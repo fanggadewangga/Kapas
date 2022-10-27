@@ -124,6 +124,7 @@ fun HomeScreen(navController: NavController) {
                     Column {
                         repeat(10) {
                             AnimatedShimmer()
+                            Spacer(modifier = Modifier.height(16.dp))
                         }
                     }
                 else {
