@@ -11,7 +11,6 @@ import androidx.compose.material.Card
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.SideEffect
-import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -27,16 +26,22 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import com.puyo.kapas.R
+import com.puyo.kapas.feature_kapas.presentation.profile.components.ShimmerUserAvatar
+import com.puyo.kapas.feature_kapas.presentation.profile.components.ShimmerUserIdentity
 import com.puyo.kapas.feature_kapas.presentation.profile.components.UserIdentityItem
 import com.puyo.kapas.feature_kapas.presentation.profile.components.UserSetting
 import com.puyo.kapas.feature_kapas.presentation.util.Screen
 import com.puyo.kapas.ui.theme.Orange
+import com.skydoves.landscapist.ImageOptions
+import com.skydoves.landscapist.glide.GlideImage
+import org.koin.androidx.compose.getViewModel
 
 @Composable
 fun ProfileSettingScreen(navController: NavController) {
-
+    val viewModel = getViewModel<ProfileSettingViewModel>()
+    val isLoading = viewModel.isLoading.value
+    val user = viewModel.user.value
     val systemUiController = rememberSystemUiController()
-    val coroutineScope = rememberCoroutineScope()
 
     SideEffect {
         systemUiController.setSystemBarsColor(Orange)
@@ -90,17 +95,24 @@ fun ProfileSettingScreen(navController: NavController) {
                 color = Color.Gray
             )
             Row(modifier = Modifier.padding(top = 16.dp)) {
-                
+
                 // Avatar
-                Image(
-                    painter = painterResource(id = R.drawable.img_avatar_male),
-                    contentDescription = "Avatar",
-                    contentScale = ContentScale.Crop,
-                    modifier = Modifier
-                        .size(64.dp)
-                        .clip(CircleShape)
-                )
-                
+                if (isLoading)
+                    ShimmerUserAvatar()
+                else
+                    GlideImage(
+                        imageModel = {
+                            user?.avatarUrl
+                        },
+                        modifier = Modifier
+                            .clip(CircleShape)
+                            .size(64.dp),
+                        imageOptions = ImageOptions(contentScale = ContentScale.Crop,
+                            contentDescription = "Avatar"),
+                        previewPlaceholder = R.drawable.img_avatar
+                    )
+
+
                 // Buttons
                 Column(
                     verticalArrangement = Arrangement.Center,
@@ -157,7 +169,7 @@ fun ProfileSettingScreen(navController: NavController) {
             // Settings
             Spacer(modifier = Modifier.height(16.dp))
             UserSetting(navController = navController)
-            
+
             // User Identity
             Spacer(modifier = Modifier.height(24.dp))
             Text(
@@ -166,21 +178,30 @@ fun ProfileSettingScreen(navController: NavController) {
                 fontSize = 20.sp
             )
             Spacer(modifier = Modifier.height(8.dp))
-            UserIdentityItem(
-                title = "Nomor E-KTP",
-                description = "Masukkan nomor E-KTP Anda",
-                value = "31234567890"
-            )
-            UserIdentityItem(
-                title = "Nama Lengkap",
-                description = "Masukkan nama lengkap sesuai E-KTP Anda",
-                value = "Afwan Mulia Pratama"
-            )
-            UserIdentityItem(
-                title = "Tempat Lahir" ,
-                description = "Masukkan tempat lahir sesuai E-KTP Anda",
-                value = "Malang"
-            )
+            if (isLoading)
+                ShimmerUserIdentity()
+            else
+                UserIdentityItem(
+                    title = "Nomor E-KTP",
+                    description = "Masukkan nomor E-KTP Anda",
+                    value = user?.cardNumber ?: "xxxxxxxxxxxxx"
+                )
+            if (isLoading)
+                ShimmerUserIdentity()
+            else
+                UserIdentityItem(
+                    title = "Nama Lengkap",
+                    description = "Masukkan nama lengkap sesuai E-KTP Anda",
+                    value = user?.name ?: "Username"
+                )
+            if (isLoading)
+                ShimmerUserIdentity()
+            else
+                UserIdentityItem(
+                    title = "Tempat Lahir",
+                    description = "Masukkan tempat lahir sesuai E-KTP Anda",
+                    value = user?.birthDate ?: "User Birthplace"
+                )
         }
     }
 }
